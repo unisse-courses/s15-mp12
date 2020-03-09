@@ -2,3 +2,4 @@
 ###### Members
 - Ronell John Roxas
 - Charlene Ang
+- Domingo, Allexandra Nicole
