@@ -1,5 +1,7 @@
-# s15-mp12
-###### Members
-- Ronell John Roxas
-- Charlene Ang
-- Domingo, Allexandra Nicole
+# Project Name
+
+## Team Members:
+
+* Ang, Charlene
+* Domingo, Allexandra Nicole
+* Roxas, Ronell John
