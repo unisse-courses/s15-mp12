@@ -1,0 +1,255 @@
+/*Header*/
+.header{
+    position: sticky;
+}
+.header-primary-green {
+    background-color: #7b824d;
+    height: 130px;
+    border-bottom: 3px solid white;    
+}
+.header-yellow{
+    background-color: #c09640;
+    height: 40px;
+}
+
+.center {
+    margin: auto;
+}
+
+.container {
+    display: inline-flexbox;
+    border-radius: 0px 0px 15px 15px;
+    color: white;
+}
+
+.bg-black {
+    background: rgba(25, 25, 25, .5);
+    box-shadow: 0px 0px 5px black inset;
+}
+
+.bg-black:hover{
+    background: rgba(25, 25, 25, 0.8);
+    box-shadow: 0px 1px 5px 0px black;
+    cursor: pointer;
+    transition-duration: 1000ms;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.current-black {
+    background: rgba(25, 25, 25, .8);
+    
+}
+
+.text-orange {
+    color: #c09640;
+}
+
+.container img {
+    margin: auto;
+    width: 100%;
+    object-fit: cover;
+}
+
+.recipe-img {
+    height: 400px;
+    object-fit: cover;
+}
+
+.ingredients {
+    list-style: none;
+    color: white;
+    
+}
+.ingredients li {
+    margin-bottom: 10px;
+}
+
+.preparation li{
+    margin-bottom: 10px;
+}
+
+.wrapper {
+    min-height: 65vh;
+}
+
+.navbar-brand{
+    height:75 px;
+    width: 20%;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.2);
+    transition-duration: 500ms;
+    transition-property: transform;
+}
+
+.nav-link:hover {
+    box-shadow: 0px 3px 5px black;
+    transition-duration: 500ms;
+}
+.display-res {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; 
+}
+.flex-box{
+    display: flex;
+    flex-direction: cloumn;
+    justify-content: space-around;
+
+}
+.footer {
+    position: static;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    height: 100px;
+    background-color: #424721e3;
+    color: white;
+    border-top: 5px solid white;
+    text-align: center;
+  }
+.card-img-top{
+    height:300px;
+}
+.hr{
+    size : 5;
+    color: #c09640;
+}
+
+ol {
+    counter-reset: item;
+    list-style: none;
+}
+
+ol li::before {
+    display: inline-block;
+    content: counter(item);
+    counter-increment: item;
+    margin-right: 1em;
+    width: 2em;
+    margin-left: -3em;
+    
+    color: #c09640;
+    font-weight: bold;
+    text-align: right;
+}
+
+.source {
+    font-style: italic;
+}
+/*
+.heart {
+    display:inline-block;
+    position: relative;
+    background-image: url(../img/heart.png); 
+    background-size: 20px 20px; 
+    background-position: 0px 0px;
+    height: 20px; 
+    width: 20px;
+    margin-left: 5px;
+}*/
+
+.user {
+    display:inline-block;
+    position: relative;
+    background-image: url(../img/user.png); 
+    background-size: 20px 20px; 
+    background-position: 0px 0px;
+    height: 20px; 
+    width: 20px;
+    margin-right: 1em;
+}
+
+.profile_pic {
+    display: inline-block;
+    position: relative;
+    background-image: url(../img/user.png); 
+    background-size: 75px 80px; 
+    background-position: 0px 0px;
+    height: 4em; 
+    width: 4em;
+    margin-right: 0.5em;
+    border-radius: 75px;
+    border: 2px solid #c09640;
+    background-color: white;
+}
+
+.social_icon {
+    display:inline-block;
+    position: relative;
+    background-size: 30px 30px; 
+    height: 30px; 
+    width: 30px;
+    margin-left: 5px;
+    object-fit: scale-down;
+}
+
+#fb {
+    background-image: url(../img/facebook.png); 
+}
+
+#gplus {
+    background-image: url(../img/google-plus.png); 
+}
+
+#ig {
+    background-image: url(../img/instagram.png); 
+}
+
+#twitter {
+    background-image: url(../img/twitter.png); 
+}
+
+/*sprites*/
+#home {
+    width: 30px;
+    height: 30px;
+    background: url(../img/home.png) 0 0 ;
+}
+#recBook{
+    width: 30px;
+    height: 30px;
+    background: url(../img/agenda.png) 0 0 ;
+}
+
+
+a {
+    color: #c09640;
+}
+
+a:hover{
+    color: #f3e5e5;
+}
+
+.card {
+    display: inline-block;
+    color: black;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    width: 300px;
+}
+
+.post {
+    display: inline-flexbox;
+    padding: 20px;
+    border-radius: 15px 15px 15px 15px;
+    color: white;
+  margin-top: 20px;
+}
+
+.post img {
+    margin: auto;
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.btn-yellow {
+    background-color: #c09640;
+    border: 1px solid white;
+    color: white;
+}
