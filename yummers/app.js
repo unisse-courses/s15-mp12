@@ -4,17 +4,6 @@ const handlebars = require('handlebars');
 const app = express();
 const port = 9090;
 
-
-app.set('view engine', 'hbs');
-
-app.engine('hbs', hbs({
-	extname: 'hbs',
-}));
-
-app.listen(port, () => {
-	console.log('App listening at port ' + port);
-});
-
 //Create recipe object
 var recipe = [{
 	name: 'Chocolate Chip Cookies',
@@ -53,7 +42,18 @@ var recipe = [{
 }
 ];
 
+app.set('view engine', 'hbs');
 
+app.engine('hbs', hbs({
+	extname: 'hbs',
+	defaultView: 'default',
+	layoutsDir: __dirname + '/views/layouts/',
+	partialsDir: __dirname + '/views/partials/'
+}));
+
+app.listen(port, () => {
+	console.log('App listening at port ' + port);
+});
 
 app.get('/', (req, res) => {
 	res.render('home', {
@@ -73,6 +73,17 @@ app.get('/login', (req, res) =>  {
 	res.render('login', {
 	title: 'Login/Signup'});
 });
+
+app.get('/add_recipe', (req, res) =>  {
+	res.render('add_recipe', {
+	title: 'Add recipe'});
+});
+
+
+//not working pa
+app.get('/recipe/:recipeId', (req, res) => {
+	res.render('recipe')
+})
 
 //set css folder
 app.use(express.static('public'));

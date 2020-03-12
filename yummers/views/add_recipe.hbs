@@ -1,0 +1,36 @@
+ <div class="container w-50 h-100 current-black py-5 center">
+    <div class="row">
+        <h1 style="color:white"> Add Recipe</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-7"><h4 class="text-orange">Recipe Name</h4>
+            <input class="col-lg-15 form-control" id= "recName" type="text" placeholder="Recipe Name"/>
+            <h4 class=" text-orange">Preparation Time</h4>
+            <input class="col-lg-15 form-control" id = "prepTime" type="number"placeholder="Preparation Time"/>
+            <h4 class=" text-orange">Cooking Time</h4>
+            <input class="col-lg-15 form-control" id = "cookTime" type="number"placeholder="Cooking Time"/>
+                        
+            <h4 class=" text-orange">Serving Size</h4>
+            <input class="col-lg-15 form-control" id = "servSize" type="number"placeholder="Serving Size"/>
+        </div>
+        <div class="col-lg-5">
+            <h4 class=" text-orange">Recipe Photo</h4>
+
+            <img src="img/blank_recipe.png" id = "foodImg"class="img-thumbnail" alt="Cinque Terre">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="foodUp">
+                <label class="custom-file-label" for="foodUp">Choose file</label>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h4 class="text-orange">Ingredients</h4>
+        <textarea class="form-control" rows="7" id="ingredients"></textarea>
+    </div>
+    <div> 
+        <h4 class= "text-orange">Preparation</h4>
+        <textarea  class="form-control" rows="7" id="preparation"></textarea>
+    </div>
+        <p id="warning" style="color: red;"></p>
+        <button type = "button" class="btn btn-secondary" id= "submit" align = "center">Add Recipe</button>
+</div>
