@@ -1,13 +1,13 @@
-<div class="container w-75 h-100 current-black py-5 center">
+<div class="container w-75 current-black py-5 center">
     <div class="row">
-         <h1 class="col-lg-12 text-orange">Choco Chip Cookie</h1>
+         <h1 class="col-lg-12 text-orange">{{recipeFound.name}}</h1>
     </div>
     <div class="row">
-        <p class="col-lg-6"><i>Serving: 15 Cookies</i></p>
-        <p class="col-lg-6 text-right"><span class="user"></span>Nikki Domingo | <i>January 12, 2020</i></p>
+        <p class="col-lg-6"><i>Serving: {{recipeFound.servings}}</i></p>
+        <p class="col-lg-6 text-right"><span class="user"></span>{{recipeFound.author}} | <i>{{recipeFound.date}}</i></p>
     </div>
     <div class="row">
-        <img class="recipe-img col-lg-12" src="/img/recipe_1.jpg" alt="Chocolate Chip Cookies">
+        {{{recipeImg recipeFound}}}
     </div>
     <div class="row pl-1 pt-3">
         <h3 class="col-lg-4 text-orange">Ingredients</h3>
@@ -15,39 +15,23 @@
     </div>
     <div class="row pl-1">
         <ul class="col-lg-4 ingredients">
-            <li>1 cup brown sugar</li>
-            <li>1 cup caster sugar</li>
-            <li>1 stick Amul butter</li>
-            <li>2 eggs</li>
-            <li>2 teaspoon vanilla extract</li>
-            <li>1 teaspoon baking powder</li>
-            <li>1/4 teaspoon salt</li>
-            <li>3 cups maida flour</li>
-            <li>1 cup dark chocolate chip</li>
-            <li>butter, to grease the pan</li>
+            {{# each recipeFound.ingredients}}
+                <li>{{this}}</li>
+            {{/each}}
         </ul>
         <ol class="ml-4 col-lg-6 preparation">
-            <li>Mix brown and caster sugar.</li>
-            <li>Melt the butter. Ensure it is at room temperature when mixed with the sugars.</li>
-            <li>Add eggs one at a time. Mix well.</li>
-            <li>Add vanilla essence, baking powder and salt.</li>
-            <li>Add the maida in batches.</li>
-            <li>Now add the chocolate chips.</li>
-            <li>Mix all the ingredients well.</li>
-            <li>Preheat the oven for 10 minutes at 300°F (150°C).</li>
-            <li>In the meantime, prepare the baking pan by applying butter.</li>
-            <li>Drop small balls of the dough leaving 1½-2 inch gaps between the dough.</li>
-            <li>Bake for 15-17 minutes.</li>
-            <li>Once the timer goes off, take out the tray and let the cookies cool on it or else they will get stuck to the tray.</li>
+            {{# each recipeFound.preparation}}
+                <li>{{this}}</li>
+            {{/each}}
         </ol>
     </div>
     <div class="row pl-1 mt-3 pt-3 pb-2 border-bottom border-top">
-        <span class="col-lg-7 source">Source: https://tasty.co/recipe/choco-chip-cookies</span>
+        <span class="col-lg-7 source">Source: {{recipeFound.source}}</span>
         <div class="col-lg-5 text-right">
-            <span id="fb" class="social_icon"></span>
-            <span id="ig" class="social_icon"></span>
-            <span id="twitter" class="social_icon"></span>
-            <span id="gplus" class="social_icon"></span>
+            <span id="fb" class="icon social_icon"></span>
+            <span id="ig" class="icon social_icon"></span>
+            <span id="twitter" class="icon social_icon"></span>
+            <span id="gplus" class="icon social_icon"></span>
         </div>
     </div>
     <div class="row mt-3">

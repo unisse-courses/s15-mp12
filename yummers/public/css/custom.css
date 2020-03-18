@@ -172,7 +172,6 @@ ol li::before {
     display:inline-block;
     position: relative;
     object-fit: scale-down;
-    margin-left: 1em;
 }
 
 .icon:hover{
@@ -182,6 +181,7 @@ ol li::before {
 }
 
 .post_icon {
+    margin-left: 1em;
     background-position: 0px 0px;
     background-size: 2em 2em; 
     height: 2em; 
@@ -190,6 +190,7 @@ ol li::before {
 }
 
 .social_icon {
+    margin-left: 0.5em;
     background-size: 30px 30px; 
     height: 30px; 
     width: 30px;

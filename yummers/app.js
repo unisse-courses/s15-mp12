@@ -4,43 +4,12 @@ const handlebars = require('handlebars');
 const app = express();
 const port = 9090;
 
-//Create recipe object
-var recipe = [{
-	name: 'Chocolate Chip Cookies',
-	author: 'Nikki Domingo',
-	id: 1,
-	date: 'January 12, 2020',
-	servings: '15 Cookies'
-},
-{
-	name: 'Pinoy Chicken Adobo',
-	author: 'Charlene Ang',
-	id: 2,
-	date: 'January 20, 2020',
-	servings: '4 people'
-},
-{
-	name: 'Leche Flan',
-	author: 'Charlene Ang',
-	id: 3,
-	date: 'December 24, 2019',
-	servings: '10 people'
-},
-{
-	name: 'Classic Cheesecake',
-	author: 'Nikki Domingo',
-	id: 4,
-	date: 'December 21, 2019',
-	servings: '12 people'
-},
-{
-	name: 'Japanese Souffle Pancakes',
-	author: 'Nikki Domingo',
-	id: 5,
-	date: 'January 17, 2020',
-	servings: '4(4-inch) pancakes'
+//import recipe objects
+const recipe = require('./recipes');
+
+function getRecipe(id) {
+	return recipe[id];
 }
-];
 
 app.set('view engine', 'hbs');
 
@@ -48,7 +17,12 @@ app.engine('hbs', hbs({
 	extname: 'hbs',
 	defaultView: 'default',
 	layoutsDir: __dirname + '/views/layouts/',
-	partialsDir: __dirname + '/views/partials/'
+	partialsDir: __dirname + '/views/partials/',
+	helpers: {
+		recipeImg: function(recipe) {
+			return '<img class="recipe-img col-lg-12" src="img/recipe_' + recipe.id + '.jpg" alt="' + recipe.name + '"></img>';
+		}
+	}
 }));
 
 app.listen(port, () => {
@@ -81,9 +55,11 @@ app.get('/add_recipe', (req, res) =>  {
 
 
 //not working pa
-app.get('/recipe/:recipeId', (req, res) => {
-	res.render('recipe')
-})
+app.get('/recipe=:recipeId', (req, res) => {
+	res.render('recipe', {
+		recipeFound: getRecipe(req.params.recipeId - 1)
+	});
+});
 
 //set css folder
 app.use(express.static('public'));
