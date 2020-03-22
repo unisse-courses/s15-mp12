@@ -111,10 +111,24 @@
     color: white;
     border-top: 5px solid white;
     text-align: center;
-  }
+}
+
+.card {
+    display: inline-block;
+    color: black;
+    margin-right: 1em;
+    margin-bottom: 1em;
+    width: 300px;
+}
+
 .card-img-top{
     height:300px;
 }
+
+.card-title {
+    font-size: 1.3vw;
+}
+
 .hr{
     size : 5;
     color: #c09640;
@@ -175,7 +189,7 @@ ol li::before {
 }
 
 .icon:hover{
-    transform: scale(1.1);
+    transform: scale(1.2);
     transition-property: transform;
     transition-duration: 400ms;
 }
@@ -238,19 +252,13 @@ ol li::before {
 
 a {
     color: #c09640;
+    text-decoration: none;
 }
 
 a:hover{
     color: #f3e5e5;
 }
 
-.card {
-    display: inline-block;
-    color: black;
-    margin-right: 1em;
-    margin-bottom: 1em;
-    width: 300px;
-}
 
 .post {
     display: inline-flexbox;
@@ -271,4 +279,9 @@ a:hover{
     background-color: #c09640;
     border: 1px solid white;
     color: white;
+}
+
+#errorMessage { 
+    color: #fd3c3c;
+    margin: auto;
 }

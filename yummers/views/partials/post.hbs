@@ -1,7 +1,7 @@
 <div class="post w-75 current-black py-4 center">
         <div class="row">
             <p class="col-lg-10">
-                <span class="user"></span>{{author}} | <i>{{date}}  </i>
+                <span class="user"></span><a href="/user={{author.id}}">{{author.name}}</a> | <i>{{date}}  </i>
                 <span id="follow" class="icon post_icon"></span>
             </p>
             <p class="col-lg-2"><span id="cook" class="icon post_icon"></span><span id="bookmark" class="icon post_icon"></span></p>
@@ -13,7 +13,7 @@
             <div class="col-lg-7">
                 <h1 class="text-orange">{{name}}</h1>
                 <p>Description here.
-                    <p><a href="/recipe={{id}}">View full recipe.</a></p>
+                    <p><a href="/user={{author.id}}/recipe={{id}}">View full recipe.</a></p>
             </div>
         </div>
 </div>

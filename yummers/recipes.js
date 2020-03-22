@@ -1,7 +1,8 @@
+var users = require('./users')
 //Create recipe object
 var recipe = [{
 	name: 'Chocolate Chip Cookies',
-	author: 'Nikki Domingo',
+	author: users[0],
 	id: 1,
 	date: 'January 12, 2020',
     servings: '15 Cookies',
@@ -35,7 +36,7 @@ var recipe = [{
 },
 {
 	name: 'Pinoy Chicken Adobo',
-	author: 'Charlene Ang',
+	author: users[1],
 	id: 2,
 	date: 'January 20, 2020',
     servings: '4 people',
@@ -68,7 +69,7 @@ var recipe = [{
 },
 {
 	name: 'Leche Flan',
-	author: 'Charlene Ang',
+	author: users[1],
 	id: 3,
 	date: 'December 24, 2019',
     servings: '10 people',
@@ -97,7 +98,7 @@ var recipe = [{
 },
 {
 	name: 'Classic Cheesecake',
-	author: 'Nikki Domingo',
+	author: users[0],
 	id: 4,
 	date: 'December 21, 2019',
     servings: '12 people',
@@ -141,7 +142,7 @@ var recipe = [{
 },
 {
 	name: 'Japanese Souffle Pancakes',
-	author: 'Nikki Domingo',
+	author: users[0],
 	id: 5,
 	date: 'January 17, 2020',
     servings: '4(4-inch) pancakes',

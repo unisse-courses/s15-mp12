@@ -5,11 +5,9 @@ const app = express();
 const port = 9090;
 
 //import recipe objects
-const recipe = require('./recipes');
+var recipe = require('./recipes');
+var users = require('./users');
 
-function getRecipe(id) {
-	return recipe[id];
-}
 
 app.set('view engine', 'hbs');
 
@@ -20,10 +18,24 @@ app.engine('hbs', hbs({
 	partialsDir: __dirname + '/views/partials/',
 	helpers: {
 		recipeImg: function(recipe) {
-			return '<img class="recipe-img col-lg-12" src="img/recipe_' + recipe.id + '.jpg" alt="' + recipe.name + '"></img>';
+			return '<img class="recipe-img col-lg-12" src="../img/recipe_' + recipe.id + '.jpg" alt="' + recipe.name + '"></img>';
+		},
+		formSwitch: function(type) {
+			if (type == 0) return true;
+			else return false;
 		}
 	}
 }));
+
+function getRecipes(userId) {
+	var userRecipes = [];
+	for(r of recipe) {
+		if(r.author.id == userId) {
+			userRecipes.push(r);
+		}
+	}
+	return userRecipes;
+}
 
 app.listen(port, () => {
 	console.log('App listening at port ' + port);
@@ -35,17 +47,16 @@ app.get('/', (req, res) => {
 	recipe_list : recipe});
 });
 
-app.get('/profile', (req, res) => {
+app.get('/user=:userId', (req, res) => {
 	res.render('profile', {
-	fn: 'Ronell',
-	ln: 'Roxas',
-	title: 'Profile Page',
-	recipe_list : recipe});
+	user: users[req.params.userId - 1],
+	recipe_list : getRecipes(req.params.userId)});
 });
 
-app.get('/login', (req, res) =>  {
-	res.render('login', {
-	title: 'Login/Signup'});
+app.get('/form=:type', (req, res) =>  {
+	res.render('userforms', {
+	title: 'Login/Signup',
+	type: req.params.type});
 });
 
 app.get('/add_recipe', (req, res) =>  {
@@ -53,11 +64,10 @@ app.get('/add_recipe', (req, res) =>  {
 	title: 'Add recipe'});
 });
 
-
-//not working pa
-app.get('/recipe=:recipeId', (req, res) => {
+app.get('/user=:userId/recipe=:recipeId', (req, res) => {
 	res.render('recipe', {
-		recipeFound: getRecipe(req.params.recipeId - 1)
+		recipeFound: recipe[req.params.recipeId - 1],
+		user: users[req.params.userId - 1]
 	});
 });
 
