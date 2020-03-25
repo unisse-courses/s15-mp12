@@ -5,8 +5,8 @@ const app = express();
 const port = 9090;
 
 //import recipe objects
-var recipe = require('./recipes');
-var users = require('./users');
+var recipe = require('./models/recipes');
+var users = require('./models/users');
 
 
 app.set('view engine', 'hbs');
@@ -71,6 +71,7 @@ app.get('/user=:userId/recipe=:recipeId', (req, res) => {
 	});
 });
 
-//set css folder
+
+//set static files
 app.use(express.static('public'));
 
