@@ -1,10 +1,10 @@
 <div class="card">
-    <img class="card-img-top" src="img/recipe_{{id}}.jpg" alt="{{name}} image">
+    <img class="card-img-top" src="/img/recipe_{{id}}.jpg" alt="{{name}}">
     <div class="card-body">
         <h4 class="card-title">{{name}}</h4>
-        <p class="card-text">By <a href="profile.html">{{author.name}}</a></p>
+        <p class="card-text">By <a href="/user/{{idToString userId}}">{{username}}</a></p>
         <div>
-        <a href="/user={{author.id}}/recipe={{id}}" class="btn btn-secondary">View Recipe</a>
+        <a href="/user/{{idToString userId}}/recipe/{{id}}" class="btn btn-secondary">View Recipe</a>
         <a href="edit_recipe_1.html" class="btn btn-warning">Edit Recipe</a>
         </div>
     </div>

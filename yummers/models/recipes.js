@@ -1,9 +1,7 @@
-var users = require('./users')
+
 //Create recipe object
 var recipe = [{
 	name: 'Chocolate Chip Cookies',
-	author: users[0],
-	id: 1,
 	date: 'January 12, 2020',
     servings: '15 Cookies',
     source: 'https://tasty.co/recipe/choco-chip-cookies',
@@ -36,8 +34,6 @@ var recipe = [{
 },
 {
 	name: 'Pinoy Chicken Adobo',
-	author: users[1],
-	id: 2,
 	date: 'January 20, 2020',
     servings: '4 people',
     source: 'https://panlasangpinoy.com/filipino-chicken-adobo-recipe',
@@ -69,8 +65,6 @@ var recipe = [{
 },
 {
 	name: 'Leche Flan',
-	author: users[1],
-	id: 3,
 	date: 'December 24, 2019',
     servings: '10 people',
     source: 'https://www.foxyfolksy.com/leche-flan/',
@@ -98,8 +92,6 @@ var recipe = [{
 },
 {
 	name: 'Classic Cheesecake',
-	author: users[0],
-	id: 4,
 	date: 'December 21, 2019',
     servings: '12 people',
     source: 'https://sallysbakingaddiction.com/classic-cheesecake/',
@@ -142,8 +134,6 @@ var recipe = [{
 },
 {
 	name: 'Japanese Souffle Pancakes',
-	author: users[0],
-	id: 5,
 	date: 'January 17, 2020',
     servings: '4(4-inch) pancakes',
     source: 'https://kirbiecravings.com/japanese-souffle-pancakes/',
@@ -182,5 +172,18 @@ var recipe = [{
     ]
 }
 ];
+
+// For recipes. Basic schema ng recipe object as a guide
+// const mongoose = require('mongoose');
+// const recipeSchema = new mongoose.Schema({
+//     name: String,
+//     id: mongoose.Schema.Types.ObjectId,
+//     date: Date,
+//     servings: String,
+//     source: String,
+//     ingredients: [String],
+//     preparation: [String]
+
+// });
 
 module.exports = recipe;

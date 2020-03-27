@@ -14,11 +14,12 @@
             {{>signup}}
         {{/if}}
     </div>
-    <script src="js/userforms.js"></script>
+    <script src="/js/userforms.js"></script>
     <script>
         $(document).ready(function() {
             if({{formSwitch type}}) {
                 $('#signup_tab').addClass('bg-black');
+                
             }
             else {
                 $('#login_tab').addClass('bg-black');

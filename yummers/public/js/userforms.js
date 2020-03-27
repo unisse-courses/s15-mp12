@@ -48,11 +48,11 @@ $(document).ready(function () {
     })
 
     $('#login_tab').click(function () {
-        window.location.href = '/form=0';
+        window.location.href = '/form/0';
     })
 
     $('#signup_tab').click(function () {
-        window.location.href = '/form=1';
+        window.location.href = '/form/1';
     })
 
 })

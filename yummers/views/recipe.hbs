@@ -1,13 +1,13 @@
 <div class="container w-75 current-black py-5 center">
     <div class="row">
-         <h1 class="col-lg-12 text-orange">{{recipeFound.name}}</h1>
+         <h1 class="col-lg-12 text-orange">{{recipe.name}}</h1>
     </div>
     <div class="row">
-        <p class="col-lg-6"><i>Serving: {{recipeFound.servings}}</i></p>
-        <p class="col-lg-6 text-right"><span class="user"></span>{{user.name}} | <i>{{recipeFound.date}}</i></p>
+        <p class="col-lg-6"><i>Serving: {{recipe.servings}}</i></p>
+        <p class="col-lg-6 text-right"><span class="user"></span><a href='/user/{{idToString userId}}'>{{username}}</a> | <i>{{recipe.date}}</i></p>
     </div>
     <div class="row">
-        {{{recipeImg recipeFound}}}
+        {{{recipeImg recipe}}}
     </div>
     <div class="row pl-1 pt-3">
         <h3 class="col-lg-4 text-orange">Ingredients</h3>
@@ -15,18 +15,18 @@
     </div>
     <div class="row pl-1">
         <ul class="col-lg-4 ingredients">
-            {{# each recipeFound.ingredients}}
+            {{# each recipe.ingredients}}
                 <li>{{this}}</li>
             {{/each}}
         </ul>
         <ol class="ml-4 col-lg-6 preparation">
-            {{# each recipeFound.preparation}}
+            {{# each recipe.preparation}}
                 <li>{{this}}</li>
             {{/each}}
         </ol>
     </div>
     <div class="row pl-1 mt-3 pt-3 pb-2 border-bottom border-top">
-        <span class="col-lg-7 source">Source: {{recipeFound.source}}</span>
+        <span class="col-lg-7 source">Source: {{recipe.source}}</span>
         <div class="col-lg-5 text-right">
             <span id="fb" class="icon social_icon"></span>
             <span id="ig" class="icon social_icon"></span>

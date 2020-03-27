@@ -1,3 +1,5 @@
-{{# each recipe_list}}
-    {{>post recipe = recipe_list}}
+{{#each users}}
+        {{#if this.recipes}}
+                {{>post user = this}}
+        {{/if}}
 {{/each}}

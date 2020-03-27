@@ -16,8 +16,8 @@
     <div class="row">
         <h1 class="col-lg-12 text-orange">Recipes</h1>
     </div>
-        {{#each recipe_list}}
-            {{> recipe_card recipe=recipe_list}}
+        {{#each user.recipes}}
+            {{> recipe_card username = ../user.name userId = ../user._id}}
         {{/each}}
     </div>
 </div>
