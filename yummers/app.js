@@ -52,6 +52,7 @@ mongoClient.connect(databaseURL, function(err, db) {
 });
 
 //Insert all users (Use this to insert the current user data to your db, dont forget to put comments after inserting para di mag repeat)
+
 // mongoClient.connect(databaseURL, function(err, db) {
 // 	if(err) throw err;
 // 	const dbo = db.db(dbname);
