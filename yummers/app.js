@@ -1,13 +1,12 @@
 const express = require('express');
 const hbs = require('express-handlebars');
 const handlebars = require('handlebars');
-const app = express();
-const port = 9090;
+const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
 const path = require('path');
-
-//import users objects(NOTE: Not used since straight to mongodb ung import this time)
-//var users = require('./models/users');
+const helper = require('./helper');
+const app = express();
+const port = 9090;
 
 app.set('view engine', 'hbs');
 
@@ -16,28 +15,18 @@ app.engine('hbs', hbs({
 	defaultView: 'default',
 	layoutsDir: __dirname + '/views/layouts/',
 	partialsDir: __dirname + '/views/partials/',
-	helpers: {
-		idToString: function(id) {	//Converts MongoDB ObjectId type to String. Used for URL/route concatenations
-			return mongodb.ObjectId(id).toString();
-		},
-		recipeImg: function(recipe) {	//recipe image at recipe page
-			return '<img class="recipe-img col-lg-12" src="/img/recipe_' + recipe.id + '.jpg" alt="' + recipe.name + '"></img>';
-		},
-		postImg: function(recipe) {	//recipe image in a post
-			return '<p class="col-lg-12"><img src="/img/recipe_' + recipe.id + '.jpg" alt="' + recipe.name + '"></img></p>'
-		},
-		formSwitch: function(type) {	//switch for login/signup tabs
-			if (type == 0) return true;
-			else return false;
-		}
-	}
+	helpers: helper
 }));
 
+// Configuration for handling API endpoint data
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 //mongodb
 const mongoClient = mongodb.MongoClient;
 const databaseURL = "mongodb://localhost:27017/";
 const dbname =  "yummersdb";
+
 
 //create users collection to mongodb
 mongoClient.connect(databaseURL, function(err, db) {
@@ -139,6 +128,56 @@ app.get('/user/:userId/recipe/:recipeId', (req, res) => {
 		});
 	});
 });
+
+//user forms
+//login
+app.post('/login', function(req, res) {
+	
+	var user = {
+		reqUsername: req.body.username,
+		reqPassword: req.body.password
+	}
+
+	mongoClient.connect(databaseURL, function(err, db) {
+		if(err) throw err;
+		const dbo = db.db(dbname);
+		const collection = dbo.collection('users');
+
+		collection.findOne({username : user.reqUsername, password : user.reqPassword}, (err, result) => {
+			if(err) throw err;
+
+			res.send({user: result});
+			db.close();
+		})
+	});
+})
+
+
+//signup
+app.post('/signup', function(req, res) {
+	
+	var user = {
+		username: req.body.username,
+		name: req.body.name,
+		joinDate: new Date(),
+		pass: req.body.pass,
+		email: req.body.email,
+		recipes: null
+	}
+
+	mongoClient.connect(databaseURL, function(err, db) {
+		if(err) throw err;
+		const dbo = db.db(dbname);
+		const collection = dbo.collection('users');
+
+		collection.insertOne(user, function(err, dbres) {
+			if(err) throw err;
+
+			res.status(200).send({accepted : true});
+		})
+	});
+})
+
 
 
 //set static files
