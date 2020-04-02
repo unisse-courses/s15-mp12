@@ -6,7 +6,7 @@ const mongodb = require('mongodb');
 const path = require('path');
 const helper = require('./helper');
 const app = express();
-const port = 9090;
+const port = 3000;
 
 app.set('view engine', 'hbs');
 
@@ -39,21 +39,6 @@ mongoClient.connect(databaseURL, function(err, db) {
         db.close();
     });
 });
-
-//Insert all users (Use this to insert the current user data to your db, dont forget to put comments after inserting para di mag repeat)
-
-// mongoClient.connect(databaseURL, function(err, db) {
-// 	if(err) throw err;
-// 	const dbo = db.db(dbname);
-// 	const collection = dbo.collection('users');
-
-// 	collection.insertMany(users, function(err, res) {
-// 		if(err) throw err;
-
-// 		console.log('inserted users!');
-// 		db.close();
-// 	})
-// });
 
 app.listen(port, () => {
 	console.log('App listening at port ' + port);
@@ -125,6 +110,38 @@ app.get('/user/:userId/recipe/:recipeId', (req, res) => {
 				username: dbres.name,
 				userId: dbres._id
 			});
+		});
+	});
+});
+
+app.get('/my_recipes', (req, res) => {
+	mongoClient.connect(databaseURL, function(err, db) { 
+		if(err) throw err;
+		const dbo = db.db(dbname);
+		const collection = dbo.collection('users');
+
+		collection.findOne({}, function(err, dbres) {
+			if(err) throw err;
+
+			res.render('my_recipes', {
+				user: dbres
+			})
+		});
+	});
+});
+
+app.get('/cookbook', (req, res) => {
+	mongoClient.connect(databaseURL, function(err, db) { 
+		if(err) throw err;
+		const dbo = db.db(dbname);
+		const collection = dbo.collection('users');
+
+		collection.findOne({}, function(err, dbres) {
+			if(err) throw err;
+
+			res.render('recipebook', {
+				user: dbres
+			})
 		});
 	});
 });

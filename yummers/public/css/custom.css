@@ -292,3 +292,7 @@ a:hover{
     color: #fd3c3c;
     margin: auto;
 }
+
+#foodImg {
+    object-fit: contain;
+}
