@@ -1,21 +1,19 @@
-{{#each user.recipes}}    
-    <div class="post w-75 current-black py-4 center">
-            <div class="row">
-                <p class="col-lg-10">
-                    <span class="user"></span><a href="/user/{{idToString ../_id}}">{{../name}}</a> | <i>{{this.date}}  </i>
-                    <span id="follow" class="icon post_icon"></span>
-                </p>
-                <p class="col-lg-2"><span id="cook" class="icon post_icon"></span><span id="bookmark" class="icon post_icon"></span></p>
-            </div>    
-            <div class="row">
-                <div class="col-lg-5">
+<div class="post w-75 current-black py-4 center">
+    <div class="row">
+        <p class="col-lg-10">
+            <span class="user"></span><a href="/user/{{userId}}">{{userId}}</a> | <i>{{dateFormat date}} </i>
+            <span id="follow" class="icon post_icon"></span>
+        </p>
+        <p class="col-lg-2"><span id="cook" class="icon post_icon"></span><span id="bookmark" class="icon post_icon"></span></p>
+    </div>    
+    <div class="row">
+        <div class="col-lg-5">
                     {{{postImg this}}}
-                </div>
-                <div class="col-lg-7">
-                    <h1 class="text-orange">{{this.name}}</h1>
-                    <p>Description here.
-                        <p><a href="/user/{{idToString ../_id}}/recipe/{{this.id}}">View full recipe.</a></p>
-                </div>
-            </div>
+        </div>
+        <div class="col-lg-7">
+            <h1 class="text-orange">{{name}}</h1>
+            <p>Description here.
+                <p><a href="/user/{{userId}}/recipe/{{_id}}">View full recipe.</a></p>
+        </div>
     </div>
-{{/each}}
+</div>

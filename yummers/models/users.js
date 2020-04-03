@@ -1,14 +1,22 @@
-const recipe = require('./recipes');
-
-//for mongoose. Basic schema of user
+//mongoose
 const mongoose = require('mongoose');
+
+const database = require('../database');
+
 const userSchema = mongoose.Schema({
-    id: mongoose.Types.ObjectId,
-    name: String,
+    _id: { type: mongoose.Schema.Types.ObjectId , required: [true, 'No ID provided.'] },
+    name: { type: String, required: [true, 'No Name provided.'] },
     joinDate: Date,
-    password: String,
-    email: String,
-    recipes: [recipeSchema] //array of recipe(schema)
+    password: { type: String, required: true},
+    email: { type: String, required: true}
 })
 
-module.exports = users;
+const userModel = mongoose.model('User', userSchema);
+
+exports.getOne = function(filter, projection, callback) {
+    database.findOne(userModel, filter, projection, callback);
+}
+
+exports.getAll = function(filter, projection, callback) {
+    database.findMany(userModel, filter, projection, callback);
+}

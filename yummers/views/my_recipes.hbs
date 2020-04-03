@@ -1,8 +1,8 @@
  <div class="container w-70 h-100 current-black py-5 center">
     <h1 class= "text-orange mb-3">My Recipes</h1>
     <div class="display-res ml-5 pl-5">
-        {{#each user.recipes}}
-            {{> recipe_card username = ../user.name userId = ../user._id}}
+        {{#each recipes}}
+            {{> recipe_card username = ../user.name}}
         {{/each}}
     </div>
 </div>
