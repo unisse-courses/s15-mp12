@@ -5,19 +5,20 @@
     <div class="row flex-box">
         <div class="profile_pic " ></div>
         <div style="flex-grow: 1;">
-            <h2 class="col-lg-10">{{user.name}}</h2>
-            <h5 class="col-lg-10 text-orange">Joined since {{dateFormat user.joinDate}}</h5>
+            <h1 class="col-lg-10 text-spaced">{{user.name}}</h1>
+            <h6 class="col-lg-10 text-orange">Joined since {{dateFormat user.joinDate}}</h6>
         </div>
         <a type="button" class=" col-lg-1 btn btn-yellow mr-1 mt-4" href="edit_profile.html">Edit Profile</a>
     </div>
-    <div class="row">
-        <h1 class="col-lg-12 text-orange ">Bio</h1>
+
+    <div class="row mx-3 pr-5">
+        <h3 class="col-lg-12 text-orange ">Bio</h3>
     </div>
     <div class="row mx-5 pr-5">
-        <p class="col-lg-12">Hi! I'm a college student who loves to cook! Please check out my recipes and give them a like or share them if you tried them out and enjoyed them!</p>
+        <p class="col-lg-12 text-black">Hi! I'm a college student who loves to cook! Please check out my recipes and give them a like or share them if you tried them out and enjoyed them!</p>
     </div>
-    <div class="row">
-        <h1 class="col-lg-12 text-orange">Recipes</h1>
+    <div class="row mx-3 pr-5">
+        <h3 class="col-lg-12 text-orange">Recipes</h3>
     </div>
     <div class="display-res  ml-5 pl-5">
         {{#each recipes}}
