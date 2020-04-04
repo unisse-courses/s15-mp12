@@ -45,11 +45,12 @@ module.exports = {
         })
     },
     //CRUD Operations
-    //Insert doc to model. Used for new user and recipes
-    insertDocument: function(doc, model) {
-        doc.save(function(err, newDoc) {
+    insertDocument: function(doc, callback) {
+        doc.save(function(err, res) {
             if(err) throw err;
-        });
+
+            if(res != null) callback(true);
+        })
     },
 
     /**
@@ -62,7 +63,8 @@ module.exports = {
         model.findOne(filter, projection, function(err, res) {
             if(err) throw err;
 
-            callback(res.toObject());
+            if(res != null) callback(res.toObject());
+            else callback(null);
         });
     },
 

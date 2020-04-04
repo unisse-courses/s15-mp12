@@ -89,7 +89,6 @@ $(document).ready(function () {
                     confirm: confirm
                 }
 
-                console.log(newUser);
                 $.post('/signup', newUser, function(data, status) {
                     if(data.accepted) {
                         $('.modal-title').text('Welcome to Yummers ' + name + '!');

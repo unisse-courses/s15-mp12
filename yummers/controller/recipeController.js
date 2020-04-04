@@ -1,13 +1,24 @@
+const mongoose = require('mongoose');
 const recipeModel = require('../models/recipes');
+const userModel = require('../models/users');
 
-exports.create = function(newRecipe) {
-    recipeModel.insertDocument(newRecipe, recipeModel);
-},
+exports.getAllRecipes = function(req, res) {
+    recipeModel.getAll({}, '', function(dbres) {
+        res.render('home', {
+            title: 'Yummers!',
+            recipes: dbres
+        }) 
+    })
+}
 
-exports.getOneRecipe = function(filter, projection, callback) {
-    recipeModel.getOne(filter, projection, callback);
-},
-
-exports.getAllRecipes = function(filter, projection, callback) {
-    recipeModel.getAll(filter, projection, callback);
+exports.getRecipePage = function(req, res) {
+    recipeModel.getOne({_id: mongoose.Types.ObjectId( req.params.recipeId)}, '', function(dbres) {
+        userModel.getOne({_id: mongoose.Types.ObjectId(dbres.userId)}, 'name', function(username) {
+            res.render('recipe', {
+                title: dbres.name,
+                recipe: dbres,
+                username: username.name
+            });
+        });
+    });
 }
