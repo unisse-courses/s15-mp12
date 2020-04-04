@@ -21,10 +21,13 @@ exports.addRecipe = function(req, res) {
 
 exports.getAllRecipes = function(req, res) {
     recipeModel.getAll({}, '', function(dbres) {
-        res.render('home', {
-            title: 'Yummers!',
-            recipes: dbres
-        }) 
+        userModel.getAll({}, '', function(result) {
+            res.render('home', {
+                title: 'Yummers!',
+                recipes: dbres,
+                users: result
+            });
+        }); 
     })
 }
 

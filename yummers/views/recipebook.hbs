@@ -5,7 +5,7 @@
     <div class="row" style="height:50px;"></div>
     <div class="display-res ml-5 pl-5">
         {{#each recipes}}
-            {{> recipe_card username = ../user.name}}
+            {{> recipe_card username = ../user.name users = ../users}}
         {{/each}}
     </div>
 </div>

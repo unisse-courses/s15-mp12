@@ -67,8 +67,9 @@ exports.createRecipe = function(req, res) {
 
 //get user's cookbook
 exports.getCookbook = function(req, res) {
-    //Get User
-	userModel.getOne({_id: mongoose.Types.ObjectId(req.params.userId)}, '', function(user) {
+    //Get Users
+	userModel.getAll({}, '', function(user) {
+
 		//Get User's Cookbook
 		cookbookModel.getAll({userId: req.params.userId}, 'recipeId', function(recipeId) {
 
@@ -88,7 +89,7 @@ exports.getCookbook = function(req, res) {
 				res.render('recipebook', {
 					title: 'Recipe Book',
 					recipes: cookbook,
-					user: user
+					users: user
 				});
 			});
 		});

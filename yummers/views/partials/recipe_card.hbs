@@ -2,7 +2,11 @@
     <img class="card-img-top" src="/img/recipe_{{_id}}.jpg" alt="{{name}}">
     <div class="card-body">
         <h4 class="card-title">{{name}}</h4>
-        <p class="card-text">By <a href="/user/{{_id}}">{{username}}</a></p>
+        {{#if users}}
+            <p class="card-text">By <a href="/user/{{_id}}">{{getName userId users}}</a></p>
+        {{else}}    
+            <p class="card-text">By <a href="/user/{{_id}}">{{username}}</a></p>
+        {{/if}}
         <div>
         <a href="/user/{{userId}}/recipe/{{idToString _id}}" class="btn btn-secondary">View Recipe</a>
         <a href="edit_recipe_1.html" class="btn btn-warning">Edit Recipe</a>

@@ -16,8 +16,11 @@ module.exports = {
         if (type == 0) return true;
         else return false;
     },
-    getName: function(id) {
-
+    getName: function(id, users) {
+        var user = users.find(user => 
+            mongoose.Types.ObjectId(user._id) == id
+        );
+        return user.name;
     },
     dateFormat: function(date) {
         return date.toLocaleString('default', {month: 'long'}) + " " + date.getDate() + ", " + date.getFullYear();
