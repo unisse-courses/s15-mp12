@@ -4,7 +4,7 @@
     </div>
     <div class="row">
         <p class="col-lg-6"><i>Serving: {{recipe.servings}}</i></p>
-        <p class="col-lg-6 text-right"><span class="user"></span><a href='/user/{{idToString recipe.userId}}'>{{username}}</a> | <i>{{dateFormat recipe.date}}</i></p>
+        <p class="col-lg-6 text-right"><span class="user"></span><a href='/user/{{idToString userId}}'>{{username}}</a> | <i>{{recipe.date}}</i></p>
     </div>
     <div class="row">
         {{{recipeImg recipe}}}

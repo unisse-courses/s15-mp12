@@ -1,10 +1,10 @@
- <div class="container w-75 current-black py-5 center">
-    <div class="row mx-1">
-        <h1 class="col-lg-7">Add Recipe</h1>
-        <h4 class="col-lg-5 text-orange">Recipe Photo</h4>
+ <div class="container w-70 h-auto current-black py-5 center">
+    <div class="row" style="border-bottom: 10px solid #A1A2A3;">
+        <h1 class="col-lg-12 page-header ">CREATE RECIPE</h1>
     </div>
-    <div class="row mx-1">
-        <div class="col-lg-7">
+    <div class="row" style="height:50px;"></div>
+    <div class="row mx-1" style="border: 20px;">
+        <div class="col-lg-7 flex-box-create">
             <h4 class="text-orange">Recipe Name</h4>
             <input class="form-control" id= "recName" type="text" placeholder="Recipe Name"/>
             <h4 class=" text-orange">Preparation Time</h4>
@@ -13,9 +13,13 @@
             <input class="form-control" id = "cookTime" type="number" min="1" placeholder="Cooking Time"/>          
             <h4 class=" text-orange">Serving Size</h4>
             <input class="form-control " id = "servSize" type="text" placeholder="Serving Size"/>
+            
         </div>
         <div class="col-lg-5">
-            <img src="/img/blank_recipe.png" id = "foodImg" class="img-thumbnail h-100" alt="Cinque Terre">
+            <div class="row ">
+                <h4 class="col-lg-5 text-orange">Recipe Photo</h4>
+            </div>  
+            <img src="/img/blank_recipe.png" id = "foodImg" class="img-thumbnail h-50" alt="Cinque Terre">
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="foodUp">
                 <label class="custom-file-label mt-3" for="foodUp">Choose file</label>
@@ -43,7 +47,7 @@
             <button class="col-lg-1 form-control btn btn-secondary" id="addStep">+</button>
         </div>
     </div>
-    <div  class="row mx-4 mt-5">
+    <div  class="row mx-4 mt-5" ">
         <button class="btn btn-secondary col-lg-3 mr-3" id= "submit">Add Recipe</button>
         <p class="col-lg-7 text-right" id="errorMessage"></p>
     </div>
