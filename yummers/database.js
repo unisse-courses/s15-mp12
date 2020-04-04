@@ -49,7 +49,7 @@ module.exports = {
         doc.save(function(err, res) {
             if(err) throw err;
 
-            if(res != null) callback(true);
+            if(res != null) callback(res);
         })
     },
 

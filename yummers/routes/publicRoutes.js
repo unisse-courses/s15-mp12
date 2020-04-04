@@ -13,6 +13,8 @@ router.get('/form/:type', userController.userForm);
 //login
 router.post('/login', userController.userLogin);
 
-
 //signup
 router.post('/signup', userController.addUser);
+
+//create recipe
+router.post('/addRecipe', recipeController.addRecipe);
