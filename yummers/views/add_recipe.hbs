@@ -3,53 +3,118 @@
         <h1 class="col-lg-12 page-header ">CREATE RECIPE</h1>
     </div>
     <div class="row" style="height:50px;"></div>
-    <div class="row mx-1" style="border: 20px;">
-        <div class="col-lg-7 flex-box-create">
-            <h4 class="text-orange">Recipe Name</h4>
-            <input class="form-control" id= "recName" type="text" placeholder="Recipe Name"/>
-            <h4 class=" text-orange">Preparation Time</h4>
-            <input class="form-control" id = "prepTime" type="number" min="1" placeholder="Preparation Time"/>
-            <h4 class=" text-orange">Cooking Time</h4>
-            <input class="form-control" id = "cookTime" type="number" min="1" placeholder="Cooking Time"/>          
-            <h4 class=" text-orange">Serving Size</h4>
-            <input class="form-control " id = "servSize" type="text" placeholder="Serving Size"/>
-            
-        </div>
-        <div class="col-lg-5">
-            <div class="row ">
-                <h4 class="col-lg-5 text-orange">Recipe Photo</h4>
-            </div>  
-            <img src="/img/blank_recipe.png" id = "foodImg" class="img-thumbnail h-50" alt="Cinque Terre">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="foodUp">
-                <label class="custom-file-label mt-3" for="foodUp">Choose file</label>
+    {{#if recipe}} <!-- If there is recipe, edit instead -->
+        <div class="row mx-1" style="border: 20px;">
+            <div class="col-lg-7 flex-box-create">
+                <h4 class="text-orange">Recipe Name</h4>
+                <input class="form-control" id= "recName" type="text" placeholder="{{recipe.name}}"/>
+                <h4 class=" text-orange">Preparation Time</h4>
+                <input class="form-control" id = "prepTime" type="number" min="1" placeholder="Preparation Time"/>
+                <h4 class=" text-orange">Cooking Time</h4>
+                <input class="form-control" id = "cookTime" type="number" min="1" placeholder="Cooking Time"/>          
+                <h4 class=" text-orange">Serving Size</h4>
+                <input class="form-control " id = "servSize" type="text" placeholder="{{recipe.serving}}"/>
+                
+            </div>
+            <div class="col-lg-5">
+                <div class="row ">
+                    <h4 class="col-lg-5 text-orange">Recipe Photo</h4>
+                </div>  
+                {{{recipeEditImg recipe}}}
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="foodUp">
+                    <label class="custom-file-label mt-3" for="foodUp">Choose file</label>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row mt-5 mx-1">
-        <div class="col-lg-12">
-            <h4 class="text-orange">Ingredients</h4>
-        </div>  
-    </div>
-    <div id="ingredientContainer">
-        <div class="row mx-4 mt-1">
-            <input class="col-lg-1 form-control mr-2" type="number" min="1">
-            <input class="col-lg-9 form-control mr-5" type="text" placeholder="Ingredient">
-            <button class="col-lg-1 form-control btn btn-secondary" id="addIngredient">+</button>
+        <div class="row mt-5 mx-1">
+            <div class="col-lg-12">
+                <h4 class="text-orange">Ingredients</h4>
+            </div>  
         </div>
-    </div>
-    <div class="row mx-1 mt-3"> 
-            <h4 class= "col-lg-12 text-orange">Preparation</h4>
-    </div>
-    <div id="stepsContainer">
-        <div class="row mx-4 mt-1"> 
-            <input class="col-lg-10 form-control mr-5 ml-2" type="text" placeholder="Step">
-            <button class="col-lg-1 form-control btn btn-secondary" id="addStep">+</button>
+        <div id="ingredientContainer">
+            {{#each recipe.ingredients}}
+                <div class="row mx-4 mt-1">
+                    <input class="col-lg-1 form-control mr-2" type="number" step="0.25" min="0.25" value="{{ingredientNum this}}">
+                    <input class="col-lg-9 form-control mr-5" type="text" value="{{ingredientText this}}">
+                    <button class="col-lg-1 form-control btn btn-secondary remove">-</button>
+                </div>
+            {{/each}}
+            <div class="row mx-4 mt-1">
+                    <input class="col-lg-1 form-control mr-2" type="number" min="1">
+                    <input class="col-lg-9 form-control mr-5" type="text" value="Ingredient">
+                    <button class="col-lg-1 form-control btn btn-secondary" id="addIngredient">+</button>
+            </div>
         </div>
-    </div>
-    <div  class="row mx-4 mt-5" ">
-        <button class="btn btn-secondary col-lg-3 mr-3" id= "submit">Add Recipe</button>
-        <p class="col-lg-7 text-right" id="errorMessage"></p>
-    </div>
+        <div class="row mx-1 mt-3"> 
+                <h4 class= "col-lg-12 text-orange">Preparation</h4>
+        </div>
+        <div id="stepsContainer">
+            {{#each recipe.preparation}}
+                <div class="row mx-4 mt-1"> 
+                    <input class="col-lg-10 form-control mr-5 ml-2" type="text" value="{{this}}">
+                    <button class="col-lg-1 form-control btn btn-secondary remove">-</button>
+                </div>
+            {{/each}}
+                <div class="row mx-4 mt-1"> 
+                    <input class="col-lg-10 form-control mr-5 ml-2" type="text" placeholder="Step">
+                    <button class="col-lg-1 form-control btn btn-secondary" id="addStep">+</button>
+                </div>
+        </div>
+        <div  class="row mx-4 mt-5">
+            <button class="btn btn-secondary col-lg-3 mr-3" id= "submit">Add Recipe</button>
+            <p class="col-lg-7 text-right" id="errorMessage"></p>
+        </div>
+    {{else}} <!-- If no recipes, add new recipe -->
+        <div class="row mx-1" style="border: 20px;">
+            <div class="col-lg-7 flex-box-create">
+                <h4 class="text-orange">Recipe Name</h4>
+                <input class="form-control" id= "recName" type="text" placeholder="Recipe Name"/>
+                <h4 class=" text-orange">Preparation Time</h4>
+                <input class="form-control" id = "prepTime" type="number" min="1" placeholder="Preparation Time"/>
+                <h4 class=" text-orange">Cooking Time</h4>
+                <input class="form-control" id = "cookTime" type="number" min="1" placeholder="Cooking Time"/>          
+                <h4 class=" text-orange">Serving Size</h4>
+                <input class="form-control " id = "servSize" type="text" placeholder="Serving Size"/>
+                
+            </div>
+            <div class="col-lg-5">
+                <div class="row ">
+                    <h4 class="col-lg-5 text-orange">Recipe Photo</h4>
+                </div>  
+                <img src="/img/blank_recipe.png" id = "foodImg" class="img-thumbnail h-50" alt="Cinque Terre">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="foodUp">
+                    <label class="custom-file-label mt-3" for="foodUp">Choose file</label>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 mx-1">
+            <div class="col-lg-12">
+                <h4 class="text-orange">Ingredients</h4>
+            </div>  
+        </div>
+        <div id="ingredientContainer">
+            <div class="row mx-4 mt-1">
+                <input class="col-lg-1 form-control mr-2" type="number" min="1">
+                <input class="col-lg-9 form-control mr-5" type="text" placeholder="Ingredient">
+                <button class="col-lg-1 form-control btn btn-secondary" id="addIngredient">+</button>
+            </div>
+        </div>
+        <div class="row mx-1 mt-3"> 
+                <h4 class= "col-lg-12 text-orange">Preparation</h4>
+        </div>
+        <div id="stepsContainer">
+            <div class="row mx-4 mt-1"> 
+                <input class="col-lg-10 form-control mr-5 ml-2" type="text" placeholder="Step">
+                <button class="col-lg-1 form-control btn btn-secondary" id="addStep">+</button>
+            </div>
+        </div>
+        <div  class="row mx-4 mt-5">
+            <button class="btn btn-secondary col-lg-3 mr-3" id= "submit">Add Recipe</button>
+            <p class="col-lg-7 text-right" id="errorMessage"></p>
+        </div>
+    {{/if}}
+        
 </div>
     <script src="/js/addrecipe.js"></script>

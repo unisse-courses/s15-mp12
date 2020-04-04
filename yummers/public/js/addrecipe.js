@@ -33,8 +33,13 @@ $(document).ready(function() {
     });
     
     //Remove a row either from ingredients or step
-    $('body').on('click', 'button#removeIngredient, button.remove', function() {
+    $('body').on('click', 'button.remove', function() {
         $(this).parent().remove();
+    })
+
+    $('body').on('click', 'img#foodImg', function() {
+        var image = $('#foodImg').clone();
+        window.open(image.attr('src'), '_blank');
     })
 
     //utilities

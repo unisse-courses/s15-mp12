@@ -151,8 +151,16 @@
     object-fit: cover;
 }
 #foodImg {
-    object-fit: contain;
+    object-fit: cover;
+    cursor: pointer;
 }
+
+#foodImg:hover {
+    opacity: 0.6;
+    transition-property: opacity;
+    transition-duration: 500ms;
+}
+
 .hr{
     size : 5;
     color: #c09640;
@@ -185,6 +193,7 @@ ol li::before {
     margin-right: 1em;
 }
 .icon {
+    cursor: pointer;
     display:inline-block;
     position: relative;
     object-fit: scale-down;
@@ -320,3 +329,4 @@ a:hover{
 .source {
     font-style: italic;
 }
+
