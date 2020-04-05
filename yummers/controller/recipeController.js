@@ -66,3 +66,9 @@ exports.updateRecipe = function(req, res) {
         res.status(200).send({recipe: dbres, idString: mongoose.Types.ObjectId(dbres._id).toHexString()});
     });
 }
+
+exports.deleteRecipe = function(req, res) {
+    recipeModel.deleteOne({_id: mongoose.Types.ObjectId(req.params.recipeId)}, function(dbres) {
+        res.send(dbres);
+    });
+}

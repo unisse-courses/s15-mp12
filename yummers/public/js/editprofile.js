@@ -66,4 +66,22 @@ $(document).ready(function() {
         }
         
     });
+
+    //delete recipe
+    $('.delete').click(function() {
+        //GET RECIPE ID THROUGH IMAGE SRC
+        var image = $(this).parent().parent().parent().children()[0].src;
+        var str = image.substring(image.indexOf('_') + 1, image.indexOf('.'));
+
+        var title = $(this).parent().parent().children()[0];
+        var card = $(this).parent().parent().parent();
+        $.post('/recipes/' + str + '/delete', str, function(data, status) {
+            if(data.ok == 1)
+            {
+                title.innerHTML = 'Recipe Deleted!';
+
+                card.delay(500).fadeOut(1000);
+            }
+        });
+    });
 })

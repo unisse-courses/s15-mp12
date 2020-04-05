@@ -13,3 +13,6 @@ router.get('/:recipeId/edit', recipeController.editRecipePage);
 
 //update recipe
 router.post('/:recipeId/editRecipe', recipeController.updateRecipe);
+
+//delete recipe
+router.post('/:recipeId/delete', recipeController.deleteRecipe);

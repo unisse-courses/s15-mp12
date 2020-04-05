@@ -94,6 +94,14 @@ module.exports = {
            if(res != null) callback(res);
            else callback(null);
        })
+   },
+
+   deleteDocument: function(model, filter, callback) {
+        model.deleteOne(filter, function(err, res) {
+            if(err) throw err;
+
+            callback(res);
+       });
    }
 
 }

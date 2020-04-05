@@ -43,5 +43,8 @@ module.exports = {
     },
     updateOne: function(filter, update, callback) {
         database.findAndUpdate(recipeModel, filter, update, callback);
+    },
+    deleteOne: function(filter, callback) {
+        database.deleteDocument(recipeModel, filter, callback);
     }
 }
