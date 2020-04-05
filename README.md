@@ -1,5 +1,5 @@
 # Yummers! : A Recipe Sharing Site
-Yummers! is a place where professional cooks, home-cooks, aspiring cooks and alike can share their own recipes and interact with one another. Guest users can have a view of all the recipes and share the recipes in the website only. Similarly, registered users can do them t oo but, there are a lot more that they can do, like commenting, liking, and sharing recipes, creating their own recipes, follow other users, and  add other users' recipes to their cookbook.
+Yummers! is a place where professional cooks, home-cooks, aspiring cooks and alike can share their own recipes and interact with one another. Guest users can have a view of all the recipes and share the recipes in the website only. Similarly, registered users can do them as well but, there are a lot more that they can do, like comment, like, and share recipes, create their own recipes, follow other users, and can add other users' recipes to their cookbook.
 
 ## Getting Started
 Clone or download the repository found at [Yummers! repository](https://github.com/unisse-courses/s15-mp12.git) to your local machine
@@ -38,17 +38,36 @@ Clone or download the repository found at [Yummers! repository](https://github.c
 9. Open any web browser then type **localhost:3000**
 10. You should **now** be at the **default** landing page of yummers.
 
+
 ## Running the tests
+Currently, since sessions are not yet implemented, the user logged-in is always *Nikki Domingo*  regardless of the login functionality
+
+### Database read functions
+1. At the **landing page**, all recipes and users are read from the database to the client. The **recipes read** from the database is shown as **posts** and the **users read** from the database are shown through the **post name**.
+2.  **Cookbook** collection is read from the **database** when navigation to the **user's cookbook**.  
+3. **Recipes collection** is when navigating to the **my recipe page**. **One user** is also read from the database who owns the recipes.
+4.  **Profile page** reads one user from the **database** and also **reads** from the **recipe collection** to get the user's recipe.
+5. On the **signout** page, there is an option to login. Logging in reads from the **user collection** to get the user with the same credentials.
+6. **Editing** a user profile or recipe **reads the user/recipe being edited** from their respective collections.
+
+### Database create functions
+1. **Signup** creates a new user and **updates** the **users collection**.
+2. **Add recipe** creates a new recipe and **updates** the **recipes collection**. The user **logged in** is saved as the **user id** for the **new** recipe.
+
+### Database update functions
+1. **Edit recipe** finds the recipe in the **recipes collection** and **updates** the data.
+2. **Edit profile** finds the user in the **users collection** and **updates** the data.
+
+### Database delete functions
+1. At **Edit Profile**, the user can choose to delete a **recipe** the user created. Deleting a recipe on the client side also deletes a recipe on the **recipes collection**.
 
 ## Built with
 - bootstrap
 - node js
-- mongoDB
 
 ## Versioning
-We used github for versioning 
-
-## License
+we use github for versioning 
+License
 
 ## Authors
 
