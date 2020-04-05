@@ -334,6 +334,7 @@ ol li::before {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .recipe-card-name{
+    min-height: 50px;
     text-align: center;
     letter-spacing: 2px;
     color: #001030;
