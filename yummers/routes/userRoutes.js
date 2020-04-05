@@ -9,6 +9,8 @@ const cookbookController = require('../controller/cookbookController');
 
 router.get('/:userId', userController.getProfile);
 
+router.get('/:userId/edit', userController.editProfilePage);
+
 //load create recipe page
 router.get('/:userId/add', userController.createRecipe);
 
