@@ -4,7 +4,7 @@ Yummers! is a place where professional cooks, home-cooks, aspiring cooks and ali
 ## Getting Started
 Clone or download the repository found at [Yummers! repository](https://github.com/unisse-courses/s15-mp12.git) to your local machine
 
-###Prerequisites
+### Prerequisites
 * [Node.js v12.16.0](https://nodejs.org/en/)
 * [MongoDB Community Server ](https://www.mongodb.com/download-center/community)
 > Install MongoDB Compass Community as well when asked during installation
@@ -17,7 +17,7 @@ Clone or download the repository found at [Yummers! repository](https://github.c
 * mongodb 3.5.5
 * validator 13.0.0
 
-###Installing
+### Installing
 1. Navigate to the local folder in your machine. Either by using the windows explorer and adding **cmd** to the start of the directory, or using the **dir** command in the terminal until you reach the yummers folder.
 2. After navigating inside the yummers folder, install all dependencies by typing
 `npm install`
@@ -38,13 +38,13 @@ Clone or download the repository found at [Yummers! repository](https://github.c
 9. Open any web browser then type **localhost:3000**
 10. You should **now** be at the **default** landing page of yummers.
 
-##Running the tests
+## Running the tests
 
-##Built with
+## Built with
 - bootstrap
 - node js
 
-##Versioning
+## Versioning
 we use github for versioning 
 License
 
@@ -54,7 +54,7 @@ License
 * Domingo, Allexandra Nicole
 * Roxas, Ronell John
 
-##Acknowledgements
+## Acknowledgements
 - Ms Unisse Chua for being there to guide and teach 
 - Our families for the support and love
 - To God
