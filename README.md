@@ -66,8 +66,8 @@ Currently, since sessions are not yet implemented, the user logged-in is always 
 - node js
 
 ## Versioning
-we use github for versioning 
-License
+We use github for versioning 
+
 
 ## Authors
 
