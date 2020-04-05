@@ -8,8 +8,12 @@
             <p class="card-text">By <a href="/user/{{_id}}">{{username}}</a></p>
         {{/if}}
         <div class="card-btn">
+        {{#if edit}} <!-- HAHA-->
+        <a href="" class="btn btn-danger">Delete Recipe</a>
+        {{else}}
         <a href="/recipes/{{idToString _id}}" class="btn btn-secondary">View Recipe</a>
         <a href="/recipes/{{idToString _id}}/edit" class="btn btn-warning">Edit Recipe</a>
+        {{/if}}
         </div>
     </div>
 </div>
