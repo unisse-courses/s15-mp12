@@ -27,8 +27,8 @@ exports.addUser = function(req, res) {
 
     var user = userModel.create(req.body.username, req.body.name, req.body.pass, req.body.email);
 
-    userModel.insertOne(user, function(res) {
-		if(res != null) console.log('user created!');
+    userModel.insertOne(user, function(dbres) {
+		if(dbres != null) console.log('user created!');
 		res.send({accepted: true});
     });
 
