@@ -50,3 +50,19 @@ exports.editRecipePage = function(req, res) {
         })
     });
 }
+
+exports.updateRecipe = function(req, res) {
+    var newRecipe = {
+        name: req.body.name,
+        userId: '5e7dc8032d173236e070f966',
+        servings: req.body.serveSize,
+        ingredients: req.body.ingredients,
+        preparation: req.body.preparations
+    };
+    
+
+    recipeModel.updateOne({_id: mongoose.Types.ObjectId(req.params.recipeId)}, newRecipe, function(dbres) {
+        if(dbres != null) console.log('recipe updated!');
+        res.status(200).send({recipe: dbres, idString: mongoose.Types.ObjectId(dbres._id).toHexString()});
+    });
+}

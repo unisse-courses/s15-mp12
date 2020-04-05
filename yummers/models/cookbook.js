@@ -18,5 +18,8 @@ module.exports = {
     },
     getAll: function(filter, projection, callback) {
         database.findMany(cookbookModel, filter, projection, callback);
+    },
+    updateOne: function(filter, update, callback) {
+        database.findAndUpdate(cookbookModel, filter, update, callback);
     }
 }

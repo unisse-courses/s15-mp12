@@ -85,6 +85,15 @@ module.exports = {
 
             callback(modelObject);
         });
+   },
+
+   findAndUpdate: function(model, filter, update, callback) {
+       model.findOneAndUpdate(filter, update, function(err, res) {
+           if(err) throw err;
+
+           if(res != null) callback(res);
+           else callback(null);
+       })
    }
 
 }

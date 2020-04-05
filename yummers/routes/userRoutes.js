@@ -9,8 +9,11 @@ const cookbookController = require('../controller/cookbookController');
 
 router.get('/:userId', userController.getProfile);
 
+//load create recipe page
 router.get('/:userId/add', userController.createRecipe);
 
+//load user recipes
 router.get('/:userId/recipes', userController.getUserRecipes);
 
+//load user's cookbook
 router.get('/:userId/cookbook', userController.getCookbook);
