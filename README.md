@@ -1,5 +1,5 @@
 # Yummers! : A Recipe Sharing Site
-Yummers! is a place where professional cooks, home-cooks, aspiring cooks and alike can share their own recipes and interact with one another. Guest users can have a view of all the recipes and share the recipes in the website only. Similarly, registered users can do them as well but, there are a lot more that they can do, like comment, like, and share recipes, create their own recipes, follow other users, and can add other users' recipes to their cookbook.
+Yummers! is a place where professional cooks, home-cooks, aspiring cooks and alike can share their own recipes and interact with one another. Guest users can have a view of all the recipes and share the recipes in the website only. Similarly, registered users can do them t oo but, there are a lot more that they can do, like commenting, liking, and sharing recipes, creating their own recipes, follow other users, and  add other users' recipes to their cookbook.
 
 ## Getting Started
 Clone or download the repository found at [Yummers! repository](https://github.com/unisse-courses/s15-mp12.git) to your local machine
@@ -45,8 +45,9 @@ Clone or download the repository found at [Yummers! repository](https://github.c
 - node js
 
 ## Versioning
-we use github for versioning 
-License
+We used github for versioning 
+
+## License
 
 ## Authors
 
