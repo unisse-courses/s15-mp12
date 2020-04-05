@@ -9,10 +9,12 @@
         {{/if}}
         <div class="card-btn">
             {{#if edit}} <!-- HAHA-->
-            <button class="btn btn-danger delete">Delete Recipe</button>
+                <button class="btn btn-danger cancel">Cancel</button>
+                <button class="btn btn-danger delete">Delete Recipe</button>
+                <button class="btn btn-yellow confirm">Confirm</button>
             {{else}}
-            <a href="/recipes/{{idToString _id}}" class="btn btn-secondary">View Recipe</a>
-            <a href="/recipes/{{idToString _id}}/edit" class="btn btn-warning">Edit Recipe</a>
+                <a href="/recipes/{{idToString _id}}" class="btn btn-secondary">View Recipe</a>
+                <a href="/recipes/{{idToString _id}}/edit" class="btn btn-warning">Edit Recipe</a>
             {{/if}}
         </div>
     </div>

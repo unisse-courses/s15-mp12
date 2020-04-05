@@ -1,5 +1,8 @@
 $(document).ready(function() {
     
+    $('.confirm').hide();
+    $('.cancel').hide();
+
     //utilities
     function checkField(field) {
         if(field.value != "") {
@@ -74,14 +77,33 @@ $(document).ready(function() {
         var str = image.substring(image.indexOf('_') + 1, image.indexOf('.'));
 
         var title = $(this).parent().parent().children()[0];
-        var card = $(this).parent().parent().parent();
-        $.post('/recipes/' + str + '/delete', str, function(data, status) {
-            if(data.ok == 1)
-            {
-                title.innerHTML = 'Recipe Deleted!';
+        
+        //show cancel button
+        $(this).prev().fadeIn(500);
+        //show confirm button
+        $(this).next().fadeIn(500);
+        $(this).hide();
+        var titleText = title.innerHTML;
+        title.innerHTML = 'Delete this recipe?';
 
-                card.delay(500).fadeOut(1000);
-            }
+        //If canceled
+        $(this).prev().click(function() {
+            $(this).hide();
+            $(this).next().next().hide();
+            $(this).next().fadeIn(500);
+            title.innerHTML = titleText;
         });
+
+        $(this).next().click(function() {
+            var card = $(this).parent().parent().parent();
+            $.post('/recipes/' + str + '/delete', str, function(data, status) {
+                if(data.ok == 1)
+                {
+                    title.innerHTML = 'Recipe Deleted!';
+
+                    card.delay(500).fadeOut(1000);
+                }
+            });
+        })
     });
 })
