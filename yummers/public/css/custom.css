@@ -7,7 +7,7 @@
     z-index: 1;
 }
 .header-blue{
-    background-color: #FFC62B;
+    background-color: #c09640;
     height: 5px;
 }
 .header-nav-blue{
@@ -21,7 +21,7 @@
     background-color: #001030;
 }
 .nav-item a:hover {
-    background-color: #FFC62B;
+    background-color: #c09640;
     color: black;
 } 
 .nav-item a.active {
@@ -59,7 +59,7 @@
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-top: 5px solid white;
-    border-bottom: 20px solid #FFC62B;
+    border-bottom: 20px solid #c09640;
     text-align: center;
 }
 
@@ -267,7 +267,6 @@ ol li::before {
     width: 30px;
 }
 
-
 /*MISC OBJECTS AND SETTINGS*/
 
 /*SPRITES */
@@ -359,26 +358,22 @@ a:hover{
 /*BUTTONS*/
 .btn-yellow {
     background-color: #c09640;
-    border: 1px solid white;
-    color: white;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-.btn-yellow{
     color: black;
-    background-color: #FFC62B;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .btn-yellow a:hover {
     background-color: #001030;
     color: white;
 } 
 .btn-yellow a.active {
-    background-color: #FFC62B;
+    background-color: #c09640;
     color: black;
 }
-.btn-secondary{
+.btn-secondary{ 
     width: 125px;
 }
 .btn-warning{
+    background-color: #c09640;
     width: 125px;
 }
 
