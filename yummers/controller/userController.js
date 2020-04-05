@@ -107,3 +107,18 @@ exports.editProfilePage = function(req, res) {
 		});
 	});
 }
+
+exports.updateUser = function(req, res) {
+
+	var newUser = {
+		username: req.body.username,
+		name: req.body.name,
+		password: req.body.password
+	}
+	
+	userModel.updateOne({_id : mongoose.Types.ObjectId(req.params.userId)}, newUser, function(dbres) {
+		if(dbres != null) console.log('user updated!');
+		res.status(200).send({user: dbres});
+	
+	});
+}

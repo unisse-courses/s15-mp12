@@ -6,13 +6,15 @@
         
     <div class="row mx-1" style="border: 20px;">
         <div class="col-lg-7 flex-box-create">
-            <h4 class="text-orange">Username</h4>
-            <input class="form-control" id= "userName" type="text" value="{{user.name}}"/>
-            <h4 class=" text-orange">Password</h4>
+            <h4 class="text-orange mt-2">Username</h4>
+            <input class="form-control" id= "username" type="text" value="{{user.username}}"/>
+            <h4 class="text-orange mt-2">Name</h4>
+            <input class="form-control" id= "name" type="text" value="{{user.name}}"/>
+            <h4 class=" text-orange mt-2">Password</h4>
             <input class="form-control" id = "password" type="password" value="{{user.password}}"/>
-            <h4 class=" text-orange">Re-type Password</h4>
+            <h4 class=" text-orange mt-2">Re-type Password</h4>
             <input class="form-control" id = "passValidation" type="password" value="{{user.password}}"/>          
-            <h4 class=" text-orange">Bio</h4>
+            <h4 class=" text-orange mt-2">Bio</h4>
             <textarea class="form-control " id = "bio" rows = "5" placeholder="Tell something about yourself."></textarea>
         </div>
         <div class="col-lg-5">
@@ -39,3 +41,5 @@
         <p class="col-lg-7 text-right" id="errorMessage"></p>
     </div>
 </div>        
+
+<script src="/js/editprofile.js"></script>
