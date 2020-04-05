@@ -40,5 +40,8 @@ module.exports = {
     },
     insertOne: function(newRecipe, callback) {
         database.insertDocument(newRecipe, callback);
+    },
+    updateOne: function(filter, update, callback) {
+        database.findAndUpdate(recipeModel, filter, update, callback);
     }
 }

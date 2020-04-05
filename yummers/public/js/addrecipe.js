@@ -54,13 +54,43 @@ $(document).ready(function() {
         }
     }
 
-    $('#submit').click(function() {
-        //get all fields
-        const elements = $('input[type=text], input[type=number]');
-        const elementsVal = elements.map(function() {
-            return $(this).val();
-        }).get();
+    //used to get fields content and return recipe
+    function createRecipe(elementsVal) {
+        //get input fields only inside recipe
+        var ingredients = $('#ingredientContainer').children().children('input[type=text], input[type=number]');
+            
+        var ingredientString = [];
+        
+        //Get array of ingredients
+        for(var i = 0; i < ingredients.length - 1; i++) {
+            ingredientString.push(ingredients[i].value + " " + ingredients[i + 1].value);
+            i++;
+        }
 
+        //get step fields
+        var steps = $('#stepsContainer').children().children('input[type=text]');
+
+        //get step fields input to string
+        var stepsString = [];
+        for(var i = 0; i < steps.length; i++) {
+            stepsString.push(steps[i].value);
+        }
+
+        var recipe = {
+            name: elementsVal[0],
+            prepTime: elementsVal[1],
+            cookTime: elementsVal[2],
+            serveSize: elementsVal[3],
+            source: null,
+            ingredients: ingredientString,
+            preparations: stepsString
+        }
+
+        return recipe;
+    }
+
+    //check empty inputs
+    function checkValid(elements, elementsVal) {
         var valid = true;
 
         //check each field's input
@@ -68,42 +98,27 @@ $(document).ready(function() {
             valid = checkField(this, elementsVal[index]) && valid;
         });
 
-        if(valid)
+        return valid;
+    }
+
+    $('#submit').click(function() {
+        //get all fields
+        const elements = $('input[type=text], input[type=number]');
+        const elementsVal = elements.map(function() {
+            return $(this).val();
+
+        }).get();
+        
+        if(checkValid(elements, elementsVal))
         {
-            //get input fields only inside recipe
-            var ingredients = $('#ingredientContainer').children().children('input[type=text], input[type=number]');
-            
-            var ingredientString = [];
-            
-            //Get array of ingredients
-            for(var i = 0; i < ingredients.length - 1; i++) {
-                ingredientString.push(ingredients[i].value + " " + ingredients[i + 1].value);
-                i++;
-            }
+            //get input fields then create recipe
+            var recipe = createRecipe(elementsVal);
 
-            //get step fields
-            var steps = $('#stepsContainer').children().children('input[type=text]');
-
-            //get step fields input to string
-            var stepsString = [];
-            for(var i = 0; i < steps.length; i++) {
-                stepsString.push(steps[i].value);
-            }
-
-            var recipe = {
-                name: elementsVal[0],
-                prepTime: elementsVal[1],
-                cookTime: elementsVal[2],
-                serveSize: elementsVal[3],
-                source: null,
-                ingredients: ingredientString,
-                preparations: stepsString
-            }
-
+            //send recipe
             $.post('/addRecipe', recipe, function(data, status) {
                 if(data.recipe != null) {
                     $('.modal-title').text(data.recipe.name + " posted!");
-                    $('.modal-body').children().text('You may now view your recipe!');
+                    $('.modal-body').children().text('You may now view your recipe! Redirecting in 3 seconds.');
                     $('#notifModal').modal('show');
                     setTimeout(function (){
                         window.location.href = '/recipes/' + data.idString;
@@ -121,6 +136,42 @@ $(document).ready(function() {
         {
             $('#errorMessage').text('Fill up missing fields.');
         }
+    });
 
-    })
+    //FOR UPDATING RECIPE
+    $('#submitUpdate').click(function() {
+        //get all fields
+        const elements = $('input[type=text], input[type=number]');
+        const elementsVal = elements.map(function() {
+            return $(this).val();
+        }).get();
+
+        if(checkValid(elements, elementsVal))
+        {
+            //get input fields then create recipe
+            var recipe = createRecipe(elementsVal);
+
+            //send recipe
+            $.post('editRecipe', recipe, function(data, status) {
+                if(data.recipe != null) {
+                    $('.modal-title').text(data.recipe.name + " updated!");
+                    $('.modal-body').children().text('You may now view your recipe! Redirecting in 3 seconds.');
+                    $('#notifModal').modal('show');
+                    setTimeout(function (){
+                        window.location.href = '/recipes/' + data.idString;
+                    }, 3000)
+                }
+                else
+                {
+                    $('.modal-title').text('Error!');
+                    $('.modal-body').children().text('Recipe was not updated! Try again.');
+                    $('#notifModal').modal('show');
+                }
+            })
+        }
+        else
+        {
+            $('#errorMessage').text('Fill up missing fields.');
+        }
+    });
 });

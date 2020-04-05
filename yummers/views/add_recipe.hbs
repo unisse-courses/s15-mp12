@@ -7,13 +7,13 @@
         <div class="row mx-1" style="border: 20px;">
             <div class="col-lg-7 flex-box-create">
                 <h4 class="text-orange">Recipe Name</h4>
-                <input class="form-control" id= "recName" type="text" placeholder="{{recipe.name}}"/>
+                <input class="form-control" id= "recName" type="text" value="{{recipe.name}}"/>
                 <h4 class=" text-orange">Preparation Time</h4>
-                <input class="form-control" id = "prepTime" type="number" min="1" placeholder="Preparation Time"/>
+                <input class="form-control" id = "prepTime" type="number" min="1" value="Preparation Time"/>
                 <h4 class=" text-orange">Cooking Time</h4>
-                <input class="form-control" id = "cookTime" type="number" min="1" placeholder="Cooking Time"/>          
+                <input class="form-control" id = "cookTime" type="number" min="1" value="Cooking Time"/>          
                 <h4 class=" text-orange">Serving Size</h4>
-                <input class="form-control " id = "servSize" type="text" placeholder="{{recipe.serving}}"/>
+                <input class="form-control " id = "servSize" type="text" value="{{recipe.serving}}"/>
                 
             </div>
             <div class="col-lg-5">
@@ -42,7 +42,7 @@
             {{/each}}
             <div class="row mx-4 mt-1">
                     <input class="col-lg-1 form-control mr-2" type="number" min="1">
-                    <input class="col-lg-9 form-control mr-5" type="text" value="Ingredient">
+                    <input class="col-lg-9 form-control mr-5" type="text" placeholder="Ingredient">
                     <button class="col-lg-1 form-control btn btn-secondary" id="addIngredient">+</button>
             </div>
         </div>
@@ -62,7 +62,7 @@
                 </div>
         </div>
         <div  class="row mx-4 mt-5">
-            <button class="btn btn-secondary col-lg-3 mr-3" id= "submit">Add Recipe</button>
+            <button class="btn btn-secondary col-lg-3 mr-3" id= "submitUpdate">Add Recipe</button>
             <p class="col-lg-7 text-right" id="errorMessage"></p>
         </div>
     {{else}} <!-- If no recipes, add new recipe -->

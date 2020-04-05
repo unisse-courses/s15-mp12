@@ -39,3 +39,7 @@ exports.getAll = function(filter, projection, callback) {
 exports.insertOne = function(newUser, callback) {
     database.insertDocument(newUser, callback)
 }
+
+exports.updateOne = function(filter, update, callback) {
+    database.findAndUpdate(userModel, filter, update, callback);
+}
