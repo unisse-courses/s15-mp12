@@ -1,4 +1,4 @@
-# Project Name
+# Yummers! : A Recipe Sharing Site
 
 ## Team Members:
 

@@ -20,6 +20,12 @@ const mongoose = require('mongoose');
 const databaseURL = 'mongodb://localhost:27017/yummersdb';
 const options = {useNewUrlParser: true, useUnifiedTopology: true};
 
+//create collections
+const database = require('./database');
+database.createUserCollection();
+database.createRecipeCollection();
+database.createCookbookCollection();
+
 mongoose.connect(databaseURL, options, function(err, res) {
     if(err) throw err;
 

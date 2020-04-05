@@ -37,6 +37,19 @@ module.exports = {
             });
         });
     },
+
+    createCookbookCollection: function() {
+        mongoClient.connect(databaseURLDB, function(err, db) {
+            if(err) throw err;
+            const dbo = db.db(dbname);
+    
+                dbo.createCollection('cookbooks', function(err, res) {
+                    if(err) throw err;
+                    console.log('cookbook collection created!');
+                    db.close();
+                });
+            });
+    },
     
     connect : function() {
         mongoose.connect(databaseURL, options, function(err, res) {
