@@ -25,7 +25,7 @@ $(document).ready(function() {
         $('#addStep').remove();
 
         $('#stepsContainer').append(
-            '<div class="row mx-4 mt-1"> ' +
+            '<div class="row mx-3 mt-1"> ' +
             '<input class="col-lg-10 form-control mr-5 ml-2" type="text" placeholder="Step">' +
             '<button class="col-lg-1 form-control btn btn-secondary" id="addStep">+</button>' +
             '</div>'
