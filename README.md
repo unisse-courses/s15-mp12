@@ -8,20 +8,26 @@ Clone or download the repository found at [Yummers! repository](https://github.c
 * [Node.js v12.16.0](https://nodejs.org/en/)
 * [MongoDB Community Server ](https://www.mongodb.com/download-center/community)
 > Install MongoDB Compass Community as well when asked during installation
-* express 4.17.1
-* express-handlebars 3.1.0
 
 **node.js dependencies**
+* express 4.17.1
+* express-handlebars 3.1.0
+* express-session
+* connect-flash
+* connect-mongo
 * body-parser 1.19.0
 * handlebars 4.7.3
 * mongodb 3.5.5
 * validator 13.0.0
+* [nodemon](https://www.npmjs.com/package/nodemon) 2.0.3
+* bcrypt 4.0.1
+
 
 ### Installing
 1. Navigate to the local folder in your machine. Either by using the windows explorer and adding **cmd** to the start of the directory, or using the **dir** command in the terminal until you reach the yummers folder.
 2. After navigating inside the yummers folder, install all dependencies by typing
 `npm install`
-3. run the project by typing `node index.js` to** automatically** create the database and collections in mongodb. Console **should** output:
+3. run the project by typing `npm start` to **automatically** create the database and collections in mongodb. Console **should** output:
 > recipes collection created!
 > Users collection created!
 > cookbook collection created!

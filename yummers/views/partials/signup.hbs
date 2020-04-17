@@ -1,39 +1,41 @@
-<div class="row mt-3">
-    <div class="col-xl-2"></div> 
-    <div class="col-xl-8 mt-2"> 
-        <input id="signupUsername" class="form-control" type="text" placeholder="Username"/>  
+<form action="/signup" method="POST">
+    <div class="row mt-3">
+        <div class="col-xl-2"></div> 
+        <div class="col-xl-8 mt-2"> 
+            <input id="signupUsername" name="username" class="form-control" type="text" placeholder="Username"/>  
+        </div> 
     </div> 
-</div> 
-<div class="row mt-2">
-    <div class="col-xl-2"></div> 
-    <div class="col-xl-8 mt-2"> 
-        <input id="signupName" class="form-control" type="text" placeholder="Full Name"/>  
+    <div class="row mt-2">
+        <div class="col-xl-2"></div> 
+        <div class="col-xl-8 mt-2"> 
+            <input id="signupName" name="name" class="form-control" type="text" placeholder="Full Name"/>  
+        </div> 
     </div> 
-</div> 
-<div class="row mt-2"> 
-    <div class="col-xl-2"></div> 
-    <div class="col-xl-8 mt-2"> 
-         <input id="signupEmail" class="form-control" type="text" placeholder="Email Address"/>  
+    <div class="row mt-2"> 
+        <div class="col-xl-2"></div> 
+        <div class="col-xl-8 mt-2"> 
+            <input id="signupEmail" name="email" class="form-control" type="text" placeholder="Email Address"/>  
+        </div>
+    </div>  
+    <div class="row mt-2">  
+        <div class="col-xl-2"></div>  
+        <div class="col-xl-8 mt-2"> 
+            <input id="signupPass" name="pass" class="form-control" type="password" placeholder="Password"/> 
+        </div> 
+    </div> 
+    <div class="row mt-2">  
+        <div class="col-xl-2"></div>  
+        <div class="col-xl-8 mt-2"> 
+            <input id="confirmPass" name="confirmPass" class="form-control" type="password" placeholder="Confirm Password"/> 
+        </div> 
+    </div> 
+    <div class="row my-2">
+        <div id="errorMessage" class="col-xl-8">{{error_msg}}</div>
     </div>
-</div>  
-<div class="row mt-2">  
-    <div class="col-xl-2"></div>  
-    <div class="col-xl-8 mt-2"> 
-        <input id="signupPass" class="form-control" type="password" placeholder="Password"/> 
-    </div> 
-</div> 
-<div class="row mt-2">  
-    <div class="col-xl-2"></div>  
-    <div class="col-xl-8 mt-2"> 
-        <input id="confirmPass" class="form-control" type="password" placeholder="Confirm Password"/> 
-    </div> 
-</div> 
-<div class="row my-2">
-    <div id="errorMessage" class="col-xl-4"></div>
-</div>
-<div class="row mt-2">  
-    <div class="col-xl-5"></div>
-    <div class="col-xl-2 mt-4"> 
-        <button id="btnSignup" class="btn btn-secondary" type="button">Sign up</button>  
+    <div class="row mt-2">  
+        <div class="col-xl-5"></div>
+        <div class="col-xl-2 mt-4"> 
+            <input type="submit" id="btnSignup" class="btn btn-secondary" value="Sign up"> 
+        </div>
     </div>
-</div>
+</form>

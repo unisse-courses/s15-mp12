@@ -5,21 +5,30 @@
     </div>
     <div class ="header-nav-blue ">
         <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" href="/user/5e7dc8032d173236e070f966/add">Create Recipe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/5e7dc8032d173236e070f966/cookbook">Recipe Book</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/5e7dc8032d173236e070f966/recipes">My Recipes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/5e7dc8032d173236e070f966">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/form/0">Logout</a>
-            </li>
+            {{#if session.name}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/{{session.user}}/add">Create Recipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/{{session.user}}/cookbook">Recipe Book</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/{{session.user}}/recipes">My Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/{{session.user}}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/form/0">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/form/1">Sign Up</a>
+                </li>
+            {{/if}}
         </ul>
     </div>
 </div>

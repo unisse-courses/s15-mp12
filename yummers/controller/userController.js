@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const userModel = require('../models/users');
 const recipeModel = require('../models/recipes');
 const cookbookModel = require('../models/cookbook');
+const {validationResult} = require('express-validator');
+const bcrypt = require('bcrypt');
 
 exports.userForm = function(req, res) {
     res.render('userforms', {
@@ -12,26 +14,87 @@ exports.userForm = function(req, res) {
 
 //login user
 exports.userLogin = function(req, res) {
-    var user = {
-		reqUsername: req.body.username,
-		reqPassword: req.body.password
+
+	const errors = validationResult(req);
+
+	if(errors.isEmpty()) {
+		var user = {
+			reqUsername: req.body.username,
+			reqPassword: req.body.pass
+		}
+		userModel.getOne({$or: [{username : user.reqUsername}, {email: user.reqUsername}]}, '', function(dbres) {
+			if(dbres == null) {
+
+				req.flash('error_msg', 'Invalid username or email.');
+				res.redirect('/form/0');
+			}
+			else {
+				bcrypt.compare(user.reqPassword, dbres.password, (err, result) => {
+					if(result) {
+						req.session.user = dbres._id;
+						req.session.name = dbres.name;
+
+						console.log(req.session);
+						res.redirect('/');
+					}
+					else {
+						req.flash('error_msg', 'Incorrect password. Please try again.');
+						res.redirect('/form/0');
+					}
+				});
+			}
+		});
+	}
+	else {
+		const messages = errors.array().map((item) => item.msg);
+		req.flash('error_msg', messages.join(' '));
+		res.redirect('/form/0');
 	}
 
-    userModel.getOne({$or: [{username : user.reqUsername}, {email: user.reqUsername}], password: user.reqPassword}, 'name', function(dbres) {
-        res.status(200).send({user: dbres});
-    });
 }
 
 //signup
 exports.addUser = function(req, res) {
 
-    var user = userModel.create(req.body.username, req.body.name, req.body.pass, req.body.email);
+	const errors = validationResult(req);
 
-    userModel.insertOne(user, function(dbres) {
-		if(dbres != null) console.log('user created!');
-		res.send({accepted: true});
-    });
+	if(errors.isEmpty()) {
+		userModel.getOne({$or: [{email: req.body.email}, {username: req.body.username}]}, '', function(result) {
+			if(result) {
+				req.flash('error_msg', 'User already exists. Please login.');
+				res.redirect('/form/0');
+			}
+			else
+			{
+				const saltRounds = 10;
 
+				bcrypt.hash(req.body.pass, saltRounds, (err, hashed) => {
+					
+				var user = userModel.create(req.body.username, req.body.name, hashed, req.body.email);
+
+				userModel.insertOne(user, function(dbres) {
+					if(dbres != null) console.log('user created!');
+					res.send({accepted: true});
+				});
+				});
+			}
+		});
+	}
+	else {
+		const messages = errors.array().map((item) => item.msg);
+		req.flash('error_msg', messages.join(' '));
+		res.redirect('/form/1');
+	}
+}
+
+//logout user
+exports.logoutUser = function(req, res) {
+	if(req.session) {
+		req.session.destroy(() => {
+			res.clearCookie('connect.sid');
+			res.redirect('/form/0');
+		});
+	}
 }
 
 //get profile page
