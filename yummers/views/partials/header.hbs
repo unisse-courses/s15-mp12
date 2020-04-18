@@ -1,8 +1,9 @@
-<div class="header">
+
     <a href="/">
-    <div class="navbar header-blue justify-content-left">
-        <img src = "/img/logo.png "class="navbar-brand" alt="home"/>
-    </div>
+        <div class="navbar header-blue justify-content-left">
+            <img src = "/img/logo.png "class="navbar-brand" alt="home"/>
+        </div>
+    </a>
     <div class ="header-nav-blue ">
         <ul class="nav justify-content-center">
             {{#if session.name}}
@@ -23,12 +24,11 @@
                 </li>
             {{else}}
                 <li class="nav-item">
-                    <a class="nav-link" href="/form/0">Login</a>
+                    <a class="nav-link" href="/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/form/1">Sign Up</a>
+                    <a class="nav-link" href="/signup">Sign Up</a>
                 </li>
             {{/if}}
         </ul>
     </div>
-</div>

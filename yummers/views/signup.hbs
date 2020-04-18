@@ -1,0 +1,56 @@
+<div class="container w-50 current-black mt-3 pb-5 center">
+    <div class="row">
+        <div class="col-xl-6 pt-2 pl-3 bg-black" id="login_tab">
+            <h2 class="text-orange">LOGIN</h2>
+        </div>
+        <div class="col-xl-6 pt-2 pl-3" id="signup_tab">
+            <h2 class="text-orange">SIGNUP</h2>
+        </div>
+    </div>
+    <div id="content">
+        <form action="/signupUser" method="POST">
+            <div class="row mt-3">
+                <div class="col-xl-2"></div> 
+                <div class="col-xl-8 mt-2"> 
+                    <input id="signupUsername" name="username" class="form-control" type="text" placeholder="Username"/>  
+                </div> 
+            </div> 
+            <div class="row mt-2">
+                <div class="col-xl-2"></div> 
+                <div class="col-xl-8 mt-2"> 
+                    <input id="signupName" name="name" class="form-control" type="text" placeholder="Full Name"/>  
+                </div> 
+            </div> 
+            <div class="row mt-2"> 
+                <div class="col-xl-2"></div> 
+                <div class="col-xl-8 mt-2"> 
+                    <input id="signupEmail" name="email" class="form-control" type="text" placeholder="Email Address"/>  
+                </div>
+            </div>  
+            <div class="row mt-2">  
+                <div class="col-xl-2"></div>  
+                <div class="col-xl-8 mt-2"> 
+                    <input id="signupPass" name="pass" class="form-control" type="password" placeholder="Password"/> 
+                </div> 
+            </div> 
+            <div class="row mt-2">  
+                <div class="col-xl-2"></div>  
+                <div class="col-xl-8 mt-2"> 
+                    <input id="confirmPass" name="confirmPass" class="form-control" type="password" placeholder="Confirm Password"/> 
+                </div> 
+            </div> 
+            <div class="row my-2">
+                <div id="errorMessage" class="col-xl-8">{{error_msg}}</div>
+            </div>
+            <div class="row mt-2">  
+                <div class="col-xl-5"></div>
+                <div class="col-xl-2 mt-4"> 
+                    <input type="submit" id="btnSignup" class="btn btn-secondary" value="Sign up"> 
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <script src="/js/userforms.js"></script>
+    </script>
+</div>

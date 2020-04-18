@@ -15,10 +15,6 @@ module.exports = {
     recipeEditImg: function(recipe) {   //recipe image at edit recipe
         return '<img src="/img/recipe_'+ mongoose.Types.ObjectId(recipe._id).toString() + '.jpg" id = "foodImg" class="img-thumbnail h-50" alt="' + recipe.name + '"></img>'
     },
-    formSwitch: function(type) {	//switch for login/signup tabs
-        if (type == 0) return true;
-        else return false;
-    },
     getName: function(id, users) {
         var user = users.find(user => 
             mongoose.Types.ObjectId(user._id) == id
@@ -39,5 +35,8 @@ module.exports = {
     },
     ingredientText: function(ingredient) {
         return ingredient.substr(ingredient.indexOf(' '), ingredient.length);
-    }
+    },
+    checkUser: function(sessionUser, userpage) {
+        return sessionUser == userpage;
+    } 
 }

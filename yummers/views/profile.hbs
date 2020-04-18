@@ -8,7 +8,9 @@
             <h1 class="col-lg-10 text-spaced">{{user.name}}</h1>
             <h6 class="col-lg-10 text-orange">Joined since {{dateFormat user.joinDate}}</h6>
         </div>
-        <a type="button" class=" col-lg-1 btn btn-yellow mr-5 mt-4" href="{{idToString user._id}}/edit">Edit Profile</a>
+        {{#if (checkUser session.user (idToString user._id))}}
+            <a type="button" class=" col-lg-1 btn btn-yellow mr-5 mt-4" href="{{idToString user._id}}/edit">Edit Profile</a>
+        {{/if}}
     </div>
 
     <div class="row mx-3 pr-5">

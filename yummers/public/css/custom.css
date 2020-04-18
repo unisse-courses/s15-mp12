@@ -70,20 +70,21 @@
     margin: auto;
 }
 .container {
-    display: inline-flexbox;
     border-radius: 0px 0px 15px 15px;
     color: white;
 }
 .bg-black {
     background: rgba(25, 25, 25, .5);
     box-shadow: 0px 0px 5px black inset;
+    opacity: 0.5;
 }
 .bg-yellow {
     background-color: #c09640;
     color: white;
 }
 .bg-black:hover{
-    background: rgba(25, 25, 25, 0.8);
+    opacity: 1.0;
+    background: rgba(25, 25, 25, 0.4);
     box-shadow: 0px 1px 5px 0px black;
     cursor: pointer;
     transition-duration: 1000ms;
@@ -116,8 +117,8 @@
     margin-bottom: 10px;
 }
 .wrapper {
-    margin-top: 57px;
-    min-height: 65vh;
+    margin-top: 70px;
+    min-height: 80vh;
 }
 
 /*DISPLAYING RECIPES*/
