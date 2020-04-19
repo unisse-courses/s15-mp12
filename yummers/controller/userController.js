@@ -107,7 +107,7 @@ exports.logoutUser = function(req, res) {
 //get profile page
 exports.getProfile = function(req, res) {
 	userModel.getOne({_id: mongoose.Types.ObjectId(req.params.userId)}, '', function(dbres) {
-		recipeModel.getAll({userId: req.params.userId}, '', function(recipe) {
+		recipeModel.getAll({user: req.params.userId}, '', function(recipe) {
 			res.render('profile', {
 				user: dbres,
 				recipes: recipe
@@ -119,13 +119,10 @@ exports.getProfile = function(req, res) {
 //get user recipes for my recipes
 exports.getUserRecipes = function(req, res) {
 	if(req.session.user)
-		recipeModel.getAll({userId: req.params.userId}, '', function(dbres) {
-			userModel.getOne({_id: mongoose.Types.ObjectId(req.params.userId)}, '', function(user) {
-				res.render('my_recipes', {
-					title: 'My Recipes',
-					recipes: dbres,
-					user: user
-				});
+		recipeModel.getAll({user: req.params.userId}, '', function(dbres) {
+			res.render('my_recipes', {
+				title: 'My Recipes',
+				recipes: dbres
 			});
 		});
 	else { 
@@ -140,42 +137,6 @@ exports.createRecipe = function(req, res) {
 		res.render('add_recipe', {
 		title: 'Add recipe'});
 	}
-	else { 
-		req.flash('error_msg', "Please login to continue.");
-		res.redirect('/login');
-	}
-}
-
-//get user's cookbook
-exports.getCookbook = function(req, res) {
-	if(req.session.user)
-		//Get Users
-		userModel.getAll({}, '', function(user) {
-
-			//Get User's Cookbook
-			cookbookModel.getAll({userId: req.params.userId}, 'recipeId', function(recipeId) {
-
-				//create array of recipeId found in cookbook
-				var arrId = recipeId.map(query => query.recipeId);
-				
-				//Get Recipes found in User's Cookbook
-				recipeModel.getAll({}, '', function(dbres) {					
-					var cookbook = [];
-
-					//if recipe is in cookbook.recipeId, add to arr
-					dbres.forEach(recipe => {
-						if(arrId.includes(recipe._id.toString())) 
-							cookbook.push(recipe);
-					});
-
-					res.render('recipebook', {
-						title: 'Recipe Book',
-						recipes: cookbook,
-						users: user
-					});
-				});
-			});
-		});
 	else { 
 		req.flash('error_msg', "Please login to continue.");
 		res.redirect('/login');

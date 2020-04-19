@@ -5,8 +5,8 @@ const database = require('../database');
 
 const recipeSchema = new mongoose.Schema({
     name:  { type: String, required: [true, 'No Name provided.'] },
-    _id: { type: mongoose.Schema.Types.ObjectId , required: [true, 'No ID provided.'] },
-    userId: { type: String, required: true},
+    _id: { type: mongoose.Schema.Types.ObjectId, required: [true, 'No ID provided.'] },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
     date: Date,
     servings: String,
     source: String,
@@ -33,10 +33,23 @@ module.exports = {
         return recipe;
     },
     getOne: function(filter, projection, callback) {
-        database.findOne(recipeModel, filter, projection, callback);
+        recipeModel.findOne(filter, projection).populate('user').exec(function(err, res) {
+            if(err) throw err;
+
+            callback(res.toObject());
+        });
     },
     getAll: function(filter, projection, callback) {
-        database.findMany(recipeModel, filter, projection, callback);
+        recipeModel.find(filter, projection).populate('user').exec(function(err, res) {
+            if(err) throw err;
+            var modelObject = [];
+
+            res.forEach(function(doc) {
+                modelObject.push(doc.toObject());
+            });
+
+            callback(modelObject);
+        });
     },
     insertOne: function(newRecipe, callback) {
         database.insertDocument(newRecipe, callback);

@@ -15,12 +15,6 @@ module.exports = {
     recipeEditImg: function(recipe) {   //recipe image at edit recipe
         return '<img src="/img/recipe_'+ mongoose.Types.ObjectId(recipe._id).toString() + '.jpg" id = "foodImg" class="img-thumbnail h-50" alt="' + recipe.name + '"></img>'
     },
-    getName: function(id, users) {
-        var user = users.find(user => 
-            mongoose.Types.ObjectId(user._id) == id
-        );
-        return user.name;
-    },
     dateFormat: function(date) {
         return date.toLocaleString('default', {month: 'long'}) + " " + date.getDate() + ", " + date.getFullYear();
     },

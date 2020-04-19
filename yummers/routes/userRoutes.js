@@ -4,7 +4,6 @@ module.exports = router;
 const mongoose = require('mongoose');
 
 const userController = require('../controller/userController');
-const recipeController = require('../controller/recipeController');
 const cookbookController = require('../controller/cookbookController');
 
 router.get('/:userId', userController.getProfile);
@@ -19,7 +18,7 @@ router.get('/:userId/add', userController.createRecipe);
 router.get('/:userId/recipes', userController.getUserRecipes);
 
 //load user's cookbook
-router.get('/:userId/cookbook', userController.getCookbook);
+router.get('/:userId/cookbook', cookbookController.getCookbook);
 
 //update user
 router.post('/:userId/editUser', userController.updateUser);

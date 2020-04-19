@@ -6,7 +6,7 @@
     <div class="row recipe-flex-box">
         <p class="col-lg-6 text-black"><i>Serving: {{recipe.servings}}</i></p>
         <div class="col-lg-1"></div>
-        <div class="text-black"> <span class="user"></span><a href='/user/{{idToString recipe.userId}}'>{{username}}</a> | <i>{{dateFormat recipe.date}}</i></div>
+        <div class="text-black"> <span class="user"></span><a href='/user/{{idToString recipe.user._id}}'>{{recipe.user.name}}</a> | <i>{{dateFormat recipe.date}}</i></div>
     </div>
     <div class="row">
         {{{recipeImg recipe}}}

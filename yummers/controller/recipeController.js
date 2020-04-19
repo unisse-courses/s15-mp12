@@ -21,24 +21,18 @@ exports.addRecipe = function(req, res) {
 
 exports.getAllRecipes = function(req, res) {
     recipeModel.getAll({}, '', function(dbres) {
-        userModel.getAll({}, '', function(result) {
-            res.render('home', {
-                title: 'Yummers!',
-                recipes: dbres,
-                users: result
-            });
-        }); 
+        res.render('home', {
+            title: 'Yummers!',
+            recipes: dbres
+        });
     })
 }
 
 exports.getRecipePage = function(req, res) {
     recipeModel.getOne({_id: mongoose.Types.ObjectId( req.params.recipeId)}, '', function(dbres) {
-        userModel.getOne({_id: mongoose.Types.ObjectId(dbres.userId)}, 'name', function(username) {
-            res.render('recipe', {
-                title: dbres.name,
-                recipe: dbres,
-                username: username.name
-            });
+        res.render('recipe', {
+            title: dbres.name,
+            recipe: dbres
         });
     });
 }

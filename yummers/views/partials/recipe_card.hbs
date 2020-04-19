@@ -3,9 +3,9 @@
     <div class="card-body">
         <h4 class=" card-title recipe-card-name">{{name}}</h4>
         {{#if users}}
-            <p class="card-text">By <a href="/user/{{_id}}">{{getName userId users}}</a></p>
+            <p class="card-text">By <a href="/user/{{user._id}}">{{user.name}}</a></p>
         {{else}}    
-            <p class="card-text">By <a href="/user/{{_id}}">{{username}}</a></p>
+            <p class="card-text">By <a href="/user/{{user._id}}">{{user.name}}</a></p>
         {{/if}}
         <div class="card-btn">
             {{#if edit}} <!-- HAHA-->
