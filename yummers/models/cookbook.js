@@ -20,16 +20,16 @@ module.exports = {
         });
     },
     getAll: function(filter, projection, callback) {
-        cookbookModel.find(filter, projection).populate('user').populate('recipe').exec(function (err, res) {
+        cookbookModel.find(filter, projection)
+        .populate('user')
+        .populate({path: 'recipe', populate: {path: 'user'}}).exec(function (err, res) {
             if(err) throw err;
             var modelObject = [];
     
             res.forEach(function(doc) {
-                doc.recipe.user = doc.user;
                 modelObject.push(doc.toObject());
             });
 
-            console.log(modelObject);
             callback(modelObject);
         });
     },

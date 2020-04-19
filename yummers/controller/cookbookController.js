@@ -8,7 +8,6 @@ exports.getCookbook = function(req, res) {
             var recipes = dbres.map(cookbook => {
                 return cookbook.recipe;
             });
-
 			res.render('recipebook', {
 				title: 'Recipe Book',
 				recipes: recipes

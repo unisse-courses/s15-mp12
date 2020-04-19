@@ -34,7 +34,6 @@ exports.userLogin = function(req, res) {
 						req.session.user = mongoose.Types.ObjectId(dbres._id).toString();
 						req.session.name = dbres.name;
 
-						console.log(req.session);
 						res.redirect('/');
 					}
 					else {

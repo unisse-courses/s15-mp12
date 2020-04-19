@@ -1,12 +1,8 @@
 <div class="card">
     <img class="card-img-top" src="/img/recipe_{{_id}}.jpg" alt="{{name}}">
     <div class="card-body">
-        <h4 class=" card-title recipe-card-name">{{name}}</h4>
-        {{#if users}}
-            <p class="card-text">By <a href="/user/{{user._id}}">{{user.name}}</a></p>
-        {{else}}    
-            <p class="card-text">By <a href="/user/{{user._id}}">{{user.name}}</a></p>
-        {{/if}}
+        <h4 class=" card-title recipe-card-name">{{name}}</h4> 
+        <p class="card-text">By <a href="/user/{{user._id}}">{{user.name}}</a></p>
         <div class="card-btn">
             {{#if edit}} <!-- HAHA-->
                 <button class="btn btn-danger cancel">Cancel</button>
@@ -14,7 +10,9 @@
                 <button class="btn btn-yellow confirm">Confirm</button>
             {{else}}
                 <a href="/recipes/{{idToString _id}}" class="btn btn-secondary">View Recipe</a>
-                <a href="/recipes/{{idToString _id}}/edit" class="btn btn-warning">Edit Recipe</a>
+                {{#if (checkUser session.user  user._id)}}
+                    <a href="/recipes/{{idToString _id}}/edit" class="btn btn-warning">Edit Recipe</a>
+                {{/if}}
             {{/if}}
         </div>
     </div>
