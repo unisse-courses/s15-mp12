@@ -11,11 +11,9 @@
             <h4 class="text-orange mt-2">Name</h4>
             <input class="form-control" id= "name" type="text" value="{{user.name}}"/>
             <h4 class=" text-orange mt-2">Password</h4>
-            <input class="form-control" id = "password" type="password" value="{{user.password}}"/>
-            <h4 class=" text-orange mt-2">Re-type Password</h4>
-            <input class="form-control" id = "passValidation" type="password" value="{{user.password}}"/>          
+            <input class="form-control" id = "password" type="password" value="{{user.password}}"/>    
             <h4 class=" text-orange mt-2">Bio</h4>
-            <textarea class="form-control " id = "bio" rows = "5" placeholder="Tell something about yourself."></textarea>
+            <textarea class="form-control " id = "bio" rows = "5" placeholder="Tell something about yourself.">{{user.description}}</textarea>
         </div>
         <div class="col-lg-5">
             <h4 class="col-lg-6 text-orange">Profile Picture</h4>
@@ -27,12 +25,16 @@
         </div>
     </div>
             
-    <div id="recipeContainer">
+    <div id="recipeContainer" class="ml-3 mt-3">
         <h4 class="text-orange">Recipes</h4> 
         <div class="display-res  ml-5 pl-5">
-            {{#each recipes}}
-                {{> recipe_card username = ../user.name edit = 'true'}}
-            {{/each}}
+            {{#if recipes}}
+                {{#each recipes}}
+                    {{> recipe_card edit = 'true'}}
+                {{/each}}
+            {{else}}
+                <p class="text-black">It seems like you don't have any recipes posted! <a href="/user/{{session.user}}/add">Click here</a> to add one!</p>
+            {{/if}}
         </div>
     </div>
         

@@ -145,13 +145,11 @@ exports.createRecipe = function(req, res) {
 
 exports.editProfilePage = function(req, res) {
 	if(req.session.user)	
-		userModel.getOne({_id : mongoose.Types.ObjectId(req.params.userId)}, '', function(dbres) {
-			recipeModel.getAll({userId: mongoose.Types.ObjectId(req.params.userId)}, '', function(recipes) {
-				res.render('edit_profile', {
-					title: 'Edit Profile',
-					user: dbres,
-					recipes: recipes
-				});
+		recipeModel.getAll({user: mongoose.Types.ObjectId(req.params.userId)}, '', function(recipes) {
+			res.render('edit_profile', {
+				title: 'Edit Profile',
+				user: recipes[0].user,
+				recipes: recipes
 			});
 		});
 	else { 

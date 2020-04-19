@@ -9,7 +9,8 @@ const userSchema = mongoose.Schema({
     name: { type: String, required: [true, 'No Name provided.'] },
     joinDate: Date,
     password: { type: String, required: true},
-    email: { type: String, required: true}
+    email: { type: String, required: true},
+    description: {type: String, required: [true, 'No description provided']}
 })
 
 const userModel = mongoose.model('User', userSchema);
