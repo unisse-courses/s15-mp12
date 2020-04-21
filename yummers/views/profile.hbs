@@ -23,8 +23,16 @@
         <h3 class="col-lg-12 text-orange">Recipes</h3>
     </div>
     <div class="display-res  ml-5 pl-5">
-        {{#each recipes}}
-            {{> recipe_card session = ../session}}
-        {{/each}}
+        {{#if recipes}}
+            {{#each recipes}}
+                {{> recipe_card session = ../session}}
+            {{/each}}
+        {{else}}
+            {{#if (checkUser session.user (idToString user._id))}}
+                <p class="text-black">No recipes posted! Add one <a href="{{idToString user._id}}/add">here</a> now!</p>
+            {{else}}
+                <p class="text-black">No recipes posted!</p>
+            {{/if}}
+        {{/if}}
     </div>
 </div>
