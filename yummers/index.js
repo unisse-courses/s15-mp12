@@ -29,6 +29,7 @@ const database = require('./database');
 database.createUserCollection();
 database.createRecipeCollection();
 database.createCookbookCollection();
+database.createCommentCollection();
 
 mongoose.connect(databaseURL, options, function(err, res) {
     if(err) throw err;

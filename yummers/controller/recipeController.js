@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const recipeModel = require('../models/recipes');
-const userModel = require('../models/users');
+const commentsModel = require('../models/comments');
 
 exports.addRecipe = function(req, res) {
     var recipe = recipeModel.create(
@@ -30,10 +30,13 @@ exports.getAllRecipes = function(req, res) {
 
 exports.getRecipePage = function(req, res) {
     recipeModel.getOne({_id: mongoose.Types.ObjectId( req.params.recipeId)}, '', function(dbres) {
-        res.render('recipe', {
-            title: dbres.name,
-            recipe: dbres
-        });
+        commentsModel.getComments({recipe: mongoose.Types.ObjectId( req.params.recipeId)}, '', function(comments) { 
+            res.render('recipe', {
+                title: dbres.name,
+                recipe: dbres,
+                comments: comments
+            });
+        })
     });
 }
 

@@ -3,8 +3,8 @@ module.exports = router;
 
 const mongoose = require('mongoose');
 
-const userController = require('../controller/userController');
 const recipeController = require('../controller/recipeController');
+const commentsController = require('../controller/commentController');
 
 router.get('/:recipeId', recipeController.getRecipePage);
 
@@ -16,3 +16,6 @@ router.post('/:recipeId/editRecipe', recipeController.updateRecipe);
 
 //delete recipe
 router.post('/:recipeId/delete', recipeController.deleteRecipe);
+
+//add comment
+router.post('/:recipeId/addComment', commentsController.addComment);

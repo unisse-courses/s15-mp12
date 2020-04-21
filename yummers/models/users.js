@@ -23,7 +23,8 @@ exports.create = function(username, name, pass, email) {
 		name: name,
 		joinDate: new Date(),
 		password: pass,
-		email: email
+        email: email,
+        description: 'Hi I\'m ' + name + "!"
     });
 
     return user;

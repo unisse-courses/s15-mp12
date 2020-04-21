@@ -119,6 +119,7 @@
 .wrapper {
     margin-top: 70px;
     min-height: 80vh;
+    margin-bottom: 20px;
 }
 
 /*DISPLAYING RECIPES*/
@@ -191,6 +192,14 @@
     color: white;
     margin-top: 20px;
 }
+
+.post:hover {
+    transform: scale(1.01);
+    box-shadow: 0px 1px 5px black;
+    transition-duration: 800ms;
+    cursor: pointer;
+}
+
 .post img {
     margin: auto;
     width: 100%;
@@ -305,8 +314,8 @@ ol li::before {
 
 /*TEXT STYLES*/
 .text-orange {
-    color: #00292B;
-    font-weight: bold;
+    color: #c09640;
+    
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .text-black{
@@ -384,3 +393,11 @@ a:hover{
     margin: auto;
 }
 
+#successMessage {
+    color: #00972d;
+    margin: auto;
+}
+
+.comment {
+    border-top: 2px solid #c09640;
+}

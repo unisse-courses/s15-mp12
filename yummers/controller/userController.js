@@ -80,6 +80,7 @@ exports.addUser = function(req, res) {
 
 				userModel.insertOne(user, function(dbres) {
 					if(dbres != null) console.log('user created!');
+					req.flash('success_msg', "Welcome to Yummers! You may now login!");
 					res.redirect('/login');
 				});
 				});
@@ -144,11 +145,13 @@ exports.createRecipe = function(req, res) {
 
 exports.editProfilePage = function(req, res) {
 	if(req.session.user)	
-		recipeModel.getAll({user: mongoose.Types.ObjectId(req.params.userId)}, '', function(recipes) {
-			res.render('edit_profile', {
-				title: 'Edit Profile',
-				user: recipes[0].user,
-				recipes: recipes
+		userModel.getOne({_id: mongoose.Types.ObjectId(req.params.userId)}, '', function(user) {
+			recipeModel.getAll({user: mongoose.Types.ObjectId(req.params.userId)}, '', function(recipes) {
+				res.render('edit_profile', {
+					title: 'Edit Profile',
+					user: user,
+					recipes: recipes
+				});
 			});
 		});
 	else { 

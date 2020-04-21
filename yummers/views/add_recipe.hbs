@@ -13,7 +13,7 @@
                 <h4 class=" text-orange">Cooking Time</h4>
                 <input class="form-control" id = "cookTime" type="number" min="1" value="Cooking Time"/>          
                 <h4 class=" text-orange">Serving Size</h4>
-                <input class="form-control " id = "servSize" type="text" value="{{recipe.serving}}"/>
+                <input class="form-control " id = "servSize" type="text" value="{{recipe.servings}}"/>
                 
             </div>
             <div class="col-lg-5">
@@ -71,11 +71,11 @@
                 <h4 class="text-orange">Recipe Name</h4>
                 <input class="form-control" id= "recName" type="text" placeholder="Recipe Name"/>
                 <h4 class=" text-orange">Preparation Time</h4>
-                <input class="form-control" id = "prepTime" type="number" min="1" placeholder="Preparation Time"/>
+                <input class="form-control" id = "prepTime" type="number" min="1" placeholder="Preparation Time (Minutes)"/>
                 <h4 class=" text-orange">Cooking Time</h4>
-                <input class="form-control" id = "cookTime" type="number" min="1" placeholder="Cooking Time"/>          
+                <input class="form-control" id = "cookTime" type="number" min="1" placeholder="Cooking Time (Minutes)"/>          
                 <h4 class=" text-orange">Serving Size</h4>
-                <input class="form-control " id = "servSize" type="text" placeholder="Serving Size"/>
+                <input class="form-control " id = "servSize" type="text" placeholder="Serving Size (Ex. 10 people)"/>
                 
             </div>
             <div class="col-lg-5">
@@ -96,8 +96,8 @@
         </div>
         <div id="ingredientContainer">
             <div class="row mx-4 mt-1">
-                <input class="col-lg-1 form-control mr-2" type="number" min="1">
-                <input class="col-lg-9 form-control mr-5" type="text" placeholder="Ingredient">
+                <input class="col-lg-1 form-control mr-2" type="number" min="0.125" step="0.125">
+                <input class="col-lg-9 form-control mr-5" type="text" placeholder="Unit + Ingredient (Ex. tbsp of salt)">
                 <button class="col-lg-1 form-control btn btn-secondary" id="addIngredient">+</button>
             </div>
         </div>
@@ -106,7 +106,7 @@
         </div>
         <div id="stepsContainer">
             <div class="row mx-3 mt-1"> 
-                <input class="col-lg-10 form-control mr-5 ml-2" type="text" placeholder="Step">
+                <input class="col-lg-10 form-control mr-5 ml-2" type="text" placeholder="Step (Ex. Heat water to boiling level.)">
                 <button class="col-lg-1 form-control btn btn-secondary" id="addStep">+</button>
             </div>
         </div>
