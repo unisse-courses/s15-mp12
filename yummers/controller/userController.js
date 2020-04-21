@@ -188,7 +188,8 @@ exports.updateUser = function(req, res) {
 				
 				userModel.updateOne({_id : mongoose.Types.ObjectId(req.params.userId)}, newUser, function(dbres) {
 					if(dbres != null) console.log('user updated!');
-					res.redirect('');
+					req.flash('success_msg', 'Profile updated! <a href="/user/' + req.params.userId + '">View here</a>');
+					res.redirect('/user/' + req.params.userId + '/edit');
 				
 				});
 			});
