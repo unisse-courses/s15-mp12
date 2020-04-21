@@ -3,45 +3,49 @@
         <h1 class="col-lg-12 page-header ">EDIT PROFILE</h1>
     </div>
     <div class="row" style="height:50px;"></div>
-        
-    <div class="row mx-1" style="border: 20px;">
-        <div class="col-lg-7 flex-box-create">
-            <h4 class="text-orange mt-2">Username</h4>
-            <input class="form-control" id= "username" type="text" value="{{user.username}}"/>
-            <h4 class="text-orange mt-2">Name</h4>
-            <input class="form-control" id= "name" type="text" value="{{user.name}}"/>
-            <h4 class=" text-orange mt-2">Password</h4>
-            <input class="form-control" id = "password" type="password" value="{{user.password}}"/>    
-            <h4 class=" text-orange mt-2">Bio</h4>
-            <textarea class="form-control " id = "bio" rows = "5" placeholder="Tell something about yourself.">{{user.description}}</textarea>
-        </div>
-        <div class="col-lg-5">
-            <h4 class="col-lg-6 text-orange">Profile Picture</h4>
-            <img src="/img/profpic.png" id = "profPic" class="img-thumbnail h-75" alt="profilepic">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" id="profPicUp">
-                <label class="custom-file-label mt-3" for="profPicUp">Choose file</label>
+    <form action="editUser" method="POST">
+        <div class="row mx-1" style="border: 20px;">
+            <div class="col-lg-7 flex-box-create">
+                <h4 class="text-orange mt-2">Username</h4>
+                <input class="form-control" id= "username" name="username" type="text" value="{{user.username}}"/>
+                <h4 class="text-orange mt-2">Name</h4>
+                <input class="form-control" id= "name" name="name" type="text" value="{{user.name}}"/>
+                <div id="editPassword" title="Click to edit password.">
+                    <h4 class=" text-orange mt-2">Password</h4>
+                    <input class="form-control" id="password" name="pass" type="password" placeHolder="Click to edit password." readonly/>    
+                </div>
+                <h4 class=" text-orange mt-2">Bio</h4>
+                <textarea class="form-control " id = "bio" rows = "5" name="bio" placeholder="Tell something about yourself.">{{user.description}}</textarea>
+            </div>
+            <div class="col-lg-5">
+                <h4 class="col-lg-6 text-orange">Profile Picture</h4>
+                <img src="/img/profpic.png" id = "profPic" class="img-thumbnail h-75" alt="profilepic">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="profPicUp">
+                    <label class="custom-file-label mt-3" for="profPicUp">Choose file</label>
+                </div>
             </div>
         </div>
-    </div>
-            
-    <div id="recipeContainer" class="ml-3 mt-3">
-        <h4 class="text-orange">Recipes</h4> 
-        <div class="display-res  ml-5 pl-5">
-            {{#if recipes}}
-                {{#each recipes}}
-                    {{> recipe_card edit = 'true'}}
-                {{/each}}
-            {{else}}
-                <p class="text-black">It seems like you don't have any recipes posted! <a href="/user/{{session.user}}/add">Click here</a> to add one!</p>
-            {{/if}}
+                
+        <div id="recipeContainer" class="ml-3 mt-3">
+            <h4 class="text-orange">Recipes</h4> 
+            <div class="display-res  ml-5 pl-5">
+                {{#if recipes}}
+                    {{#each recipes}}
+                        {{> recipe_card edit = 'true'}}
+                    {{/each}}
+                {{else}}
+                    <p class="text-black">It seems like you don't have any recipes posted! <a href="/user/{{session.user}}/add">Click here</a> to add one!</p>
+                {{/if}}
+            </div>
         </div>
-    </div>
-        
-    <div  class="row mx-4 mt-5">
-        <button class="btn btn-secondary col-lg-3 mr-3" id= "submit">Save Changes</button>
-        <p class="col-lg-7 text-right" id="errorMessage"></p>
-    </div>
+            
+        <div  class="row mx-4 mt-5">
+            <input type="submit" class="btn btn-secondary col-lg-3 mr-3" id= "submit" value="Save Changes"/>
+            <p class="col-lg-7 text-right" id="errorMessage">{{error_msg}}</p>
+            <p class="col-lg-7 text-right" id="successMessage"></p>
+        </div>
+    </form>
 </div>        
 
 <script src="/js/editprofile.js"></script>

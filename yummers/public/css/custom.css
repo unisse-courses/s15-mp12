@@ -401,3 +401,17 @@ a:hover{
 .comment {
     border-top: 2px solid #c09640;
 }
+
+#editPassword {
+    cursor: pointer;
+}
+
+#editPassword #password {
+    cursor: pointer;
+}
+
+#editPassword:hover {
+    transform: scale(1.02);
+    transition-property: transform;
+    transition-duration: 200ms;
+}

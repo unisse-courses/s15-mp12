@@ -150,7 +150,7 @@ exports.editProfilePage = function(req, res) {
 				res.render('edit_profile', {
 					title: 'Edit Profile',
 					user: user,
-					recipes: recipes
+					recipes: recipes					
 				});
 			});
 		});
@@ -162,21 +162,45 @@ exports.editProfilePage = function(req, res) {
 
 exports.updateUser = function(req, res) {
 
-	if(req.session.user) {
-		var newUser = {
-			username: req.body.username,
-			name: req.body.name,
-			password: req.body.password
+	const errors = validationResult(req);
+
+	if(errors.isEmpty()) {
+		if(req.session.user) {
+			var editPass = req.body.pass;
+
+			const saltRounds = 10;
+
+			bcrypt.hash(editPass, saltRounds, function(err, result) {
+				var newUser;
+				if(editPass != '')
+					newUser = {
+						username: req.body.username,
+						name: req.body.name,
+						password: result,
+						description: req.body.bio
+					}
+				else
+					newUser = {
+						username: req.body.username,
+						name: req.body.name,
+						description: req.body.bio
+					}
+				
+				userModel.updateOne({_id : mongoose.Types.ObjectId(req.params.userId)}, newUser, function(dbres) {
+					if(dbres != null) console.log('user updated!');
+					res.redirect('');
+				
+				});
+			});
 		}
-		
-		userModel.updateOne({_id : mongoose.Types.ObjectId(req.params.userId)}, newUser, function(dbres) {
-			if(dbres != null) console.log('user updated!');
-			res.status(200).send({user: dbres});
-		
-		});
+		else { 
+			req.flash('error_msg', "Please login to continue.");
+			res.redirect('/login');
+		}
 	}
-	else { 
-		req.flash('error_msg', "Please login to continue.");
-		res.redirect('/login');
+	else {
+		const messages = errors.array().map((item) => item.msg);
+		req.flash('error_msg', messages.join(' '));
+		res.redirect("edit");
 	}
 }

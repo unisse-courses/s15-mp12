@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const userController = require('../controller/userController');
 const cookbookController = require('../controller/cookbookController');
 
+const {loginValidation, registerValidation, editProfileValidation} = require('../validators');
+
 router.get('/:userId', userController.getProfile);
 
 //load edit user page
@@ -21,4 +23,4 @@ router.get('/:userId/recipes', userController.getUserRecipes);
 router.get('/:userId/cookbook', cookbookController.getCookbook);
 
 //update user
-router.post('/:userId/editUser', userController.updateUser);
+router.post('/:userId/editUser', editProfileValidation, userController.updateUser);
