@@ -399,5 +399,7 @@ a:hover{
 }
 
 #profPic {
-    width: 100%;
+    height: auto;
+    width: 90%;
+    border-radius: 100%;
 }
