@@ -7,7 +7,8 @@ const commentSchema = new mongoose.Schema({
     _id: { type: mongoose.Schema.Types.ObjectId, required: [true, 'No ID provided.'] },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
     recipe: {type: mongoose.Schema.Types.ObjectId, ref: 'Recipe', required: true},
-    comment: {type: String, required: true}
+    comment: {type: String, required: true},
+    date: {type: Date}
 });
 
 const commentModel = mongoose.model('Comment', commentSchema);
@@ -17,14 +18,15 @@ exports.create = function(object){
         _id: object._id,
         user: object.user,
         recipe: object.recipe,
-        comment: object.comment
+        comment: object.comment,
+        date: new Date()
     });
 
     return comment;
 }
 
 exports.getComments = function(filter, projection, callback) {
-    commentModel.find(filter, projection).populate('user').exec(function(err, res) {
+    commentModel.find(filter, projection).populate('user').sort({date : -1}).exec(function(err, res) {
         if(err) throw err;
         var modelObject = [];
 

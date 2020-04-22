@@ -10,7 +10,8 @@ const userSchema = mongoose.Schema({
     joinDate: Date,
     password: { type: String, required: true},
     email: { type: String, required: true},
-    description: {type: String, required: [true, 'No description provided']}
+    description: {type: String, required: [true, 'No description provided']},
+    profilePic: {type: String, required: [true, 'img/profpic.png']}
 })
 
 const userModel = mongoose.model('User', userSchema);
@@ -24,7 +25,8 @@ exports.create = function(username, name, pass, email) {
 		joinDate: new Date(),
 		password: pass,
         email: email,
-        description: 'Hi I\'m ' + name + "!"
+        description: 'Hi I\'m ' + name + "!",
+        profilePic: 'img/profpic.png'
     });
 
     return user;

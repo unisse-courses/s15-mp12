@@ -12,7 +12,9 @@ const recipeSchema = new mongoose.Schema({
     source: String,
     ingredients: { type: [String], required: true},
     preparation: { type: [String], required: true},
-    description: {type: String, required: [true, 'No description provided.']}
+    description: {type: String, required: [true, 'No description provided.']},
+    cookTime: {type: String},
+    prepTime: {type: String}
 
 });
 

@@ -161,7 +161,6 @@ exports.editProfilePage = function(req, res) {
 }
 
 exports.updateUser = function(req, res) {
-
 	const errors = validationResult(req);
 
 	if(errors.isEmpty()) {
@@ -171,21 +170,24 @@ exports.updateUser = function(req, res) {
 			const saltRounds = 10;
 
 			bcrypt.hash(editPass, saltRounds, function(err, result) {
-				var newUser;
+				newUser = {
+					username: req.body.username,
+					name: req.body.name,
+					description: req.body.bio,
+				}
+				//If password was changed
 				if(editPass != '')
-					newUser = {
-						username: req.body.username,
-						name: req.body.name,
-						password: result,
-						description: req.body.bio
-					}
-				else
-					newUser = {
-						username: req.body.username,
-						name: req.body.name,
-						description: req.body.bio
-					}
+					newUser.password = result;
 				
+				//If new image is uploaded
+				if(req.file) {
+					//save profile pic image path
+					var extension = req.file.mimetype.substring(6, req.file.mimetype.length);
+					var picPath = 'img/profiles/' + req.params.userId + '.' + extension;
+
+					newUser.profilePic = picPath;
+				}
+							
 				userModel.updateOne({_id : mongoose.Types.ObjectId(req.params.userId)}, newUser, function(dbres) {
 					if(dbres != null) console.log('user updated!');
 					req.flash('success_msg', 'Profile updated! <a href="/user/' + req.params.userId + '">View here</a>');

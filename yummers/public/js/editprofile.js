@@ -88,4 +88,22 @@ $(document).ready(function() {
             });
         })
     });
+
+    $(".custom-file-input").on("change", function() {
+        var input = $('#profPicUp');
+        
+        if(input[0].files && input[0].files[0]) {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                $('#profPic').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input[0].files[0]);
+        }
+
+      });
 })

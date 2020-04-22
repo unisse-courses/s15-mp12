@@ -3,13 +3,19 @@
         <h1 class="col-lg-12 page-header ">PROFILE</h1>
     </div>
     <div class="row flex-box">
-        <div class="profile_pic " ></div>
-        <div style="flex-grow: 1;">
-            <h1 class="col-lg-10 text-spaced">{{user.name}}</h1>
-            <h6 class="col-lg-10 text-orange">Joined since {{dateFormat user.joinDate}}</h6>
+        <span class="col-lg-2">
+            <img src="/{{user.profilePic}}" class="profile_pic"></img>
+        </span>
+        <div class="col-lg-8">
+            <h1 class="text-spaced">{{user.name}}</h1>
+            <h6 class="text-orange">Joined since {{dateFormat user.joinDate}}</h6>
         </div>
         {{#if (checkUser session.user (idToString user._id))}}
             <a type="button" class=" col-lg-1 btn btn-yellow mr-5 mt-4" href="{{idToString user._id}}/edit">Edit Profile</a>
+        {{else}}
+            <div class="col-lg-1">
+                {{> follow}}
+            </div>
         {{/if}}
     </div>
 

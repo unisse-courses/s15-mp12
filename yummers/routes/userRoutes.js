@@ -1,12 +1,19 @@
 const router = require('express').Router();
 module.exports = router;
 
+//database
 const mongoose = require('mongoose');
 
+//controllers
 const userController = require('../controller/userController');
 const cookbookController = require('../controller/cookbookController');
 
+//validator middlewares
 const {loginValidation, registerValidation, editProfileValidation} = require('../validators');
+
+//file upload middleware
+const upload = require('../multer');
+
 
 router.get('/:userId', userController.getProfile);
 
@@ -23,4 +30,4 @@ router.get('/:userId/recipes', userController.getUserRecipes);
 router.get('/:userId/cookbook', cookbookController.getCookbook);
 
 //update user
-router.post('/:userId/editUser', editProfileValidation, userController.updateUser);
+router.post('/:userId/editUser', upload.single('profilePicture'), editProfileValidation, userController.updateUser);

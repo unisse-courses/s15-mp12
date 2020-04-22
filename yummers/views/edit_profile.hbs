@@ -5,7 +5,7 @@
     <div class="row my-3">
         <p class="col-lg-11 text-center" id="successMessage"><b>{{{success_msg}}}</b></p>
     </div>
-    <form action="editUser" method="POST">
+    <form action="editUser" method="POST" enctype="multipart/form-data">
         <div class="row mx-1" style="border: 20px;">
             <div class="col-lg-7 flex-box-create">
                 <h4 class="text-orange mt-2">Username</h4>
@@ -21,14 +21,13 @@
             </div>
             <div class="col-lg-5">
                 <h4 class="col-lg-6 text-orange">Profile Picture</h4>
-                <img src="/img/profpic.png" id = "profPic" class="img-thumbnail h-75" alt="profilepic">
+                <img src="/{{user.profilePic}}" id = "profPic" class="img-thumbnail h-75" alt="profilepic">
                 <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="profPicUp">
+                    <input type="file" class="custom-file-input" id="profPicUp" name="profilePicture">
                     <label class="custom-file-label mt-3" for="profPicUp">Choose file</label>
                 </div>
             </div>
-        </div>
-                
+        </div>        
         <div id="recipeContainer" class="ml-3 mt-3">
             <h4 class="text-orange">Recipes</h4> 
             <div class="display-res  ml-5 pl-5">
@@ -46,7 +45,7 @@
             <input type="submit" class="btn btn-secondary col-lg-3 mr-3" id= "submit" value="Save Changes"/>
             <p class="col-lg-7 text-right" id="errorMessage">{{error_msg}}</p>
         </div>
-    </form>
+    </form>   
 </div>        
 
 <script src="/js/editprofile.js"></script>
