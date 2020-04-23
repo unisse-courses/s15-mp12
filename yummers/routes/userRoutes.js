@@ -12,7 +12,7 @@ const cookbookController = require('../controller/cookbookController');
 const {loginValidation, registerValidation, editProfileValidation} = require('../validators');
 
 //file upload middleware
-const upload = require('../multer');
+const {upload} = require('../multer');
 
 
 router.get('/:userId', userController.getProfile);

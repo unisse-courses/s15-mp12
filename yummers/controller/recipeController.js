@@ -1,21 +1,65 @@
 const mongoose = require('mongoose');
 const recipeModel = require('../models/recipes');
 const commentsModel = require('../models/comments');
+const {validationResult} = require('express-validator');
+
 
 exports.addRecipe = function(req, res) {
-    var recipe = recipeModel.create(
-        req.body.name,
-        '5e7dc8032d173236e070f966',
-        req.body.serveSize,
-        req.body.source,
-        req.body.ingredients,
-        req.body.preparations);
-    
-    recipeModel.insertOne(recipe, function(dbres) {
-        if(dbres != null) console.log('recipe added!');
-        res.status(200).send({recipe: dbres, idString: mongoose.Types.ObjectId(dbres._id).toHexString()});
-    });
 
+    const errors = validationResult(req);
+
+    if(errors.isEmpty()) {
+        //remove empty inputs
+        var quantities;
+        var ingredients;
+        var steps;
+
+        var ingredientString = [];
+
+        //If more than 1 ingredient
+        if(Array.isArray(quantities)) {
+            quantities = req.body.quantity.filter(e => e !== '');
+            ingredients = req.body.ingredient.filter(e => e !== '');
+
+            //generate array of ingredients string
+            quantities.forEach((element, index) => {
+                ingredientString.push(element + ' ' + ingredients[index]);
+            });
+        }
+        else {
+            quantities = req.body.quantity;
+            ingredients = req.body.ingredient;
+            ingredientString.push(quantities + ' ' + ingredients);
+        }
+
+        //If more than 1 step
+        if(Array.isArray(steps))
+            var steps = req.body.step.filter(e => e !== '');
+        else
+            steps = req.body.step;
+
+        var extension = req.file.mimetype.substring(6, req.file.mimetype.length);
+
+        var recipe = recipeModel.create(
+            req.body.recName,
+            req.body.recipeId,
+            req.session.user,
+            req.body.servSize,
+            ingredientString,
+            steps, 
+            req.body.cookTime,
+            req.body.prepTime,
+            extension
+        );
+
+        recipeModel.insertOne(recipe, function(dbres) {
+            if(dbres != null) console.log('recipe added!');
+            res.redirect('/recipes/' + recipe._id);
+        });
+    }
+    else {
+        console.log(errors);
+    }
 };
 
 
@@ -58,10 +102,10 @@ exports.updateRecipe = function(req, res) {
     };
     
 
-    recipeModel.updateOne({_id: mongoose.Types.ObjectId(req.params.recipeId)}, newRecipe, function(dbres) {
-        if(dbres != null) console.log('recipe updated!');
-        res.status(200).send({recipe: dbres, idString: mongoose.Types.ObjectId(dbres._id).toHexString()});
-    });
+    // recipeModel.updateOne({_id: mongoose.Types.ObjectId(req.params.recipeId)}, newRecipe, function(dbres) {
+    //     if(dbres != null) console.log('recipe updated!');
+    //     res.status(200).send({recipe: dbres, idString: mongoose.Types.ObjectId(dbres._id).toHexString()});
+    // });
 }
 
 exports.deleteRecipe = function(req, res) {

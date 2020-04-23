@@ -34,8 +34,31 @@ const editProfileValidation = [
    body('username').not().isEmpty().withMessage('Username is required.'),
     
    //name field not empty
-   body('name').not().isEmpty().withMessage("Name is required."),
+   body('name').not().isEmpty().withMessage("Name is required.")
 ];
 
-module.exports = {loginValidation, registerValidation, editProfileValidation};
+const recipeFormsValidation = [
+    //name field not empty
+   body('recName').not().isEmpty().withMessage("Name is required."),
+   
+   //prepTime not empty
+   body('prepTime').not().isEmpty().withMessage('Preparation Time is required.'),
+
+   //cookTime not empty
+   body('cookTime').not().isEmpty().withMessage('Cooking Time is required.'),
+
+   //servSize not empty
+   body('servSize').not().isEmpty().withMessage('Serving Size is required.'),
+
+   //ingredient quantity not empty
+   body('quantity').not().isEmpty().withMessage('Ingredient Quantity is required.'),
+
+   //ingredient not empty
+   body('ingredient').not().isEmpty().withMessage('Ingredient is required.'),
+
+   //steps required
+   body('step').not().isEmpty().withMessage('Step is required.')
+];
+
+module.exports = {loginValidation, registerValidation, editProfileValidation, recipeFormsValidation};
 

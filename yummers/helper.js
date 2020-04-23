@@ -7,18 +7,15 @@ module.exports = {
         return mongoose.Types.ObjectId(id).toString();
     },
     recipeImg: function(recipe) {	//recipe image at recipe page
-        return '<img class="recipe-img col-lg-12" src="/img/recipe_' + recipe._id + '.jpg" alt="' + recipe.name + '"></img>';
+        return '<img class="recipe-img col-lg-12" src="' + recipe.recipePicture + '" alt="' + recipe.name + '"></img>';
     },
     postImg: function(recipe) {	//recipe image in a post
-        return '<img class="col-lg-12" src="/img/recipe_' + recipe._id + '.jpg" alt="' + recipe.name + '"></img>'
+        return '<img class="col-lg-12" src="' + recipe.recipePicture + '" alt="' + recipe.name + '"></img>'
     },
     recipeEditImg: function(recipe) {   //recipe image at edit recipe
-        return '<img src="/img/recipe_'+ mongoose.Types.ObjectId(recipe._id).toString() + '.jpg" id = "foodImg" class="img-thumbnail h-50" alt="' + recipe.name + '"></img>'
+        return '<img src="' + recipe.recipePicture + '" id = "foodImg" class="img-thumbnail h-50" alt="' + recipe.name + '"></img>'
     },
     dateFormat: function(date) {
-        return date.toLocaleString('default', {month: 'long'}) + " " + date.getDate() + ", " + date.getFullYear();
-    },
-    commentDateFormat: function(date) {
         return date.toLocaleString('default', {month: 'long'}) + " " + date.getDate() + ", " + date.getFullYear();
     },
     ingredientNum: function(ingredient) {
@@ -35,5 +32,8 @@ module.exports = {
     },
     checkUser: function(sessionUser, userpage) {
         return sessionUser == userpage;
-    } 
+    },
+    generateRecipeId: function() {
+        return mongoose.Types.ObjectId();
+    }
 }

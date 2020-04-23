@@ -1,8 +1,9 @@
 const router = require('express').Router();
 module.exports = router;
 const mongoose = require('mongoose');
-const {loginValidation, registerValidation} = require('../validators');
+const {loginValidation, registerValidation, editProfileValidation, recipeFormsValidation} = require('../validators');
 
+//Objects controller
 const userController = require('../controller/userController');
 const recipeController = require('../controller/recipeController');
 
@@ -23,5 +24,3 @@ router.post('/loginUser', loginValidation, userController.userLogin);
 //signup
 router.post('/signupUser', registerValidation, userController.addUser);
 
-//create recipe
-router.post('/addRecipe', recipeController.addRecipe);
