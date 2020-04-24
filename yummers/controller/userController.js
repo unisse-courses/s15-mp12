@@ -133,31 +133,21 @@ exports.getUserRecipes = function(req, res) {
 
 //add recipe page
 exports.createRecipe = function(req, res) {
-	if(req.session.user) {
-		res.render('add_recipe', {
+	res.render('add_recipe', {
 		title: 'Add recipe'});
-	}
-	else { 
-		req.flash('error_msg', "Please login to continue.");
-		res.redirect('/login');
-	}
 }
 
 exports.editProfilePage = function(req, res) {
-	if(req.session.user)	
-		userModel.getOne({_id: mongoose.Types.ObjectId(req.params.userId)}, '', function(user) {
-			recipeModel.getAll({user: mongoose.Types.ObjectId(req.params.userId)}, '', function(recipes) {
-				res.render('edit_profile', {
-					title: 'Edit Profile',
-					user: user,
-					recipes: recipes					
-				});
+	
+	userModel.getOne({_id: mongoose.Types.ObjectId(req.params.userId)}, '', function(user) {
+		recipeModel.getAll({user: mongoose.Types.ObjectId(req.params.userId)}, '', function(recipes) {
+			res.render('edit_profile', {
+				title: 'Edit Profile',
+				user: user,
+				recipes: recipes					
 			});
 		});
-	else { 
-		req.flash('error_msg', "Please login to continue.");
-		res.redirect('/login');
-	}
+	});
 }
 
 exports.updateUser = function(req, res) {

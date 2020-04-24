@@ -38,6 +38,7 @@ exports.addRecipe = function(req, res) {
         else
             steps = req.body.step;
 
+        //get image extension
         var extension = req.file.mimetype.substring(6, req.file.mimetype.length);
 
         var recipe = recipeModel.create(
@@ -93,19 +94,64 @@ exports.editRecipePage = function(req, res) {
 }
 
 exports.updateRecipe = function(req, res) {
-    var newRecipe = {
-        name: req.body.name,
-        userId: '5e7dc8032d173236e070f966',
-        servings: req.body.serveSize,
-        ingredients: req.body.ingredients,
-        preparation: req.body.preparations
-    };
-    
 
-    // recipeModel.updateOne({_id: mongoose.Types.ObjectId(req.params.recipeId)}, newRecipe, function(dbres) {
-    //     if(dbres != null) console.log('recipe updated!');
-    //     res.status(200).send({recipe: dbres, idString: mongoose.Types.ObjectId(dbres._id).toHexString()});
-    // });
+    const errors = validationResult(req);
+    
+    if(errors.isEmpty()) {
+        //remove empty inputs
+        var quantities;
+        var ingredients;
+        var steps;
+
+        var ingredientString = [];
+
+        //If more than 1 ingredient
+        if(Array.isArray(quantities)) {
+            quantities = req.body.quantity.filter(e => e !== '');
+            ingredients = req.body.ingredient.filter(e => e !== '');
+
+            //generate array of ingredients string
+            quantities.forEach((element, index) => {
+                ingredientString.push(element + ' ' + ingredients[index]);
+            });
+        }
+        else {
+            quantities = req.body.quantity;
+            ingredients = req.body.ingredient;
+            ingredientString.push(quantities + ' ' + ingredients);
+        }
+
+        //If more than 1 step
+        if(Array.isArray(steps))
+            var steps = req.body.step.filter(e => e !== '');
+        else
+            steps = req.body.step;
+
+        var recipe = {
+            name: req.body.recName,
+            servings: req.body.servSize,
+            ingredients: ingredientString,
+            steps: steps, 
+            cookTime: req.body.cookTime,
+            prepTime: req.body.prepTime,
+        };  
+
+        if(req.file !== undefined) {
+            //get image extension
+            var extension = req.file.mimetype.substring(6, req.file.mimetype.length);
+
+            recipe.recipePicture = '/img/recipe_' + req.params.recipeId + '.' + extension
+        }
+        
+        console.log(recipe);
+    
+        recipeModel.updateOne({_id: mongoose.Types.ObjectId(req.params.recipeId)}, recipe, function(dbres) {
+            res.redirect('/recipes/' + dbres._id);
+        });
+    }
+    else {
+        console.log(errors);
+    }
 }
 
 exports.deleteRecipe = function(req, res) {

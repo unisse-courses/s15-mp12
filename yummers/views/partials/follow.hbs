@@ -1,1 +1,3 @@
-<img id="follow" class="icon post_icon" src="/img/follow.png" title="follow {{user.name}}"></img>
+{{#if session.user}}    
+    <img id="follow" class="icon post_icon" src="/img/follow.png" title="follow {{user.name}}"></img>
+{{/if}}
