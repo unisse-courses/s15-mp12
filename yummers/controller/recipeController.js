@@ -17,7 +17,7 @@ exports.addRecipe = function(req, res) {
         var ingredientString = [];
 
         //If more than 1 ingredient
-        if(Array.isArray(quantities)) {
+        if(Array.isArray(req.body.quantity)) {
             quantities = req.body.quantity.filter(e => e !== '');
             ingredients = req.body.ingredient.filter(e => e !== '');
 
@@ -88,6 +88,7 @@ exports.getRecipePage = function(req, res) {
 exports.editRecipePage = function(req, res) {
     recipeModel.getOne({_id: mongoose.Types.ObjectId( req.params.recipeId)}, '', function(dbres) {
         res.render('add_recipe', {
+            title: 'Edit' + dbres.name,
             recipe: dbres
         })
     });
@@ -106,10 +107,10 @@ exports.updateRecipe = function(req, res) {
         var ingredientString = [];
 
         //If more than 1 ingredient
-        if(Array.isArray(quantities)) {
+        if(Array.isArray(req.body.quantity)) {
             quantities = req.body.quantity.filter(e => e !== '');
             ingredients = req.body.ingredient.filter(e => e !== '');
-
+            
             //generate array of ingredients string
             quantities.forEach((element, index) => {
                 ingredientString.push(element + ' ' + ingredients[index]);
@@ -143,8 +144,6 @@ exports.updateRecipe = function(req, res) {
             recipe.recipePicture = '/img/recipe_' + req.params.recipeId + '.' + extension
         }
         
-        console.log(recipe);
-    
         recipeModel.updateOne({_id: mongoose.Types.ObjectId(req.params.recipeId)}, recipe, function(dbres) {
             res.redirect('/recipes/' + dbres._id);
         });
