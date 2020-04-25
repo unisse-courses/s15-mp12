@@ -9,8 +9,12 @@
         </p>
         <div class="col-lg-5"></div>
         <p class="col-lg-3 text-right">
-            {{> follow}}
-            {{> post_icon}}
+            {{#if session.user}}
+                {{#unless (checkUser user._id session.user)}}    
+                    {{> follow session = session}}
+                    {{> post_icon session = session}}
+                {{/unless}}
+            {{/if}}
         </p>
     </div>    
     <div class="post-pic row">

@@ -54,10 +54,11 @@ $(document).ready(function() {
     
     //delete recipe
     $('.delete').click(function() {
-        //GET RECIPE ID THROUGH IMAGE SRC
+        //GET RECIPE ID THROUGH IMAGE FILE TYPE
         var image = $(this).parent().parent().parent().children()[0].src;
         var str = image.substring(image.indexOf('_') + 1, image.indexOf('.'));
 
+        console.log(str);
         var title = $(this).parent().parent().children()[0];
         
         //show cancel button
@@ -78,7 +79,10 @@ $(document).ready(function() {
 
         $(this).next().click(function() {
             var card = $(this).parent().parent().parent();
-            $.post('/recipes/' + str + '/delete', str, function(data, status) {
+            var extension = {
+                ext: image.substring(image.indexOf('.') + 1, image.length)
+            }
+            $.post('/recipes/' + str + '/delete', extension, function(data, status) {
                 if(data.ok == 1)
                 {
                     title.innerHTML = 'Recipe Deleted!';
