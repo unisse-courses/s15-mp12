@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const recipeModel = require('../models/recipes');
 const commentsModel = require('../models/comments');
+
 const {validationResult} = require('express-validator');
 const fs = require('fs');
 
@@ -44,7 +45,7 @@ exports.addRecipe = function(req, res) {
         var recipe = recipeModel.create(
             req.body.recName,
             req.body.recipeId,
-            req.session.user,
+            req.session.user._id,
             req.body.servSize,
             ingredientString,
             steps, 

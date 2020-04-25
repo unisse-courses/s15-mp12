@@ -33,3 +33,5 @@ router.get('/:userId/cookbook', auth.isPrivate, cookbookController.getCookbook);
 
 //update user
 router.post('/:userId/editUser', upload.single('profilePicture'), editProfileValidation, userController.updateUser);
+
+router.post('/follow/:followId', userController.followUser);

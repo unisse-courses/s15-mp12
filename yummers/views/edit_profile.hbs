@@ -36,7 +36,7 @@
                         {{> recipe_card edit = 'true'}}
                     {{/each}}
                 {{else}}
-                    <p class="text-black">It seems like you don't have any recipes posted! <a href="/user/{{session.user}}/add">Click here</a> to add one!</p>
+                    <p class="text-black">It seems like you don't have any recipes posted! <a href="/user/{{req.session._id}}/add">Click here</a> to add one!</p>
                 {{/if}}
             </div>
         </div>

@@ -51,6 +51,7 @@ module.exports = {
             });
     },
     
+    //Create comments collection 
     createCommentCollection: function() {
         mongoClient.connect(databaseURLDB, function(err, db) {
             if(err) throw err;

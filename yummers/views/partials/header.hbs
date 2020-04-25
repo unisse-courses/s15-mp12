@@ -6,18 +6,18 @@
     </a>
     <div class ="header-nav-blue ">
         <ul class="nav justify-content-center">
-            {{#if session.name}}
+            {{#if session.user.name}}
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/{{session.user}}/add">Create Recipe</a>
+                    <a class="nav-link" href="/user/{{session.user._id}}/add">Create Recipe</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/{{session.user}}/cookbook">Recipe Book</a>
+                    <a class="nav-link" href="/user/{{session.user._id}}/cookbook">Recipe Book</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/{{session.user}}/recipes">My Recipes</a>
+                    <a class="nav-link" href="/user/{{session.user._id}}/recipes">My Recipes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/user/{{session.user}}">Profile</a>
+                    <a class="nav-link" href="/user/{{session.user._id}}">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>

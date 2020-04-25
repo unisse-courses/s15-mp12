@@ -11,7 +11,8 @@ const userSchema = mongoose.Schema({
     password: { type: String, required: true},
     email: { type: String, required: true},
     description: {type: String, required: [true, 'No description provided']},
-    profilePic: {type: String, required: [true, 'img/profpic.png']}
+    profilePic: {type: String, required: [true, 'img/profpic.png']},
+    follows: {type: [mongoose.Schema.Types.ObjectId]}
 })
 
 const userModel = mongoose.model('User', userSchema);
@@ -26,7 +27,8 @@ exports.create = function(username, name, pass, email) {
 		password: pass,
         email: email,
         description: 'Hi I\'m ' + name + "!",
-        profilePic: 'img/profpic.png'
+        profilePic: 'img/profpic.png',
+        follows: []
     });
 
     return user;

@@ -30,9 +30,9 @@ exports.userLogin = function(req, res) {
 			}
 			else {
 				bcrypt.compare(user.reqPassword, dbres.password, (err, result) => {
+					if(err) throw err;
 					if(result) {
-						req.session.user = mongoose.Types.ObjectId(dbres._id).toString();
-						req.session.name = dbres.name;
+						req.session.user = dbres;
 
 						res.redirect('/');
 					}
@@ -118,17 +118,12 @@ exports.getProfile = function(req, res) {
 
 //get user recipes for my recipes
 exports.getUserRecipes = function(req, res) {
-	if(req.session.user)
-		recipeModel.getAll({user: req.params.userId}, '', function(dbres) {
-			res.render('my_recipes', {
-				title: 'My Recipes',
-				recipes: dbres
-			});
+	recipeModel.getAll({user: req.params.userId}, '', function(dbres) {
+		res.render('my_recipes', {
+			title: 'My Recipes',
+			recipes: dbres
 		});
-	else { 
-		req.flash('error_msg', "Please login to continue.");
-		res.redirect('/login');
-	}
+	});
 }
 
 //add recipe page
@@ -138,7 +133,6 @@ exports.createRecipe = function(req, res) {
 }
 
 exports.editProfilePage = function(req, res) {
-	
 	userModel.getOne({_id: mongoose.Types.ObjectId(req.params.userId)}, '', function(user) {
 		recipeModel.getAll({user: mongoose.Types.ObjectId(req.params.userId)}, '', function(recipes) {
 			res.render('edit_profile', {
@@ -154,46 +148,55 @@ exports.updateUser = function(req, res) {
 	const errors = validationResult(req);
 
 	if(errors.isEmpty()) {
-		if(req.session.user) {
-			var editPass = req.body.pass;
+		var editPass = req.body.pass;
 
-			const saltRounds = 10;
+		const saltRounds = 10;
 
-			bcrypt.hash(editPass, saltRounds, function(err, result) {
-				newUser = {
-					username: req.body.username,
-					name: req.body.name,
-					description: req.body.bio,
-				}
-				//If password was changed
-				if(editPass != '')
-					newUser.password = result;
+		bcrypt.hash(editPass, saltRounds, function(err, result) {
+			newUser = {
+				username: req.body.username,
+				name: req.body.name,
+				description: req.body.bio,
+			}
+			//If password was changed
+			if(editPass != '')
+				newUser.password = result;
 				
-				//If new image is uploaded
-				if(req.file) {
-					//save profile pic image path
-					var extension = req.file.mimetype.substring(6, req.file.mimetype.length);
-					var picPath = 'img/profiles/' + req.params.userId + '.' + extension;
+			//If new image is uploaded
+			if(req.file) {
+				//save profile pic image path
+				var extension = req.file.mimetype.substring(6, req.file.mimetype.length);
+				var picPath = 'img/profiles/' + req.params.userId + '.' + extension;
 
-					newUser.profilePic = picPath;
-				}
+				newUser.profilePic = picPath;
+			}
 							
-				userModel.updateOne({_id : mongoose.Types.ObjectId(req.params.userId)}, newUser, function(dbres) {
-					if(dbres != null) console.log('user updated!');
-					req.flash('success_msg', 'Profile updated! <a href="/user/' + req.params.userId + '">View here</a>');
-					res.redirect('/user/' + req.params.userId + '/edit');
-				
-				});
+			userModel.updateOne({_id : mongoose.Types.ObjectId(req.params.userId)}, newUser, function(dbres) {
+				if(dbres != null) console.log('user updated!');
+				req.flash('success_msg', 'Profile updated! <a href="/user/' + req.params.userId + '">View here</a>');
+
+				req.session.user = dbres;
+		
+				res.redirect('/user/' + req.params.userId + '/edit');
 			});
-		}
-		else { 
-			req.flash('error_msg', "Please login to continue.");
-			res.redirect('/login');
-		}
+		});
 	}
 	else {
 		const messages = errors.array().map((item) => item.msg);
 		req.flash('error_msg', messages.join(' '));
 		res.redirect("edit");
 	}
+}
+
+//follow a user
+exports.followUser = function(req, res) {
+	var follow = {
+		follows: req.params.followId
+	}
+	req.session.user.follows.push(req.params.followId);
+	
+	userModel.updateOne({_id: req.session.user._id}, {$push: follow}, function(dbres) {
+		
+		res.send(dbres);
+	});
 }

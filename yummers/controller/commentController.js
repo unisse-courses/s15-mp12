@@ -5,7 +5,7 @@ const recipeModel = require('../models/recipes');
 exports.addComment = function(req, res) {
     var data = {
         _id: mongoose.Types.ObjectId(),
-        user:  req.session.user,
+        user:  req.session.user._id,
         recipe: req.params.recipeId,
         comment: req.body.comment
     };

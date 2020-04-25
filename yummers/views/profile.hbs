@@ -10,7 +10,7 @@
             <h1 class="text-spaced">{{user.name}}</h1>
             <h6 class="text-orange">Joined since {{dateFormat user.joinDate}}</h6>
         </div>
-        {{#if (checkUser session.user (idToString user._id))}}
+        {{#if (checkUser session.user._id (idToString user._id))}}
             <a type="button" class=" col-lg-1 btn btn-yellow mr-5 mt-4" href="{{idToString user._id}}/edit">Edit Profile</a>
         {{else}}
             <div class="col-lg-1">
@@ -34,7 +34,7 @@
                 {{> recipe_card session = ../session}}
             {{/each}}
         {{else}}
-            {{#if (checkUser session.user (idToString user._id))}}
+            {{#if (checkUser req.session._id (idToString user._id))}}
                 <p class="text-black">No recipes posted! Add one <a href="{{idToString user._id}}/add">here</a> now!</p>
             {{else}}
                 <p class="text-black">No recipes posted!</p>

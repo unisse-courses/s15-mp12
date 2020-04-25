@@ -10,7 +10,7 @@
                 <button type="button" class="btn btn-yellow confirm">Confirm</button>
             {{else}}
                 <a href="/recipes/{{idToString _id}}" class="btn btn-secondary">View Recipe</a>
-                {{#if (checkUser session.user  user._id)}}
+                {{#if (checkUser session.user._id  user._id)}}
                     <a href="/recipes/{{idToString _id}}/edit" class="btn btn-warning">Edit Recipe</a>
                 {{/if}}
             {{/if}}
