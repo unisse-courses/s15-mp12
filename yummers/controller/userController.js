@@ -193,10 +193,27 @@ exports.followUser = function(req, res) {
 	var follow = {
 		follows: req.params.followId
 	}
+	//update user in session
 	req.session.user.follows.push(req.params.followId);
-	
+	//update db user
 	userModel.updateOne({_id: req.session.user._id}, {$push: follow}, function(dbres) {
 		
 		res.send(dbres);
 	});
+}
+
+//unfollow a user
+exports.unfollowUser = function(req, res) {
+	var follow = {
+		follows: req.params.followId
+	}
+	//update user in session
+	//get index of id to be removed from follows
+	var index = req.session.user.follows.indexOf(follow.follows);
+	//remove id in follows
+	req.session.user.follows.splice(index, 1);
+	//update db
+	userModel.updateOne({_id: req.session.user._id}, {$pull: follow}, function(dbres) {
+		res.send(dbres);
+	})
 }
