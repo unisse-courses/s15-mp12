@@ -56,4 +56,24 @@ $(document).ready(function() {
             }
         })
     });
+
+    $('body').on('click', 'img#bookmark', function() {
+        //get recipe id through src
+        var image = $(this).parent().parent().next().children()[0].src;
+        var str = {
+            id: image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+        }
+
+        var bookmark = $(this);
+        
+        $.post('cookbook/add/', str, function(data, status) {
+            if(data != null) {
+                bookmark.hide();
+
+                bookmark.attr('src', '/img/bookmarked.png');
+
+                bookmark.fadeIn(500);
+            }
+        });
+    });
 });

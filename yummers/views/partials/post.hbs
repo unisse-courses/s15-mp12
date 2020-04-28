@@ -12,7 +12,7 @@
             {{#if session.user}}
                 {{#unless (checkUser user._id session.user._id)}}    
                     {{> follow session = session}}
-                    {{> post_icon session = session}}
+                    {{> post_icon recipe = this cookbook = cookbook}}
                 {{/unless}}
             {{/if}}
         </p>

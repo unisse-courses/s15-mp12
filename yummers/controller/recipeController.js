@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const recipeModel = require('../models/recipes');
+const cookbookModel = require('../models/cookbook');
 const commentsModel = require('../models/comments');
 
 const {validationResult} = require('express-validator');
@@ -54,6 +55,7 @@ exports.addRecipe = function(req, res) {
             extension
         );
 
+        //db save
         recipeModel.insertOne(recipe, function(dbres) {
             if(dbres != null) console.log('recipe added!');
             res.redirect('/recipes/' + recipe._id);
@@ -67,10 +69,21 @@ exports.addRecipe = function(req, res) {
 
 exports.getAllRecipes = function(req, res) {
     recipeModel.getAll({}, '', function(dbres) {
-        res.render('home', {
-            title: 'Yummers!',
-            recipes: dbres
-        });
+        if(req.session.user) {
+            cookbookModel.getAll({user: req.session.user._id}, '', function(cookbook) {
+                res.render('home', {
+                    title: 'Yummers!',
+                    recipes: dbres,
+                    cookbook: cookbook
+                });
+            });
+        }
+        else {
+            res.render('home', {
+                title: 'Yummers!',
+                recipes: dbres
+            });
+        }
     })
 }
 

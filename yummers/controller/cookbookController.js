@@ -1,4 +1,5 @@
 const cookbookModel = require('../models/cookbook');
+const recipeModel = require('../models/recipes');
 
 //get user's cookbook
 exports.getCookbook = function(req, res) {
@@ -11,5 +12,12 @@ exports.getCookbook = function(req, res) {
 			title: 'Recipe Book',
 			recipes: recipes
 		});
+	});
+}
+
+exports.addCookbook = function(req, res) {
+	var cookbook = cookbookModel.create(req.session.user._id, req.body.id);
+	cookbookModel.insertOne(cookbook, function(result) {
+		res.send(result);
 	});
 }

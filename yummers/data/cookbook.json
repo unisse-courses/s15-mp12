@@ -1,3 +1,6 @@
-{"_id":{"$oid":"5e874ace93af0e06487e7fec"},"isCooked":true,"dateAdded":"2019-07-27T16:00:00.000+00:00","user":{"$oid":"5e7dc8032d173236e070f966"},"recipe":{"$oid":"5e85e8f27f871331541a96a7"}}
-{"_id":{"$oid":"5e874ace93af0e06487e7fed"},"isCooked":false,"dateAdded":"2020-09-27T16:00:00.000+00:00","user":{"$oid":"5e7dc8032d173236e070f966"},"recipe":{"$oid":"5e85e8f27f871331541a96a8"}}
-{"_id":{"$oid":"5e874ace93af0e06487e7fee"},"isCooked":true,"dateAdded":"2019-12-23T16:00:00.000+00:00","user":{"$oid":"5e7dc8032d173236e070f967"},"recipe":{"$oid":"5e85e8f27f871331541a96a6"}}
+{"_id":{"$oid":"5e874ace93af0e06487e7fec"},"dateAdded":{"$date":{"$numberLong":"1564243200000"}},"user":{"$oid":"5e7dc8032d173236e070f966"},"recipe":{"$oid":"5e85e8f27f871331541a96a7"}}
+{"_id":{"$oid":"5e874ace93af0e06487e7fed"},"dateAdded":{"$date":{"$numberLong":"1601222400000"}},"user":{"$oid":"5e7dc8032d173236e070f966"},"recipe":{"$oid":"5e85e8f27f871331541a96a8"}}
+{"_id":{"$oid":"5e874ace93af0e06487e7fee"},"dateAdded":{"$date":{"$numberLong":"1577116800000"}},"user":{"$oid":"5e7dc8032d173236e070f967"},"recipe":{"$oid":"5e85e8f27f871331541a96a6"}}
+{"_id":{"$oid":"5ea810da686e9929808e19b4"},"user":{"$oid":"5e7dc8032d173236e070f967"},"recipe":{"$oid":"5e85e8f27f871331541a96aa"},"dateAdded":{"$date":{"$numberLong":"1588072666260"}},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5ea81107686e9929808e19b7"},"user":{"$oid":"5e7dc8032d173236e070f968"},"recipe":{"$oid":"5e85e8f27f871331541a96a8"},"dateAdded":{"$date":{"$numberLong":"1588072711547"}},"__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5ea8110b686e9929808e19b8"},"user":{"$oid":"5e7dc8032d173236e070f968"},"recipe":{"$oid":"5e85e8f27f871331541a96a9"},"dateAdded":{"$date":{"$numberLong":"1588072715667"}},"__v":{"$numberInt":"0"}}

@@ -42,5 +42,11 @@ module.exports = {
             return true;
         }
         else false;
-    }
+    },
+    checkCookbook: function(recipe, cookbook) { 
+        var recipes = cookbook.map(item => {
+            return item.recipe._id.toString();
+        });
+        return recipes.includes(recipe._id.toString());
+    }   
 }

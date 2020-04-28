@@ -7,12 +7,22 @@ const cookbookSchema = new mongoose.Schema({
     _id: { type: mongoose.Schema.Types.ObjectId , required: [true, 'No ID provided.'] },
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true},
     recipe: { type: mongoose.Schema.Types.ObjectId, ref: 'Recipe', required: true},
-    isCooked: Boolean
+    dateAdded: {type: Date}
 });
 
 const cookbookModel = mongoose.model('Cookbook', cookbookSchema);
 
 module.exports = {
+    create: function(user, recipe) {
+        var cookbook = new cookbookModel({
+            _id: mongoose.Types.ObjectId(),
+            user: user,
+            recipe: recipe,
+            dateAdded: new Date()
+        });
+
+        return cookbook;
+    },
     getOne: function(filter, projection, callback) {
         cookbookModel.findOne(filter, projection).populate('user').populate('recipe').exec(function (err, res) {
             if(err) throw err;
@@ -35,5 +45,8 @@ module.exports = {
     },
     updateOne: function(filter, update, callback) {
         database.findAndUpdate(cookbookModel, filter, update, callback);
+    },
+    insertOne: function(cookbook, callback) {
+        database.insertDocument(cookbook, callback);
     }
 }

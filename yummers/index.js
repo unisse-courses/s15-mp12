@@ -17,6 +17,7 @@ const port = 3000;
 const usersRoute = require('./routes/userRoutes');
 const recipesRoute = require('./routes/recipeRoutes');
 const publicRoute = require('./routes/publicRoutes');
+const cookbookRoute = require('./routes/cookbookRoutes');
 
 
 //database connection
@@ -81,3 +82,4 @@ app.use((req, res, next) => {
 app.use('/', publicRoute);
 app.use('/user', usersRoute);
 app.use('/recipes', recipesRoute);
+app.use('/cookbook', cookbookRoute);
