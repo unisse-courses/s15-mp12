@@ -49,6 +49,7 @@ $(document).ready(function() {
                 //change image to followed
                 userPosts.each((index, element) => {
                     element.src = '/img/follow.png';
+                    element.id = 'follow';
                 });
 
                 //fade in animation
@@ -71,6 +72,8 @@ $(document).ready(function() {
                 bookmark.hide();
 
                 bookmark.attr('src', '/img/bookmarked.png');
+                bookmark.attr('id', 'bookmarked');
+                bookmark.attr('title', 'Remove from Cookbook');
 
                 bookmark.fadeIn(500);
             }
