@@ -79,4 +79,25 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('body').on('click', 'img#bookmarked', function() {
+            //get recipe id through src
+            var image = $(this).parent().parent().next().children()[0].src;
+            var str = {
+                id: image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+            }
+    
+            var bookmarked = $(this);
+            $.post('cookbook/remove/', str, function(data, status) {
+                if(data != null) {
+                    bookmarked.hide();
+
+                    bookmarked.attr('src', '/img/bookmark.png');
+                    bookmarked.attr('id', 'bookmark');
+                    bookmarked.attr('title', 'Add to Cookbook');
+
+                    bookmarked.fadeIn(500);
+                }
+            });
+    });
 });

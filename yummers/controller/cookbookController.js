@@ -21,3 +21,13 @@ exports.addCookbook = function(req, res) {
 		res.send(result);
 	});
 }
+
+exports.removeCookbook = function(req, res) {
+	var filter = {
+		user: req.session.user._id,
+		recipe: req.body.id
+	}
+	cookbookModel.remove(filter, function(result) {
+		res.send(result);
+	});
+}

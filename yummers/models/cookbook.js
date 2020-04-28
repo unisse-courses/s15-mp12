@@ -48,5 +48,8 @@ module.exports = {
     },
     insertOne: function(cookbook, callback) {
         database.insertDocument(cookbook, callback);
+    },
+    remove: function(filter, callback) {
+        database.deleteDocument(cookbookModel, filter, callback);
     }
 }
