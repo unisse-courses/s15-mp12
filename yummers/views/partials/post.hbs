@@ -1,20 +1,29 @@
 <div class="post w-50 current-black py-4 center">
     <div class="row">
-        <p class="col-lg-10 text-black" >
-            <span class="user"></span><a href="/user/{{userId}}">{{getName userId users}}</a> | <i>{{dateFormat date}} </i>
-            <span id="follow" class="icon post_icon"></span>
+        <span class="col-lg-1">
+            <img src="/{{user.profilePic}}" class="user"></img>
+        </span>
+        <p class="col-lg-3 text-black pt-2">
+            <a href="/user/{{user._id}}">{{user.name}}</a>
+            <i>{{dateFormat date}} </i>
         </p>
-        <p class="col-lg-1"><span id="cook" class="icon post_icon"></span></p>
-        <p><span id="bookmark" class="icon post_icon"></span></p>
+        <div class="col-lg-5"></div>
+        <p class="col-lg-3 text-right">
+            {{#if session.user}}
+                {{#unless (checkUser user._id session.user._id)}}    
+                    {{> follow session = session}}
+                    {{> post_icon recipe = this cookbook = cookbook}}
+                {{/unless}}
+            {{/if}}
+        </p>
     </div>    
-    <div >
-        <div class="row post-pic">
-            {{{postImg this}}}
-        </div>
-        <div >
-            <h3 class="text-orange text-spaced" style="text-align:center;">{{name}}</h3> 
-            <p class ="text-black" style="text-align:center;">Description here.</p>
-            <p style="text-align:center;"><a href="recipes/{{_id}}">View full recipe.</a></p>
-        </div>
+    <div class="post-pic row">
+        {{{postImg this}}}
     </div>
+    <div class="mt-1">
+        <h3 class="text-orange text-spaced" style="text-align:center;">{{name}}</h3>   
+        <p class ="text-black" style="text-align:center;">{{description}}</p>
+        <p style="text-align:center;"><a href="recipes/{{_id}}">View full recipe.</a></p>
+    </div>
+
 </div>
