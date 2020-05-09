@@ -100,4 +100,55 @@ $(document).ready(function() {
                 }
             });
     });
+    
+    $('body').on('click', 'img#like', function() {
+        //get post user id through image src
+        image = $(this).parent().parent().find('.user')[0].src;
+        var str = image.substring(image.lastIndexOf('/') + 1, image.indexOf('.'));
+        
+        //get all follow icons in the page with the specific user
+        var likedRecipe = $('img[title="' + $(this).attr('title') + '"');
+    
+
+        $.post('user/like/' + str, function(data, status) {
+            if(data != null) {
+                //animation hide element
+                userPosts.hide();
+
+                //change image to followed
+                userPosts.each((index, element) => {
+                    element.src = '/img/followed.png';
+                    element.id = 'followed';
+                });
+
+                //fade in animation
+                userPosts.fadeIn(500);
+            }
+        });
+    });
+
+    $('body').on('click', 'img#liked', function() {
+        //get post user id through image src
+        image = $(this).parent().parent().find('.user')[0].src;
+        var str = image.substring(image.lastIndexOf('/') + 1, image.indexOf('.'));
+
+        //get all follow icons in the page with the specific user
+        var userPosts = $('img[title="' + $(this).attr('title') + '"');
+
+        $.post('user/unfollow/' + str, function(data, status) {
+            if(data != null) {
+                //animation hide element
+                userPosts.hide();
+
+                //change image to followed
+                userPosts.each((index, element) => {
+                    element.src = '/img/follow.png';
+                    element.id = 'follow';
+                });
+
+                //fade in animation
+                userPosts.fadeIn(500);
+            }
+        })
+    });
 });

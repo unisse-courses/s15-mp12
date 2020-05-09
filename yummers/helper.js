@@ -48,5 +48,13 @@ module.exports = {
             return item.recipe._id.toString();
         });
         return recipes.includes(recipe._id.toString());
-    }   
+    },
+    
+    likes: function(recipeId){
+        let count = 0;
+        for(let i=0; i < likes.length; i++)
+            count+=1;
+        return count;
+    }
+    
 }

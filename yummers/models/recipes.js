@@ -14,8 +14,8 @@ const recipeSchema = new mongoose.Schema({
     description: {type: String, required: [true, 'No description provided.']},
     cookTime: {type: String},
     prepTime: {type: String},
-    recipePicture: {type: String, required: true}
-
+    recipePicture: {type: String, required: true},
+    likes:{type:[mongoose.Schema.Types.ObjectId]}
 });
 
 const recipeModel = mongoose.model('Recipe', recipeSchema);
@@ -33,7 +33,8 @@ module.exports = {
             description: 'New Recipe!',
             cookTime: cookTime,
             prepTime: prepTime,
-            recipePicture: '/img/recipe_' + recipeId + '.' + picture
+            recipePicture: '/img/recipe_' + recipeId + '.' + picture,
+            likes: []
         });
 
         return recipe;

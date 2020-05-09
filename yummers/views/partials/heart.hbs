@@ -1,0 +1,5 @@
+{{#if (liked session.user user._id)}}
+    <img id="like" class="icon post_icon" src="/img/like.png" title="like {{recipe.name}}"></img>
+{{else}}
+    <img id="liked" class="icon post_icon" src="/img/liked.png" title="like {{recipe.name}}"></img>
+{{/if}}
