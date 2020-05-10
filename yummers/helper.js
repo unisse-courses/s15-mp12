@@ -39,28 +39,5 @@ module.exports = {
     },
     ingredientText: function(ingredient) {
         return ingredient.substr(ingredient.indexOf(' '), ingredient.length);
-<<<<<<< HEAD
     }
-=======
-    },
-    checkUser: function(sessionUser, userpage) {
-        return sessionUser == userpage;
-    },
-    generateRecipeId: function() {
-        return mongoose.Types.ObjectId();
-    },
-    following: function(user, follow) {
-        //if user is not following 'user follow'
-        if(!user.follows.includes(follow.toString())) {
-            return true;
-        }
-        else false;
-    },
-    checkCookbook: function(recipe, cookbook) { 
-        var recipes = cookbook.map(item => {
-            return item.recipe._id.toString();
-        });
-        return recipes.includes(recipe._id.toString());
-    }   
->>>>>>> parent of aed1abe... Like and cooked
 }

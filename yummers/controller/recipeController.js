@@ -72,7 +72,6 @@ exports.deleteRecipe = function(req, res) {
         res.send(dbres);
     });
 <<<<<<< HEAD
-<<<<<<< HEAD
 }
 
 // //like a recipe
@@ -103,9 +102,6 @@ exports.deleteRecipe = function(req, res) {
 // 		res.send(dbres);
 // 	})
 // }
-=======
-}
->>>>>>> parent of aed1abe... Like and cooked
 =======
 }
 >>>>>>> parent of aed1abe... Like and cooked

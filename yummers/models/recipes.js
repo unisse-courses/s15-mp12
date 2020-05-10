@@ -11,15 +11,7 @@ const recipeSchema = new mongoose.Schema({
     servings: String,
     source: String,
     ingredients: { type: [String], required: true},
-<<<<<<< HEAD
     preparation: { type: [String], required: true}
-=======
-    preparation: { type: [String], required: true},
-    description: {type: String, required: [true, 'No description provided.']},
-    cookTime: {type: String},
-    prepTime: {type: String},
-    recipePicture: {type: String, required: true}
->>>>>>> parent of aed1abe... Like and cooked
 
 });
 
@@ -35,15 +27,7 @@ module.exports = {
             servings: servings,
             source: source,
             ingredients: ingredients,
-<<<<<<< HEAD
             preparation: preparation
-=======
-            preparation: preparation,
-            description: 'New Recipe!',
-            cookTime: cookTime,
-            prepTime: prepTime,
-            recipePicture: '/img/recipe_' + recipeId + '.' + picture
->>>>>>> parent of aed1abe... Like and cooked
         });
 
         return recipe;

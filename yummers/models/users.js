@@ -9,14 +9,7 @@ const userSchema = mongoose.Schema({
     name: { type: String, required: [true, 'No Name provided.'] },
     joinDate: Date,
     password: { type: String, required: true},
-<<<<<<< HEAD
     email: { type: String, required: true}
-=======
-    email: { type: String, required: true},
-    description: {type: String, required: [true, 'No description provided']},
-    profilePic: {type: String, required: [true, 'img/profpic.png']},
-    follows: {type: [mongoose.Schema.Types.ObjectId]}
->>>>>>> parent of aed1abe... Like and cooked
 })
 
 const userModel = mongoose.model('User', userSchema);
@@ -29,14 +22,7 @@ exports.create = function(username, name, pass, email) {
 		name: name,
 		joinDate: new Date(),
 		password: pass,
-<<<<<<< HEAD
 		email: email
-=======
-        email: email,
-        description: 'Hi I\'m ' + name + "!",
-        profilePic: 'img/profpic.png',
-        follows: []
->>>>>>> parent of aed1abe... Like and cooked
     });
 
     return user;

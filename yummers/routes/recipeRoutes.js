@@ -23,7 +23,6 @@ router.post('/:recipeId/addComment', commentsController.addComment);
 
 //create recipe
 <<<<<<< HEAD
-<<<<<<< HEAD
 router.post('/addRecipe', uploadRecipe.single('foodPicture'), recipeFormsValidation, recipeController.addRecipe);
 
 //session user like recipe
@@ -37,6 +36,3 @@ router.post('/addRecipe', uploadRecipe.single('foodPicture'), recipeFormsValidat
 =======
 router.post('/:recipeId/delete', recipeController.deleteRecipe);
 >>>>>>> parent of 2b6a528... Merge branch 'master' of https://github.com/unisse-courses/s15-mp12
-=======
-router.post('/addRecipe', uploadRecipe.single('foodPicture'), recipeFormsValidation, recipeController.addRecipe);
->>>>>>> parent of aed1abe... Like and cooked
