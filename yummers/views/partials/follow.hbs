@@ -1,0 +1,7 @@
+{{#if (following session.user user._id)}}
+    <img id="follow" class="icon post_icon" src="/img/follow.png" title="follow {{user.name}}"></img>
+{{else}}
+    <img id="followed" class="icon post_icon" src="/img/followed.png" title="unfollow {{user.name}}"></img>
+{{/if}}
+
+

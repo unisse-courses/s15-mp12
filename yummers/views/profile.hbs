@@ -3,26 +3,42 @@
         <h1 class="col-lg-12 page-header ">PROFILE</h1>
     </div>
     <div class="row flex-box">
-        <div class="profile_pic " ></div>
-        <div style="flex-grow: 1;">
-            <h1 class="col-lg-10 text-spaced">{{user.name}}</h1>
-            <h6 class="col-lg-10 text-orange">Joined since {{dateFormat user.joinDate}}</h6>
+        <span class="col-lg-2">
+            <img src="/{{user.profilePic}}" class="profile_pic"></img>
+        </span>
+        <div class="col-lg-8">
+            <h1 class="text-spaced">{{user.name}}</h1>
+            <h6 class="text-orange">Joined since {{dateFormat user.joinDate}}</h6>
         </div>
-        <a type="button" class=" col-lg-1 btn btn-yellow mr-5 mt-4" href="{{idToString user._id}}/edit">Edit Profile</a>
+        {{#if (checkUser session.user._id (idToString user._id))}}
+            <a type="button" class=" col-lg-1 btn btn-yellow mr-5 mt-4" href="{{idToString user._id}}/edit">Edit Profile</a>
+        {{else}}
+            <div class="col-lg-1">
+                {{> follow}}
+            </div>
+        {{/if}}
     </div>
 
     <div class="row mx-3 pr-5">
         <h3 class="col-lg-12 text-orange ">Bio</h3>
     </div>
     <div class="row mx-5 pr-5">
-        <p class="col-lg-12 text-black">Hi! I'm a college student who loves to cook! Please check out my recipes and give them a like or share them if you tried them out and enjoyed them!</p>
+        <p class="col-lg-12 text-black">{{user.description}}</p>
     </div>
     <div class="row mx-3 pr-5">
         <h3 class="col-lg-12 text-orange">Recipes</h3>
     </div>
     <div class="display-res  ml-5 pl-5">
-        {{#each recipes}}
-            {{> recipe_card username = ../user.name}}
-        {{/each}}
+        {{#if recipes}}
+            {{#each recipes}}
+                {{> recipe_card session = ../session}}
+            {{/each}}
+        {{else}}
+            {{#if (checkUser req.session._id (idToString user._id))}}
+                <p class="text-black">No recipes posted! Add one <a href="{{idToString user._id}}/add">here</a> now!</p>
+            {{else}}
+                <p class="text-black">No recipes posted!</p>
+            {{/if}}
+        {{/if}}
     </div>
 </div>

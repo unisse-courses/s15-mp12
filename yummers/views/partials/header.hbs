@@ -1,25 +1,34 @@
-<div class="header">
+
     <a href="/">
-    <div class="navbar header-blue justify-content-left">
-        <img src = "/img/logo.png "class="navbar-brand" alt="home"/>
-    </div>
+        <div class="navbar header-blue justify-content-left">
+            <img src = "/img/logo.png "class="navbar-brand" alt="home"/>
+        </div>
+    </a>
     <div class ="header-nav-blue ">
         <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link" href="/user/5e7dc8032d173236e070f966/add">Create Recipe</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/5e7dc8032d173236e070f966/cookbook">Recipe Book</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/5e7dc8032d173236e070f966/recipes">My Recipes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/5e7dc8032d173236e070f966">Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/form/0">Logout</a>
-            </li>
+            {{#if session.user.name}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/{{session.user._id}}/add">Create Recipe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/{{session.user._id}}/cookbook">Recipe Book</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/{{session.user._id}}/recipes">My Recipes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user/{{session.user._id}}">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a>
+                </li>
+            {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup">Sign Up</a>
+                </li>
+            {{/if}}
         </ul>
     </div>
-</div>

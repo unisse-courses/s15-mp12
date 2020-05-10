@@ -51,6 +51,21 @@ module.exports = {
             });
     },
     
+    //Create comments collection 
+    createCommentCollection: function() {
+        mongoClient.connect(databaseURLDB, function(err, db) {
+            if(err) throw err;
+            const dbo = db.db(dbname);
+
+                dbo.createCollection('comments', function(err, res) {
+                    if(err) throw err;
+                        console.log('comments collection created!');
+                        db.close();
+                });
+
+        });
+    },
+    
     connect : function() {
         mongoose.connect(databaseURL, options, function(err, res) {
             if(err) throw err;
@@ -75,7 +90,7 @@ module.exports = {
     findOne: function(model, filter, projection, callback) {
         model.findOne(filter, projection, function(err, res) {
             if(err) throw err;
-
+            
             if(res != null) callback(res.toObject());
             else callback(null);
         });
