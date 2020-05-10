@@ -176,6 +176,7 @@ exports.deleteRecipe = function(req, res) {
         });
         res.send(dbres);
     });
+<<<<<<< HEAD
 }
 
 // //like a recipe
@@ -206,3 +207,6 @@ exports.deleteRecipe = function(req, res) {
 // 		res.send(dbres);
 // 	})
 // }
+=======
+}
+>>>>>>> parent of aed1abe... Like and cooked
