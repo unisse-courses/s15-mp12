@@ -1,41 +1,25 @@
 const router = require('express').Router();
 module.exports = router;
 
-//database
 const mongoose = require('mongoose');
 
-//controllers
 const userController = require('../controller/userController');
+const recipeController = require('../controller/recipeController');
 const cookbookController = require('../controller/cookbookController');
-
-//validator middlewares
-const {loginValidation, registerValidation, editProfileValidation} = require('../validators');
-
-//file upload middleware
-const {upload} = require('../multer');
-
-//user authentication
-const auth = require('../authentication');
 
 router.get('/:userId', userController.getProfile);
 
 //load edit user page
-router.get('/:userId/edit', auth.isPrivate, userController.editProfilePage);
+router.get('/:userId/edit', userController.editProfilePage);
 
 //load create recipe page
-router.get('/:userId/add', auth.isPrivate, userController.createRecipe);
+router.get('/:userId/add', userController.createRecipe);
 
 //load user recipes
-router.get('/:userId/recipes', auth.isPrivate, userController.getUserRecipes);
+router.get('/:userId/recipes', userController.getUserRecipes);
 
 //load user's cookbook
-router.get('/:userId/cookbook', auth.isPrivate, cookbookController.getCookbook);
+router.get('/:userId/cookbook', userController.getCookbook);
 
 //update user
-router.post('/:userId/editUser', upload.single('profilePicture'), editProfileValidation, userController.updateUser);
-
-//session user follow user(followId)
-router.post('/follow/:followId', userController.followUser);
-
-//session user follow user(unfollowId)
-router.post('/unfollow/:followId', userController.unfollowUser);
+router.post('/:userId/editUser', userController.updateUser);

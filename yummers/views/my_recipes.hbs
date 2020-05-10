@@ -3,15 +3,9 @@
         <h1 class="col-lg-12 page-header ">MY RECIPES</h1>
     </div>
     <div class="row" style="height:50px;"></div>
-    {{#if recipes}}
-        <div class="display-res ml-5 pl-5">
-            {{#each recipes}}
-                {{> recipe_card session = ../session}}
-            {{/each}}
-        </div>
-    {{else}}
-        <div class="row mx-5 text-black">
-            <p>It seems like you don't have any recipes posted! <a href="/user/{{session.user._id}}/add">Click here</a> to add one!</p>
-        </div>
-    {{/if}}
+    <div class="display-res ml-5 pl-5">
+        {{#each recipes}}
+            {{> recipe_card username = ../user.name}}
+        {{/each}}
+    </div>
 </div>
