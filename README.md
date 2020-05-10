@@ -70,6 +70,7 @@ Currently, since sessions are not yet implemented, the user logged-in is always 
 ## Built with
 - bootstrap
 - node js
+- mongoDB
 
 ## Versioning
 We use github for versioning 
