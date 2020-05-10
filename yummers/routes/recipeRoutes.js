@@ -38,3 +38,5 @@ router.post('/like/', recipeController.likeRecipe);
 
 //session user unlike recipe
 router.post('/unlike/', recipeController.unlikeRecipe);
+
+router.post('/:recipeId/delete', recipeController.deleteRecipe);

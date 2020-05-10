@@ -20,13 +20,13 @@
     <div class="post-pic row">
         {{{postImg this}}}
     </div>
-    {{!-- <div class="row">
-        {{#if session.user}}
-            {{#unless (checkUser user._id session.user._id)}}  
-                {{> heart}}
-            {{/unless}}
-        {{/if}}        
-    </div> --}}
+        <p class="col-lg-1"><span id="cook" class="icon post_icon"></span></p>
+        <p><span id="bookmark" class="icon post_icon"></span></p>
+    </div>    
+    <div class="post-pic row">
+        {{{postImg this}}}
+    </div>
+
     <div class="mt-1">
         <h3 class="text-orange text-spaced" style="text-align:center;">{{name}}</h3>   
         <p class ="text-black" style="text-align:center;">{{description}}</p>
