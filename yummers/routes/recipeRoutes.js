@@ -31,7 +31,6 @@ router.post('/:recipeId/delete', recipeController.deleteRecipe);
 router.post('/:recipeId/addComment', commentsController.addComment);
 
 //create recipe
-<<<<<<< HEAD
 router.post('/addRecipe', uploadRecipe.single('foodPicture'), recipeFormsValidation, recipeController.addRecipe);
 
 //session user like recipe
@@ -39,6 +38,3 @@ router.post('/like/', recipeController.likeRecipe);
 
 //session user unlike recipe
 router.post('/unlike/', recipeController.unlikeRecipe);
-=======
-router.post('/addRecipe', uploadRecipe.single('foodPicture'), recipeFormsValidation, recipeController.addRecipe);
->>>>>>> parent of aed1abe... Like and cooked
