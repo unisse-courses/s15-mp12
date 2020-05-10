@@ -1,33 +1,13 @@
 const cookbookModel = require('../models/cookbook');
-const recipeModel = require('../models/recipes');
 
-//get user's cookbook
-exports.getCookbook = function(req, res) {
-	cookbookModel.getAll({user: req.params.userId}, '', function(dbres) {
-            
-		var recipes = dbres.map(cookbook => {
-			return cookbook.recipe;
-		});
-		res.render('recipebook', {
-			title: 'Recipe Book',
-			recipes: recipes
-		});
-	});
-}
+exports.create = function(newRecipe) {
+    cookbookModel.insertDocument(newRecipe, recipeModel);
+},
 
-exports.addCookbook = function(req, res) {
-	var cookbook = cookbookModel.create(req.session.user._id, req.body.id);
-	cookbookModel.insertOne(cookbook, function(result) {
-		res.send(result);
-	});
-}
+exports.getOneRecipe = function(filter, projection, callback) {
+    cookbookModel.getOne(filter, projection, callback);
+},
 
-exports.removeCookbook = function(req, res) {
-	var filter = {
-		user: req.session.user._id,
-		recipe: req.body.id
-	}
-	cookbookModel.remove(filter, function(result) {
-		res.send(result);
-	});
+exports.getAllRecipes = function(filter, projection, callback) {
+    cookbookModel.getAll(filter, projection, callback);
 }

@@ -1,0 +1,29 @@
+<div class="container w-50 current-black mt-3 pb-5 center">
+    <div class="row">
+        <div class="col-xl-6 pt-2 pl-3" id="login_tab">
+            <h2 class="text-orange">LOGIN</h2>
+        </div>
+        <div class="col-xl-6 pt-2 pl-3" id="signup_tab">
+            <h2 class="text-orange">SIGNUP</h2>
+        </div>
+    </div>
+    <div id="content">
+        {{#if (formSwitch type)}}
+            {{>login}}
+        {{else}}
+            {{>signup}}
+        {{/if}}
+    </div>
+    <script src="/js/userforms.js"></script>
+    <script>
+        $(document).ready(function() {
+            if({{formSwitch type}}) {
+                $('#signup_tab').addClass('bg-black');
+                
+            }
+            else {
+                $('#login_tab').addClass('bg-black');
+            }
+        });
+    </script>
+</div>

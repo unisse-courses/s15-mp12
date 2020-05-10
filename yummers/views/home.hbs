@@ -1,16 +1,3 @@
-{{#if recipes}}
-        {{#each recipes}}
-                {{>post session = ../session cookbook = ../cookbook}}
-        {{/each}}
-{{else}}
-<div class="post w-50 current-black py-4 center">
-        <div>
-                <div >
-                        <h3 class="text-orange text-spaced" style="text-align:center;">Create a new recipe!</h3> 
-                        <p class ="text-black" style="text-align:center;">No recipes has been posted yet, be the first!</p>
-                        <p style="text-align:center;"><a href="user/{{session.user._id}}/add">Click here to create a new recipe</a></p>
-                </div>
-        </div>
-</div>   
-{{/if}}
-<script src="/js/homescript.js"></script>
+{{#each recipes}}
+        {{>post users = ../users}}
+{{/each}}
