@@ -37,16 +37,11 @@
         <div id="ingredientContainer">
             {{#each recipe.ingredients}}
                 <div class="row mx-4 mt-1">
-                    <input class="col-lg-1 form-control mr-2" name="quantity" type="number" min="0.125" step="0.125" value="{{ingredientNum this}}">
+                    <input class="col-lg-1 form-control mr-2" name="quantity" type="number" min="0.0625" step="0.0625" value="{{ingredientNum this}}">
                     <input class="col-lg-9 form-control mr-5" name="ingredient" type="text" value="{{ingredientText this}}">
                     <button class="col-lg-1 form-control btn btn-secondary remove">-</button>
                 </div>
             {{/each}}
-            <div class="row mx-4 mt-1">
-                    <input class="col-lg-1 form-control mr-2" name="quantity" type="number" min="1">
-                    <input class="col-lg-9 form-control mr-5" name="ingredient" type="text" placeholder="Ingredient">
-                    <button class="col-lg-1 form-control btn btn-secondary" id="addIngredient">+</button>
-            </div>
         </div>
         <div class="row mx-1 mt-3"> 
                 <h4 class= "col-lg-12 text-orange">Preparation</h4>
@@ -58,10 +53,6 @@
                     <button class="col-lg-1 form-control btn btn-secondary remove">-</button>
                 </div>
             {{/each}}
-                <div class="row mx-4 mt-1"> 
-                    <input class="col-lg-10 form-control mr-5 ml-2" name="step" type="text" placeholder="Step">
-                    <button class="col-lg-1 form-control btn btn-secondary" id="addStep">+</button>
-                </div>
         </div>
         <div  class="row mx-4 mt-5">
             <input type="submit" class="btn btn-secondary col-lg-3 mr-3" id= "submitUpdate" value="Update Recipe">
@@ -101,7 +92,7 @@
         </div>
         <div id="ingredientContainer">
             <div class="row mx-4 mt-1">
-                <input class="col-lg-1 form-control mr-2" name="quantity"  type="number" min="0.125" step="0.125">
+                <input class="col-lg-1 form-control mr-2" name="quantity" type="number" min="0.0625" step="0.0625">
                 <input class="col-lg-9 form-control mr-5" name="ingredient" type="text" placeholder="Unit + Ingredient (Ex. tbsp of salt)">
                 <button class="col-lg-1 form-control btn btn-secondary" id="addIngredient">+</button>
             </div>

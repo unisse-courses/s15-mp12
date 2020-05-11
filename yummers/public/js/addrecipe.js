@@ -9,8 +9,8 @@ $(document).ready(function() {
 
         $('#ingredientContainer').append(
             '<div class="row mx-4 mt-1">' +
-            '<input class="col-lg-1 form-control mr-2" name="quantity" type="number">' +
-            '<input class="col-lg-9 form-control mr-5" name="ingredient" type="text" placeholder="Ingredient">' +
+            '<input class="col-lg-1 form-control mr-2" name="quantity" type="number" min="0.0625" step="0.0625">' +
+            '<input class="col-lg-9 form-control mr-5" name="ingredient" type="text" placeholder="Unit + Ingredient (Ex. tbsp of salt)">' +
             '<button class="col-lg-1 form-control btn btn-secondary" id="addIngredient">+</button>' +
             '</div>'
         )
@@ -25,8 +25,8 @@ $(document).ready(function() {
         $('#addStep').remove();
 
         $('#stepsContainer').append(
-            '<div class="row mx-3 mt-1"> ' +
-            '<input class="col-lg-10 form-control mr-5 ml-2" name="step" type="text" placeholder="Step">' +
+            '<div class="row mx-4 mt-1"> ' +
+            '<input class="col-lg-10 form-control mr-5 ml-2" name="step" type="text" placeholder="Step (Ex. Heat water to boiling level.)">' +
             '<button class="col-lg-1 form-control btn btn-secondary" id="addStep">+</button>' +
             '</div>'
         )
@@ -121,4 +121,17 @@ $(document).ready(function() {
         }
 
       });
+    
+    //Set last button to +
+    var lastIng = $('#ingredientContainer').children().last().children()[2];
+    var lastStep = $('#stepsContainer').children().last().children()[1];
+
+    lastIng.classList.remove("remove");
+    lastIng.setAttribute('id', "addIngredient");
+    lastIng.innerHTML = "+";
+    
+    lastStep.classList.remove("remove");
+    lastStep.setAttribute('id', "addStep");
+    lastStep.innerHTML = "+";
+    
 });

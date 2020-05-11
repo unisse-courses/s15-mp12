@@ -102,7 +102,7 @@ exports.getRecipePage = function(req, res) {
 exports.editRecipePage = function(req, res) {
     recipeModel.getOne({_id: mongoose.Types.ObjectId( req.params.recipeId)}, '', function(dbres) {
         res.render('add_recipe', {
-            title: 'Edit' + dbres.name,
+            title: 'Edit ' + dbres.name,
             recipe: dbres
         })
     });
