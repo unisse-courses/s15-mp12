@@ -1,7 +1,7 @@
 //mongodb - used for initial run to create collection user and recipe
 const mongodb = require('mongodb');
 const mongoClient = mongodb.MongoClient;
- const databaseURLDB = "mongodb://localhost:27017/";
+const databaseURLDB = "mongodb://localhost:27017/";
 const dbname =  "yummersdb";
 
 //mongoose
