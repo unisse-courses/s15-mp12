@@ -35,7 +35,7 @@ const options = {useNewUrlParser: true, useUnifiedTopology: true};
 mongoose.connect(databaseURL, options, function(err, res) {
     if(err) throw err;
 
-    console.log('Database Connected to: ' + databaseURL);
+    console.log('Database Connected to cloud');
 });
 
 //app settings
