@@ -22,15 +22,15 @@ const cookbookRoute = require('./routes/cookbookRoutes');
 
 //database connection
 const mongoose = require('mongoose');
-const databaseURL = 'mongodb+srv://admin:lDXwh64LWhx3yyu1@ccapdev-s15-mp12-tddpu.mongodb.net/yummersdb?retryWrites=true&w=majority';
+const databaseURL = 'mongodb://localhost:27017/yummersdb';
 const options = {useNewUrlParser: true, useUnifiedTopology: true};
 
 //create collections
-// const database = require('./database');
-// database.createUserCollection();
-// database.createRecipeCollection();
-// database.createCookbookCollection();
-// database.createCommentCollection();
+const database = require('./database');
+database.createUserCollection();
+database.createRecipeCollection();
+database.createCookbookCollection();
+database.createCommentCollection();
 
 mongoose.connect(databaseURL, options, function(err, res) {
     if(err) throw err;
