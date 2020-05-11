@@ -21,9 +21,7 @@
         {{{postImg this}}}
     </div> 
     <div class= "col-lg-7 text-left mt-2">
-        {{#if session.user}}
-            {{> like session = session  recipe = recipe}}
-        {{/if}}
+        {{> like session = session  recipe = recipe}}
     </div>
     <div class="mt-1">
         <h3 class="text-orange text-spaced" style="text-align:center;">{{name}}</h3>   

@@ -68,4 +68,8 @@ $(document).ready(function(){
 
     });
 
+    //like for public users
+    $('body').on('click', 'img#like_public', function() {
+        window.location.href = "/login";
+    });
 })

@@ -54,5 +54,11 @@ module.exports = {
             return true;
         }
         else false;
-    } 
+    },
+    checkCookList: function(recipe, user) {
+        if(!user.cook.map(id => id.toString()).includes(recipe._id.toString())) {
+            return true;
+        }
+        else false;
+    }
 }

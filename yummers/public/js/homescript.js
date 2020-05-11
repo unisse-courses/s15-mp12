@@ -148,6 +148,50 @@ $(document).ready(function() {
             }
             
         });
+    });
 
+    //like for public users
+    $('body').on('click', 'img#like_public', function() {
+        window.location.href = "/login";
+    });
+
+    //cook
+    $('body').on('click', 'img#cook', function() {
+        //get recipe id through src
+        var image = $(this).parent().parent().next().children()[0].src;
+        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+        var cook = $(this);
+
+        $.post('user/cook/' + str, function(data, status) {
+            if(data != null) {
+                cook.hide();
+
+                cook.attr('src', '/img/cooked.png');
+                cook.attr('id', 'cooked');
+                cook.attr('title', 'Mark as not Cooked');
+
+                cook.fadeIn(500);
+            }     
+        });
+    });
+
+    //not cook
+    $('body').on('click', 'img#cooked', function() {
+        //get recipe id through src
+        var image = $(this).parent().parent().next().children()[0].src;
+        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+        var cook = $(this);
+
+        $.post('user/uncook/' + str, function(data, status) {
+            if(data != null) {
+                cook.hide();
+
+                cook.attr('src', '/img/cook.png');
+                cook.attr('id', 'cook');
+                cook.attr('title', 'Mark as Cooked');
+
+                cook.fadeIn(500);
+            }     
+        });
     });
 });

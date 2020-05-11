@@ -1,4 +1,8 @@
-<img id="cook" class="icon post_icon" src="/img/cook.png" title="Mark as Cooked"></img>
+{{#if (checkCookList recipe session.user)}}    
+    <img id="cook" class="icon post_icon" src="/img/cook.png" title="Mark as Cooked"></img>
+{{else}}
+    <img id="cooked" class="icon post_icon" src="/img/cooked.png" title="Mark as not Cooked"></img>
+{{/if}}
 {{#if (checkCookbook recipe cookbook)}}
     <img id="bookmarked" class="icon post_icon" src="/img/bookmarked.png" title="Remove from Cookbook"></img>
 {{else}}

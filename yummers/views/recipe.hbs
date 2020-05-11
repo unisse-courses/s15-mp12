@@ -37,26 +37,30 @@
         </ol>
     </div>
     <div class="row pl-1 mt-3 pt-3 pb-2 border-bottom border-top">
-        <div class="col-lg-12 text-right">
+        <div class="col-lg-6">
+            {{>like recipe = recipe session = session}}
+        </div>
+        <div class="col-lg-6 text-right">
             <span id="fb" class="icon social_icon"></span>
             <span id="ig" class="icon social_icon"></span>
             <span id="twitter" class="icon social_icon"></span>
             <span id="gplus" class="icon social_icon"></span>
         </div>
     </div>
-    <div class = "row my-3">
-        {{>like recipe = recipe session = session}}
-    </div>
     <div class="row my-3">
         <h3 class="col-lg-10 text-orange">Comments</h3>               
     </div>
-        <!--<div class="row ml-5">
-            <p class="text-black">You must login to post a comment.</p>
-        </div> -->
-    <div class="row ml-5 mb-3">
-        <textarea id="commentBox" class="col-lg-10 form-control mr-3" placeholder="Commenting as {{session.user.name}}..."></textarea>
-        <button id="addComment" class="col-lg-1 btn btn-secondary">Send</button>
-    </div>
+    {{#if session.user}}
+        <div class="row ml-5 mb-3">
+            <textarea id="commentBox" class="col-lg-10 form-control mr-3" placeholder="Commenting as {{session.user.name}}..."></textarea>
+            <button id="addComment" class="col-lg-1 btn btn-secondary">Send</button>
+        </div>
+    {{else}}
+        <div class="row ml-5 mb-3">
+            <textarea id="commentBox" class="col-lg-10 form-control mr-3" placeholder="Login to comment" disabled></textarea>
+            <button id="addComment" class="col-lg-1 btn btn-secondary" disabled>Send</button>
+        </div>
+    {{/if}}
     <div id="recipeComments">
         {{#each comments}}
             {{> comment}}

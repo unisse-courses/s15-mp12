@@ -39,3 +39,9 @@ router.post('/follow/:followId', userController.followUser);
 
 //session user follow user(unfollowId)
 router.post('/unfollow/:followId', userController.unfollowUser);
+
+//add cook recipe
+router.post('/cook/:cookId', userController.cookRecipe);
+
+//add cook recipe
+router.post('/uncook/:cookId', userController.uncookRecipe);

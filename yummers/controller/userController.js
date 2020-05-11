@@ -217,3 +217,30 @@ exports.unfollowUser = function(req, res) {
 		res.send(dbres);
 	})
 }
+
+exports.cookRecipe = function(req, res) {
+	var cook = {
+		cook: req.params.cookId
+	}
+
+	//update user in session
+	req.session.user.cook.push(req.params.cookId);
+	userModel.updateOne({_id: req.session.user._id}, {$push : cook}, function(dbres) {
+		res.send(dbres);
+	});
+}
+
+exports.uncookRecipe = function(req, res) {
+	var cook = {
+		cook: req.params.cookId
+	}
+
+	//update user in session
+	//get index of id to be removed from follows
+	var index = req.session.user.cook.indexOf(cook.cook);
+	//remove id in follows
+	req.session.user.cook.splice(index, 1);
+	userModel.updateOne({_id: req.session.user._id}, {$pull : cook}, function(dbres) {
+		res.send(dbres);
+	});
+}
