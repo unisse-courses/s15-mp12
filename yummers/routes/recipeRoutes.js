@@ -33,10 +33,10 @@ router.post('/:recipeId/addComment', commentsController.addComment);
 //create recipe
 router.post('/addRecipe', uploadRecipe.single('foodPicture'), recipeFormsValidation, recipeController.addRecipe);
 
-//session user like recipe(likeId)
-router.post('/like/:likeId', recipeController.likeRecipe);
-
-//session user unlike recipe
-router.post('/unlike/', recipeController.unlikeRecipe);
-
 router.post('/:recipeId/delete', recipeController.deleteRecipe);
+
+//like recipe(likeId)
+router.post('/like/:recipeId', recipeController.likeRecipe);
+
+//unlike recipe
+router.post('/unlike/:recipeId', recipeController.unlikeRecipe);

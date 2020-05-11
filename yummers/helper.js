@@ -48,5 +48,12 @@ module.exports = {
             return item.recipe._id.toString();
         });
         return recipes.includes(recipe._id.toString());
-    }   
+    },
+
+    checkLikers: function(recipe, user){
+        if(!recipe.likes.includes(user._id)){
+            return true;
+        }
+        else false;
+    } 
 }

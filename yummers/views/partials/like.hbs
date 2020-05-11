@@ -1,0 +1,6 @@
+{{#if (checkLikers recipe session.user)}}
+    <img id="like" class="icon post_icon" src="/img/like.png" title="Like post"></img>
+{{else}}
+    <img id="liked" class="icon post_icon" src="/img/liked.png" title="Liked post"></img>
+{{/if}}
+<span id = "likers" class = "text-black"> {{recipe.likes.length}} people likes this recipe</span>

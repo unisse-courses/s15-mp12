@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     $('.post').on('click', function(e) {
             //If click is in post is not an icon
@@ -41,8 +42,8 @@ $(document).ready(function() {
         //get all follow icons in the page with the specific user
         var userPosts = $('img[title="' + $(this).attr('title') + '"');
 
-        $.post('user/unfollow/' + str, function(data, status) {
-            if(data != null) {
+        $.post('user/unfollow/'+ str, function(data, status) {
+            if(data != null) {  
                 //animation hide element
                 userPosts.hide();
 
@@ -81,23 +82,63 @@ $(document).ready(function() {
     });
 
     $('body').on('click', 'img#bookmarked', function() {
-            //get recipe id through src
-            var image = $(this).parent().parent().next().children()[0].src;
-            var str = {
-                id: image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
-            }
+         //get recipe id through src
+        var image = $(this).parent().parent().next().children()[0].src;
+        var str = {
+            id: image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+        }
     
-            var bookmarked = $(this);
-            $.post('cookbook/remove/', str, function(data, status) {
-                if(data != null) {
-                    bookmarked.hide();
+        var bookmarked = $(this);
+        $.post('cookbook/remove/', str, function(data, status) {
+            if(data != null) {
+                bookmarked.hide();
 
-                    bookmarked.attr('src', '/img/bookmark.png');
-                    bookmarked.attr('id', 'bookmark');
-                    bookmarked.attr('title', 'Add to Cookbook');
+                bookmarked.attr('src', '/img/bookmark.png');
+                bookmarked.attr('id', 'bookmark');
+                bookmarked.attr('title', 'Add to Cookbook');
 
-                    bookmarked.fadeIn(500);
-                }
-            });
+                bookmarked.fadeIn(500);
+            }
+        });
+    });
+    $('body').on('click', 'img#like', function() {
+        //get recipe id through src
+        var image = $(this).parent().parent().parent().children().children().children()[4].src;
+        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+        console.log(str)
+        var likes = $(this);
+       
+        $.post('recipes/like/'+ str, function(data, status){
+            
+            if(data != null) {
+                likes.hide();
+                
+                likes.attr('src', '/img/liked.png');
+                likes.attr('id', 'liked');
+                likes.attr('title', 'Liked post');
+    
+                likes.fadeIn(500);
+            }
+        });
+    });
+
+    $('body').on('click', 'img#liked', function() {
+        //get recipe id through src
+        var image = $(this).parent().parent().parent().children().children().children()[4].src;
+        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+        var liked = $(this);
+
+        $.post('recipes/unlike/'+ str, function(data, status) {
+            if(data != null) {
+                liked.hide();
+    
+                liked.attr('src', '/img/like.png');
+                liked.attr('id', 'like');
+                liked.attr('title', 'Like post');
+                liked.fadeIn(500);
+            }
+            
+        });
+
     });
 });

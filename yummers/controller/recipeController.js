@@ -181,29 +181,18 @@ exports.deleteRecipe = function(req, res) {
 
 //like a recipe
 exports.likeRecipe = function(req, res) {
-	var like = {
-		likes: req.session.user._id
-	}
-	//update user in session
-	req.recipe.likes.push(req.params.likeId);
+    console.log("WOWOW",  req.params.recipeId)
+    console.log(req.session.user._id)
 	//update db recipe
-	recipeModel.updateOne({_id: req.session.user.session}, {$push: like}, function(dbres) {
+	recipeModel.updateOne({_id:req.params.recipeId}, {$push: req.session.user._id}, function(dbres) {
 		res.send(dbres);
 	});
 }
 
 //unlike a recipe
 exports.unlikeRecipe = function(req, res) {
-	var like = {
-		likes: req.params.followId
-	}
-	//update user in session
-	//get index of id to be removed from follows
-	var index = req.session.recipe.likes.indexOf(like.likes);
-	//remove id in likes
-	req.session.recipe.likes.splice(index, 1);
-	//update db
-	recipeModel.updateOne({_id: req.session.recipe.recipeId}, {$pull: like}, function(dbres) {
+    //update db recipe
+	recipeModel.updateOne({_id:req.params.recipeId}, {$pull: req.session.user._id}, function(dbres) {
 		res.send(dbres);
-	})
+	});
 }
