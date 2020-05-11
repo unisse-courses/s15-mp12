@@ -49,9 +49,8 @@ module.exports = {
         });
         return recipes.includes(recipe._id.toString());
     },
-
     checkLikers: function(recipe, user){
-        if(!recipe.likes.includes(user._id)){
+        if(!recipe.likes.map(like => like.toString()).includes(user._id)){
             return true;
         }
         else false;

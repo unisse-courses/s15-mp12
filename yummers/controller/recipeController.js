@@ -181,18 +181,22 @@ exports.deleteRecipe = function(req, res) {
 
 //like a recipe
 exports.likeRecipe = function(req, res) {
-    console.log("WOWOW",  req.params.recipeId)
-    console.log(req.session.user._id)
+    var id = {
+        likes: req.session.user._id
+    }
 	//update db recipe
-	recipeModel.updateOne({_id:req.params.recipeId}, {$push: req.session.user._id}, function(dbres) {
+	recipeModel.updateOne({_id:req.params.recipeId}, {$push: id}, function(dbres) {
 		res.send(dbres);
 	});
 }
 
 //unlike a recipe
 exports.unlikeRecipe = function(req, res) {
+    var id = {
+        likes: req.session.user._id
+    }
     //update db recipe
-	recipeModel.updateOne({_id:req.params.recipeId}, {$pull: req.session.user._id}, function(dbres) {
+	recipeModel.updateOne({_id:req.params.recipeId}, {$pull: id}, function(dbres) {
 		res.send(dbres);
 	});
 }

@@ -103,11 +103,10 @@ $(document).ready(function() {
     });
     $('body').on('click', 'img#like', function() {
         //get recipe id through src
-        var image = $(this).parent().parent().parent().children().children().children()[4].src;
-        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
-        console.log(str)
+        var image = $(this).parent().parent().children().children()[4].src;
+        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'));
         var likes = $(this);
-       
+    
         $.post('recipes/like/'+ str, function(data, status){
             
             if(data != null) {
@@ -118,14 +117,19 @@ $(document).ready(function() {
                 likes.attr('title', 'Liked post');
     
                 likes.fadeIn(500);
+
+                //change like count
+                var text = likes.next()[0];
+                var num = parseInt( text.innerHTML.substring(0, text.innerHTML.indexOf(" "))) + 1;
+                text.innerHTML = num + " people likes this recipe";
             }
         });
     });
 
     $('body').on('click', 'img#liked', function() {
         //get recipe id through src
-        var image = $(this).parent().parent().parent().children().children().children()[4].src;
-        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+        var image = $(this).parent().parent().children().children()[4].src;
+        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'));
         var liked = $(this);
 
         $.post('recipes/unlike/'+ str, function(data, status) {
@@ -136,6 +140,11 @@ $(document).ready(function() {
                 liked.attr('id', 'like');
                 liked.attr('title', 'Like post');
                 liked.fadeIn(500);
+
+                //change like count
+                var text = liked.next()[0];
+                var num = parseInt( text.innerHTML.substring(0, text.innerHTML.indexOf(" "))) - 1;
+                text.innerHTML = num + " people likes this recipe";
             }
             
         });

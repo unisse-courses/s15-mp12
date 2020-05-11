@@ -45,8 +45,7 @@
         </div>
     </div>
     <div class = "row my-3">
-        
-        <span id = "likers" class = "text-black"> {{recipe.likes.legth}} people likes this recipe </span>
+        {{>like recipe = recipe session = session}}
     </div>
     <div class="row my-3">
         <h3 class="col-lg-10 text-orange">Comments</h3>               
@@ -64,4 +63,4 @@
         {{/each}}
     </div>
 </div>
-<script src="/js/comments.js"></script>
+<script src="/js/recipePage.js"></script>
