@@ -1,3 +1,7 @@
+//Environment Variables
+const {envPort, sessionKey} = require('./config');
+
+//dependencies import
 const express = require('express');
 const hbs = require('express-handlebars');
 const handlebars = require('handlebars');
@@ -5,13 +9,13 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
-
+const mongoose = require('mongoose');
 
 const path = require('path');
 const helper = require('./helper');
 
 const app = express();
-const port = 3000;
+const port = envPort || 9090;
 
 //declare routes
 const usersRoute = require('./routes/userRoutes');
@@ -19,24 +23,9 @@ const recipesRoute = require('./routes/recipeRoutes');
 const publicRoute = require('./routes/publicRoutes');
 const cookbookRoute = require('./routes/cookbookRoutes');
 
-
-//database connection
-const mongoose = require('mongoose');
-const databaseURL = 'mongodb://localhost:27017/yummersdb';
-const options = {useNewUrlParser: true, useUnifiedTopology: true};
-
-//create collections
+//database connect
 const database = require('./database');
-database.createUserCollection();
-database.createRecipeCollection();
-database.createCookbookCollection();
-database.createCommentCollection();
-
-mongoose.connect(databaseURL, options, function(err, res) {
-    if(err) throw err;
-
-    console.log('Database Connected to cloud');
-});
+database.connect();
 
 //app settings
 app.set('view engine', 'hbs');
@@ -62,7 +51,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //set sessions settings
 app.use(session({
-	secret: 'somethingsecret',
+	secret: sessionKey,
 	store: new MongoStore({mongooseConnection: mongoose.connection }),
 	resave: false,
 	saveUninitialized: true

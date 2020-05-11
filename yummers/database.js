@@ -1,4 +1,20 @@
+//config
+const {dbURL} = require('./config');
+
+//database connection
+const mongoose = require('mongoose');
+const databaseURL = dbURL;
+const options = {useNewUrlParser: true, useUnifiedTopology: true};
+
 module.exports = {
+    //connect to clouddb
+    connect: function() {   
+        mongoose.connect(databaseURL, options, function(err, res) {
+            if(err) throw err;
+        
+            console.log('Database Connected to cloud');
+        });
+    },
     //CRUD Operations
     insertDocument: function(doc, callback) {
         doc.save(function(err, res) {
