@@ -27,10 +27,7 @@ Clone or download the repository found at [Yummers! repository](https://github.c
 1. Navigate to the local folder in your machine. Either by using the windows explorer and adding **cmd** to the start of the directory, or using the **dir** command in the terminal until you reach the yummers folder.
 2. After navigating inside the yummers folder, install all dependencies by typing
 `npm install`
-3. run the project by typing `npm start` to **automatically** create the database and collections in mongodb. Console **should** output:
-> recipes collection created!
-> Users collection created!
-> cookbook collection created!
+3. Run the project by typing `npm run dev` to start the nodemon script. Use `npm start` to run the app once.
 
 4. Open MongoDB Compass Community. After loading, click **connect** to connect to the **default** localhost port.
 > localhost:27017
