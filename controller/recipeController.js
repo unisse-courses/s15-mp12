@@ -171,9 +171,9 @@ exports.deleteRecipe = function(req, res) {
     //delete recipe from db
     recipeModel.deleteOne({_id: mongoose.Types.ObjectId(req.params.recipeId)}, function(dbres) {
         //delete recipe picture from folder
-        fs.unlink('./public/img/recipe_' + req.params.recipeId + '.' + req.body.ext, function(err) {
-            if(err) throw err;
-        });
+        // fs.unlink('./public/img/recipe_' + req.params.recipeId + '.' + req.body.ext, function(err) {
+        //     if(err) throw err;
+        // });
         res.send(dbres);
     });
 
