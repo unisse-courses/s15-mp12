@@ -56,7 +56,7 @@ $(document).ready(function() {
     $('.delete').click(function() {
         //GET RECIPE ID THROUGH IMAGE FILE TYPE
         var image = $(this).parent().parent().parent().children()[0].src;
-        var str = image.substring(image.indexOf('_') + 1, image.indexOf('.'));
+        var str = image.substring(image.indexOf('_') + 1, image.lastIndexOf('.'));
 
         console.log(str);
         var title = $(this).parent().parent().children()[0];
