@@ -58,7 +58,6 @@ $(document).ready(function() {
         var image = $(this).parent().parent().parent().children()[0].src;
         var str = image.substring(image.indexOf('_') + 1, image.lastIndexOf('.'));
 
-        console.log(str);
         var title = $(this).parent().parent().children()[0];
         
         //show cancel button
