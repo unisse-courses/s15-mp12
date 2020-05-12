@@ -11,7 +11,7 @@ $(document).ready(function() {
     $('body').on('click', 'img#follow', function() {
         //get post user id through user link
         image = $(this).parent().prev().prev().children()[0].href;
-        var str = image.substring(image.lastIndexOf('/') + 1, image.lastIndexOf('.'));
+        var str = image.substring(image.lastIndexOf('/') + 1, image.length);
         
         //get all follow icons in the page with the specific user
         var userPosts = $('img[title="' + $(this).attr('title') + '"');
@@ -37,7 +37,7 @@ $(document).ready(function() {
     $('body').on('click', 'img#followed', function() {
         //get post user id through link src
         image = $(this).parent().prev().prev().children()[0].href;
-        var str = image.substring(image.lastIndexOf('/') + 1, image.lastIndexOf('.'));
+        var str = image.substring(image.lastIndexOf('/') + 1, image.length);
 
         //get all follow icons in the page with the specific user
         var userPosts = $('img[title="' + $(this).attr('title') + '"');
