@@ -22,6 +22,11 @@ Clone or download the repository found at [Yummers! repository](https://github.c
 * [nodemon](https://www.npmjs.com/package/nodemon) 2.0.3
 * bcrypt 4.0.1
 
+### Accessing
+1. Access the homepage [here](https://yummers.herokuapp.com/)
+
+### Accessing Locally
+1. 
 
 ### Installing
 1. Navigate to the local folder in your machine. Either by using the windows explorer and adding **cmd** to the start of the directory, or using the **dir** command in the terminal until you reach the yummers folder.
@@ -40,10 +45,6 @@ Clone or download the repository found at [Yummers! repository](https://github.c
 8. Refresh each collection and check if all collections contain data.
 9. Open any web browser then type **localhost:3000**
 10. You should **now** be at the **default** landing page of yummers.
-
-
-## Running the tests
-Currently, since sessions are not yet implemented, the user logged-in is always *Nikki Domingo*  regardless of the login functionality
 
 ### Database read functions
 1. At the **landing page**, all recipes and users are read from the database to the client. The **recipes read** from the database is shown as **posts** and the **users read** from the database are shown through the **post name**.
@@ -71,7 +72,6 @@ Currently, since sessions are not yet implemented, the user logged-in is always 
 
 ## Versioning
 We use github for versioning 
-
 
 ## Authors
 

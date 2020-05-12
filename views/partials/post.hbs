@@ -3,10 +3,10 @@
         <span class="col-lg-1">
             <img src="/{{user.profilePic}}" class="user"></img>
         </span>
-        <p class="col-lg-3 text-black pt-2">
+        <div class="col-lg-3 text-black pt-2">
             <a href="/user/{{user._id}}">{{user.name}}</a>
             <p><i>{{dateFormat date}} </i></p>
-        </p>
+        </div>
         <div class="col-lg-5"></div>
         <p class="col-lg-3 text-right">
             {{#if session.user}}
