@@ -8,7 +8,11 @@
                 <div >
                         <h3 class="text-orange text-spaced" style="text-align:center;">Create a new recipe!</h3> 
                         <p class ="text-black" style="text-align:center;">No recipes has been posted yet, be the first!</p>
-                        <p style="text-align:center;"><a href="user/{{session.user._id}}/add">Click here to create a new recipe</a></p>
+                        {{#if session.user}}
+                                <p style="text-align:center;"><a href="user/{{session.user._id}}/add">Click here to create a new recipe</a></p>
+                        {{else}}
+                                <p style="text-align:center;"><a href="/login">Login to create a new recipe</a></p>
+                        {{/if}}
                 </div>
         </div>
 </div>   
