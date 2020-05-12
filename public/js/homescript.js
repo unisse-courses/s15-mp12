@@ -9,8 +9,8 @@ $(document).ready(function() {
     })
 
     $('body').on('click', 'img#follow', function() {
-        //get post user id through image src
-        image = $(this).parent().parent().find('.user')[0].src;
+        //get post user id through user link
+        image = $(this).parent().prev().prev().children()[0].href;
         var str = image.substring(image.lastIndexOf('/') + 1, image.lastIndexOf('.'));
         
         //get all follow icons in the page with the specific user
