@@ -25,9 +25,6 @@ Clone or download the repository found at [Yummers! repository](https://github.c
 ### Accessing
 1. Access the homepage [here](https://yummers.herokuapp.com/)
 
-### Accessing Locally
-1. 
-
 ### Installing
 1. Navigate to the local folder in your machine. Either by using the windows explorer and adding **cmd** to the start of the directory, or using the **dir** command in the terminal until you reach the yummers folder.
 2. After navigating inside the yummers folder, install all dependencies by typing
