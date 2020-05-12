@@ -21,7 +21,7 @@ $(document).ready(function(){
     $('body').on('click', 'img#like', function() {
         //get recipe id through src
         var image = $('.recipe-img')[0].src;
-        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'));
+        var str = image.substring(image.lastIndexOf('_') + 1, image.lastIndexOf('.'));
         var likes = $(this);
     
         $.post('/recipes/like/'+ str, function(data, status){
@@ -46,7 +46,7 @@ $(document).ready(function(){
     $('body').on('click', 'img#liked', function() {
         //get recipe id through src
         var image = $('.recipe-img')[0].src;
-        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'));
+        var str = image.substring(image.lastIndexOf('_') + 1, image.lastIndexOf('.'));
         var liked = $(this);
 
         $.post('/recipes/unlike/'+ str, function(data, status) {

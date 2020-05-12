@@ -11,7 +11,7 @@ $(document).ready(function() {
     $('body').on('click', 'img#follow', function() {
         //get post user id through image src
         image = $(this).parent().parent().find('.user')[0].src;
-        var str = image.substring(image.lastIndexOf('/') + 1, image.indexOf('.'));
+        var str = image.substring(image.lastIndexOf('/') + 1, image.lastIndexOf('.'));
         
         //get all follow icons in the page with the specific user
         var userPosts = $('img[title="' + $(this).attr('title') + '"');
@@ -37,7 +37,7 @@ $(document).ready(function() {
     $('body').on('click', 'img#followed', function() {
         //get post user id through image src
         image = $(this).parent().parent().find('.user')[0].src;
-        var str = image.substring(image.lastIndexOf('/') + 1, image.indexOf('.'));
+        var str = image.substring(image.lastIndexOf('/') + 1, image.lastIndexOf('.'));
 
         //get all follow icons in the page with the specific user
         var userPosts = $('img[title="' + $(this).attr('title') + '"');
@@ -63,7 +63,7 @@ $(document).ready(function() {
         //get recipe id through src
         var image = $(this).parent().parent().next().children()[0].src;
         var str = {
-            id: image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+            id: image.substring(image.lastIndexOf('_') + 1, image.lastIndexOf('.'))
         }
 
         var bookmark = $(this);
@@ -85,7 +85,7 @@ $(document).ready(function() {
          //get recipe id through src
         var image = $(this).parent().parent().next().children()[0].src;
         var str = {
-            id: image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+            id: image.substring(image.lastIndexOf('_') + 1, image.lastIndexOf('.'))
         }
     
         var bookmarked = $(this);
@@ -104,7 +104,7 @@ $(document).ready(function() {
     $('body').on('click', 'img#like', function() {
         //get recipe id through src
         var image = $(this).parent().parent().children().children()[4].src;
-        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'));
+        var str = image.substring(image.lastIndexOf('_') + 1, image.lastIndexOf('.'));
         var likes = $(this);
     
         $.post('recipes/like/'+ str, function(data, status){
@@ -129,7 +129,7 @@ $(document).ready(function() {
     $('body').on('click', 'img#liked', function() {
         //get recipe id through src
         var image = $(this).parent().parent().children().children()[4].src;
-        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'));
+        var str = image.substring(image.lastIndexOf('_') + 1, image.lastIndexOf('.'));
         var liked = $(this);
 
         $.post('recipes/unlike/'+ str, function(data, status) {
@@ -159,7 +159,7 @@ $(document).ready(function() {
     $('body').on('click', 'img#cook', function() {
         //get recipe id through src
         var image = $(this).parent().parent().next().children()[0].src;
-        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+        var str = image.substring(image.lastIndexOf('_') + 1, image.lastIndexOf('.'))
         var cook = $(this);
 
         $.post('user/cook/' + str, function(data, status) {
@@ -179,7 +179,7 @@ $(document).ready(function() {
     $('body').on('click', 'img#cooked', function() {
         //get recipe id through src
         var image = $(this).parent().parent().next().children()[0].src;
-        var str = image.substring(image.lastIndexOf('_') + 1, image.indexOf('.'))
+        var str = image.substring(image.lastIndexOf('_') + 1, image.lastIndexOf('.'))
         var cook = $(this);
 
         $.post('user/uncook/' + str, function(data, status) {
