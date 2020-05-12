@@ -5,7 +5,7 @@ const {dbURL} = require('./config');
 const mongoose = require('mongoose');
 const databaseURL = dbURL;
 const options = {useNewUrlParser: true, useUnifiedTopology: true};
-
+    
 module.exports = {
     //connect to clouddb
     connect: function() {   
